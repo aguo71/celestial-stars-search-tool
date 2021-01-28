@@ -1,10 +1,8 @@
 package edu.brown.cs.student.stars;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -57,6 +55,8 @@ public final class Main {
     }
 
     // TODO: Process commands in a REPL
+    StarsUniverse universe = new StarsUniverse();
+    universe.run();
   }
 
   private static FreeMarkerEngine createEngine() {
