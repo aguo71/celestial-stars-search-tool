@@ -2,7 +2,7 @@
 <pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
-    version="6.13.0" timestamp="2021-01-28T11:50:17.928">
+    version="6.13.0" timestamp="2021-01-28T19:48:07.564">
 <file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/Action.java">
 <violation beginline="5" endline="5" begincolumn="12" endcolumn="35" rule="UnnecessaryModifier" ruleset="Code Style" package="edu.brown.cs.student.stars" class="Action" method="run" externalInfoUrl="https://pmd.github.io/pmd-6.13.0/pmd_rules_java_codestyle.html#unnecessarymodifier" priority="3">
 Unnecessary modifier 'public' on method 'run': the method is declared in an interface type

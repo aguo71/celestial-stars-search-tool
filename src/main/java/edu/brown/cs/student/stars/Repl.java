@@ -17,9 +17,9 @@ public class Repl {
     }
 
     public void readCommands() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String input;
         while(true) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            String input;
             try {
                 input = reader.readLine();
             } catch (IOException e) {
@@ -34,6 +34,8 @@ public class Repl {
 
             if(commands.containsKey(tokens[0])) {
                 commands.get(tokens[0]).run(tokens);
+            } else {
+                System.out.println("ERROR: Invalid command");
             }
         }
     }

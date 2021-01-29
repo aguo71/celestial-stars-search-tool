@@ -45,7 +45,7 @@ public class StarsCommand implements Action {
                 stars.clear();
             }
             stars.addAll(tempStars);
-        } catch (IOException e) {
+        } catch (IOException | NumberFormatException e) {
             System.out.println("ERROR: CSV file format incorrect");
             return;
         }
