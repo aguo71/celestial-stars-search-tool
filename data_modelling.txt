@@ -16,7 +16,10 @@ ways of both representing dates and differing calendar types.
 2. I predicted that the future data I would encounter consists of only
 English letters which can be represented as strings. I also made the assumption
 that if someone entered more than 6 entries in a line, there was a bug
-in the CSV and I should throw an error. Lastly, I assumed that if a user
+in the CSV and I should throw an error. I also made sure to check if the user
+entered either just a first or last name rather than both, and printed
+that alone in the name printout to account for different naming customs.
+Lastly, I assumed that if a user
 did not enter an address, the CSV parser would find only 5 tokens rather than
 6 so I adjusted for that manually. These decisions were based on my
 observations of the current dataset, as well as my current expectations of

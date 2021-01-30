@@ -1,0 +1,5 @@
+INPUT
+stars data/stars/NoHeaderCSV.csv
+OUTPUT
+ERROR:
+END

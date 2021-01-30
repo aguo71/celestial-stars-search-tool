@@ -36,22 +36,15 @@ public class MockParser {
     // Parses continuously until EOF
     while (tokens != null) {
       // Makes new mockperson for each line read and adds to list
-      if (tokens.length == 5) {
-        time = tokens[0];
-        fname = tokens[1];
-        lname = tokens[2];
-        email = tokens[3];
-        gender = tokens[4];
-        address = "";
-      } else if (tokens.length > 6) {
-        throw new IOException();
-      } else {
+      if (tokens.length == 6) {
         time = tokens[0];
         fname = tokens[1];
         lname = tokens[2];
         email = tokens[3];
         gender = tokens[4];
         address = tokens[5];
+      } else {
+        throw new IOException();
       }
       MockPerson newMock = new MockPerson(time, fname, lname, email, gender, address);
       mocks.add(newMock);

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>StarsParser xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../apidocs/edu/brown/cs/student/stars/StarsParser.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> edu.brown.cs.student.stars;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> tools.CSVParser;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> java.io.BufferedReader;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> java.io.IOException;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> java.util.ArrayList;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> * Class to parse stars csv data.</em>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="StarsParser" href="../../../../../edu/brown/cs/student/stars/StarsParser.html#StarsParser">StarsParser</a> {
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment">   * Empty constructor.</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>    <strong class="jxr_keyword">public</strong> <a name="StarsParser" href="../../../../../edu/brown/cs/student/stars/StarsParser.html#StarsParser">StarsParser</a>() { }
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment">   * Parses data using an input reader which reads from a csv file and adds new star objects into</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment">   * a list.</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment">   * @param reader BufferedReader reading from csv file in question</em>
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment">   * @return list of stars parsed from csv</em>
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment">   * @throws IOException if parseLine fails</em>
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment">   * @throws NumberFormatException if parsed input cannot be converted to double</em>
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>    <strong class="jxr_keyword">public</strong> ArrayList&lt;Star&gt; parse(BufferedReader reader) <strong class="jxr_keyword">throws</strong> IOException, NumberFormatException {
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>      ArrayList&lt;Star&gt; stars = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <a name="CSVParser" href="../../../../../tools/CSVParser.htm<a name="CSVParser" href="../../../../../tools/CSVParser.html#CSVParser">CSVParser</a>er">CSVParser</a> parser = <strong class="jxr_keyword">new</strong> <a name="CSVParser" href="../../../../../tools/CSVParser.html#CSVParser">CSVParser</a>();
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      String[] tokens;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>      tokens = parser.parseLine(reader, <span class="jxr_string">","</span>);
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>      <strong class="jxr_keyword">int</strong> id;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>      String name;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <strong class="jxr_keyword">double</strong> x;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      <strong class="jxr_keyword">double</strong> y;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <strong class="jxr_keyword">double</strong> z;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <em class="jxr_comment">// Parses continuously until EOF</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>      <strong class="jxr_keyword">while</strong> (tokens != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>        <strong class="jxr_keyword">if</strong> (tokens.length != 5) {
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>          <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IOException();
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>        }
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>        <em class="jxr_comment">// Makes new star for each line read and adds to list</em>
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>        id = Integer.parseInt(tokens[0]);
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>        name = tokens[1];
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>        x = Double.parseDouble(tokens[2]);
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>        y = Double.parseDouble(tokens[3]);
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>        z = Double.parseDouble(tokens[4]);
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>        <a name="Star" href="../../../../../edu/brown/cs/student<a name="Star" href="../../../../../edu/brown/cs/student/stars/Star.html#Star">Star</a>rs/Star.html#Star">Star</a> newStar = <strong class="jxr_keyword">new</strong> <a name="Star" href="../../../../../edu/brown/cs/student/stars/Star.html#Star">Star</a>(id, name, <strong class="jxr_keyword">new</strong> <a name="Coordinates" href="../../../../../edu/brown/cs/student/stars/Coordinates.html#Coordinates">Coordinates</a>(x, y, z));
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>        stars.add(newStar);
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>        tokens = parser.parseLine(reader, <span class="jxr_string">","</span>);
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>      }
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>      <strong class="jxr_keyword">return</strong> stars;
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>    }
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2021. All rights reserved.</div>
+</body>
+</html>

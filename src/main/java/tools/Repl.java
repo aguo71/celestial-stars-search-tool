@@ -25,6 +25,14 @@ public class Repl {
   public Repl() { }
 
   /**
+   *
+   * @return hashmap of commands
+   */
+  public Map<String, Action> getCommands() {
+    return this.commands;
+  }
+
+  /**
    * Adds a REPL command and its respective behavioral class to hashmap commands.
    * @param method REPL command to add
    * @param action class representing desired behavior of REPL command

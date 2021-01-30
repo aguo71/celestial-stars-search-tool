@@ -24,7 +24,8 @@ public class CSVParser {
     if (line == null) {
       return null;
     } else {
-      return line.split(delims);
+      // Tokenizes line based on deliminators, keeping all tokens even if empty
+      return line.split(delims, -1);
     }
   }
 }

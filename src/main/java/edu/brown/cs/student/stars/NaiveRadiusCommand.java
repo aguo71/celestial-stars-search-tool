@@ -59,6 +59,7 @@ public class NaiveRadiusCommand implements Action {
       System.out.println("ERROR: Radius must be non-negative");
       return;
     }
+
     // Calculates distance of each star in dataset stars from input coordinate or star name
     NeighborDistances calculator = new NeighborDistances(stars);
     if (args.length == 5) {
@@ -73,6 +74,10 @@ public class NaiveRadiusCommand implements Action {
     } else {
       // Case when star name was specified in input
       String toFind = args[2].replaceAll("\"", "");
+      if (args[2].equals("\"\"")) {
+        System.out.println("ERROR: Star name cannot be empty string");
+        return;
+      }
       Coordinates coord = null;
       Star toRemove = null;
       // Keeps track of input star so we can remove it from final printed list

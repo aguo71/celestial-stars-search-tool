@@ -39,7 +39,7 @@ public class StarsParser {
         throw new IOException();
       }
       // Makes new star for each line read and adds to list
-      id = (int) Double.parseDouble(tokens[0]);
+      id = Integer.parseInt(tokens[0]);
       name = tokens[1];
       x = Double.parseDouble(tokens[2]);
       y = Double.parseDouble(tokens[3]);

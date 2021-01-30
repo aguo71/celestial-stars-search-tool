@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NaiveRadiusCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">stars</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.stars</a> &gt; <span class="el_source">NaiveRadiusCommand.java</span></div><h1>NaiveRadiusCommand.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.stars;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+
+/**
+ * Class representing naive_radius command and behavior.
+ */
+public class NaiveRadiusCommand implements Action {
+  private ArrayList&lt;Star&gt; stars;
+  // HashMap mapping distance to each star from dataset stars based on the input star/coordinate
+  private HashMap&lt;Double, ArrayList&lt;Star&gt;&gt; neighbors;
+
+  /**
+   *
+   * @param stars dataset of stars to perform naive_radius command on
+   */
+<span class="fc" id="L19">  public NaiveRadiusCommand(ArrayList&lt;Star&gt; stars) {</span>
+<span class="fc" id="L20">    this.stars = stars;</span>
+<span class="fc" id="L21">  }</span>
+
+  /**
+   * Finds all neighboring stars within input radius distance in dataset stars.
+   * @param radius maximum distance of stars we want to find
+   * @return list of stars within radius distance using hashmap neighbors
+   */
+  private ArrayList&lt;Star&gt; getNeighborsInRadius(Double radius) {
+<span class="nc" id="L29">    ArrayList&lt;Star&gt; inRange = new ArrayList&lt;&gt;();</span>
+    // Sorts all existing stars by increasing distance using hashmap neighbors, and adds each star
+    // within radius distance to a list
+<span class="nc" id="L32">    ArrayList&lt;Double&gt; distances = new ArrayList&lt;&gt;(neighbors.keySet());</span>
+<span class="nc" id="L33">    Collections.sort(distances);</span>
+    ArrayList&lt;Star&gt; nearbyStars;
+<span class="nc bnc" id="L35" title="All 2 branches missed.">    for (Double distance : distances) {</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">      if (distance &gt; radius) {</span>
+<span class="nc" id="L37">        break;</span>
+      }
+<span class="nc" id="L39">      nearbyStars = neighbors.get(distance);</span>
+<span class="nc" id="L40">      Collections.shuffle(nearbyStars);</span>
+<span class="nc" id="L41">      inRange.addAll(nearbyStars);</span>
+<span class="nc" id="L42">    }</span>
+<span class="nc" id="L43">    return inRange;</span>
+  }
+
+  @Override
+  public void run(String[] args) {
+<span class="nc bnc" id="L48" title="All 4 branches missed.">    if (args.length != 5 &amp;&amp; args.length != 3) {</span>
+<span class="nc" id="L49">      System.out.println(&quot;ERROR: incorrect number of arguments for naive_radius method&quot;);</span>
+<span class="nc" id="L50">      return;</span>
+    }
+
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    if (stars.size() == 0) {</span>
+<span class="nc" id="L54">      System.out.println(&quot;ERROR: No star data exists&quot;);</span>
+<span class="nc" id="L55">      return;</span>
+    }
+
+<span class="nc bnc" id="L58" title="All 2 branches missed.">    if (Double.parseDouble(args[1]) &lt; 0) {</span>
+<span class="nc" id="L59">      System.out.println(&quot;ERROR: Radius must be non-negative&quot;);</span>
+<span class="nc" id="L60">      return;</span>
+    }
+
+    // Calculates distance of each star in dataset stars from input coordinate or star name
+<span class="nc" id="L64">    NeighborDistances calculator = new NeighborDistances(stars);</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">    if (args.length == 5) {</span>
+      // Case when coordinate was specified in input
+<span class="nc" id="L67">      neighbors = calculator.findDistances(new Coordinates(Double.parseDouble(args[2]),</span>
+<span class="nc" id="L68">          Double.parseDouble(args[3]), Double.parseDouble(args[4])));</span>
+      // Finds and prints all stars within input radius
+<span class="nc" id="L70">      ArrayList&lt;Star&gt; closest = getNeighborsInRadius(Double.parseDouble(args[1]));</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">      for (Star star : closest) {</span>
+<span class="nc" id="L72">        System.out.println(star.getID());</span>
+<span class="nc" id="L73">      }</span>
+<span class="nc" id="L74">    } else {</span>
+      // Case when star name was specified in input
+<span class="nc" id="L76">      String toFind = args[2].replaceAll(&quot;\&quot;&quot;, &quot;&quot;);</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">      if (args[2].equals(&quot;\&quot;\&quot;&quot;)) {</span>
+<span class="nc" id="L78">        System.out.println(&quot;ERROR: Star name cannot be empty string&quot;);</span>
+<span class="nc" id="L79">        return;</span>
+      }
+<span class="nc" id="L81">      Coordinates coord = null;</span>
+<span class="nc" id="L82">      Star toRemove = null;</span>
+      // Keeps track of input star so we can remove it from final printed list
+<span class="nc bnc" id="L84" title="All 2 branches missed.">      for (Star star : stars) {</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (star.getName().equals(toFind)) {</span>
+<span class="nc" id="L86">          coord = star.getCoordinates();</span>
+<span class="nc" id="L87">          toRemove = star;</span>
+<span class="nc" id="L88">          break;</span>
+        }
+<span class="nc" id="L90">      }</span>
+
+<span class="nc bnc" id="L92" title="All 2 branches missed.">      if (coord == null) {</span>
+<span class="nc" id="L93">        System.out.println(&quot;ERROR: Star not found&quot;);</span>
+<span class="nc" id="L94">        return;</span>
+      }
+<span class="nc" id="L96">      neighbors = calculator.findDistances(coord);</span>
+      // Finds and prints all stars within input radius except star initially mentioned in repl
+      // command
+<span class="nc" id="L99">      ArrayList&lt;Star&gt; closest = getNeighborsInRadius(Double.parseDouble(args[1]));</span>
+<span class="nc" id="L100">      closest.remove(toRemove);</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">      for (Star star : closest) {</span>
+<span class="nc" id="L102">        System.out.println(star.getID());</span>
+<span class="nc" id="L103">      }</span>
+    }
+<span class="nc" id="L105">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
