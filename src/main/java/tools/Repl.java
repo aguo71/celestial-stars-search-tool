@@ -51,6 +51,9 @@ public class Repl {
       if (input == null) {
         return;
       }
+      if (input.equals("")) {
+        continue;
+      }
 
       // Parses REPL command, splitting on spaces except within double quotes. Code from:
       // https://stackoverflow.com/questions/366202/regex-for-splitting-a-
