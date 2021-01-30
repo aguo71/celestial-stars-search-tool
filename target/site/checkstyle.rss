@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2021</copyright>
     <item>
-      <title>File: 13,
-             Errors: 408,
+      <title>File: 4,
+             Errors: 1,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,132 +46,6 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.NeighborDistances.java">edu/brown/cs/student/stars/NeighborDistances.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  21
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.StarsCommand.java">edu/brown/cs/student/stars/StarsCommand.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  53
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.CSVParser.java">edu/brown/cs/student/stars/CSVParser.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  15
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.Star.java">edu/brown/cs/student/stars/Star.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  22
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.NaiveNeighborCommand.java">edu/brown/cs/student/stars/NaiveNeighborCommand.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  95
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.Action.java">edu/brown/cs/student/stars/Action.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.Coordinates.java">edu/brown/cs/student/stars/Coordinates.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  13
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.NaiveRadiusCommand.java">edu/brown/cs/student/stars/NaiveRadiusCommand.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  80
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.DistanceCalculator.java">edu/brown/cs/student/stars/DistanceCalculator.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  12
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.StarsParser.java">edu/brown/cs/student/stars/StarsParser.java</a>
                 </td>
                 <td>
@@ -181,12 +55,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  34
+                  0
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.Main.java">edu/brown/cs/student/stars/Main.java</a>
+                  <a href="${project.url}/checkstyle.html#tools.CSVParser.java">tools/CSVParser.java</a>
                 </td>
                 <td>
                   0
@@ -195,12 +69,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  4
+                  0
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.Repl.java">edu/brown/cs/student/stars/Repl.java</a>
+                  <a href="${project.url}/checkstyle.html#tools.Repl.java">tools/Repl.java</a>
                 </td>
                 <td>
                   0
@@ -209,7 +83,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  37
+                  0
                 </td>
               </tr>
                           <tr>
@@ -223,7 +97,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  18
+                  1
                 </td>
               </tr>
                       </tbody>

@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pmd-cpd>
-   <duplication lines="23" tokens="119">
-      <file line="60"
+   <duplication lines="27" tokens="119">
+      <file line="81"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java"/>
-      <file line="53"
+      <file line="69"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusCommand.java"/>
-      <codefragment><![CDATA[            ArrayList<Star> closest = getNNeighbors(Integer.parseInt(args[1]));
-            for(Star star: closest) {
-                System.out.println(star.getID());
-            }
-        } else {
-            String toFind = args[2].replaceAll("\"", "");
-            Coordinates coord = null;
-            Star toRemove = null;
-            for(Star star: stars) {
-                if(star.getName().equals(toFind)){
-                    coord = star.getCoordinates();
-                    toRemove = star;
-                    break;
-                }
-            }
+      <codefragment><![CDATA[      ArrayList<Star> closest = getNNeighbors(Integer.parseInt(args[1]));
+      for (Star star : closest) {
+        System.out.println(star.getID());
+      }
+    } else {
+      // Case when command input was star name
+      String toFind = args[2].replaceAll("\"", "");
+      Coordinates coord = null;
+      Star toRemove = null;
+      // Keeps track of input star so we can remove it from final printed list
+      for (Star star : stars) {
+        if (star.getName().equals(toFind)) {
+          coord = star.getCoordinates();
+          toRemove = star;
+          break;
+        }
+      }
 
-            if(coord == null) {
-                System.out.println("ERROR: Star not found");
-                return;
-            }
+      if (coord == null) {
+        System.out.println("ERROR: Star not found");
+        return;
+      }
 
-            neighbors = calculator.findDistances(coord);
-            ArrayList<Star> closest = getNNeighbors(Integer.parseInt(args[1])+1);]]></codefragment>
+      neighbors = calculator.findDistances(coord);
+      // Finds and prints the appropriate number of neighboring stars except star initially
+      // mentioned in repl command
+      ArrayList<Star> closest = getNNeighbors(Integer.parseInt(args[1]) + 1);]]></codefragment>
    </duplication>
 </pmd-cpd>

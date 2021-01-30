@@ -1,21 +1,32 @@
 package edu.brown.cs.student.stars;
 
+
+import tools.Repl;
 import java.util.ArrayList;
 
+/**
+ * Class to set up a REPL specifically for stars and registers the appropriate repl commands.
+ */
 public class StarsUniverse {
-    ArrayList<Star> stars = new ArrayList<>();
+  private ArrayList<Star> stars = new ArrayList<>();
 
-    public StarsUniverse() {}
+  /**
+   * Empty constructor.
+   */
+  public StarsUniverse() { }
 
-    public void run() {
-        Repl repl = new Repl();
-        StarsCommand starsC = new StarsCommand(stars);
-        NaiveNeighborCommand neighbor = new NaiveNeighborCommand(stars);
-        NaiveRadiusCommand radius = new NaiveRadiusCommand(stars);
-        repl.registerAction("stars", starsC);
-        repl.registerAction("naive_neighbors", neighbor);
-        repl.registerAction("naive_radius", radius);
-        repl.readCommands();
-    }
+  /**
+   * Sets up a REPL for the stars assignment and registers repl commands to handle.
+   */
+  public void run() {
+    Repl repl = new Repl();
+    StarsCommand starsC = new StarsCommand(stars);
+    NaiveNeighborCommand neighbor = new NaiveNeighborCommand(stars);
+    NaiveRadiusCommand radius = new NaiveRadiusCommand(stars);
+    repl.registerAction("stars", starsC);
+    repl.registerAction("naive_neighbors", neighbor);
+    repl.registerAction("naive_radius", radius);
+    repl.readCommands();
+  }
 
 }

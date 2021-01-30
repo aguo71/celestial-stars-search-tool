@@ -1,8 +1,11 @@
 package edu.brown.cs.student.stars;
 
-import java.io.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -20,7 +23,6 @@ import freemarker.template.Configuration;
 
 /**
  * The Main class of our project. This is where execution begins.
- *
  */
 public final class Main {
 
@@ -29,8 +31,7 @@ public final class Main {
   /**
    * The initial method called when execution begins.
    *
-   * @param args
-   *          An array of command line arguments
+   * @param args An array of command line arguments
    */
   public static void main(String[] args) {
     new Main(args).run();
@@ -47,14 +48,14 @@ public final class Main {
     OptionParser parser = new OptionParser();
     parser.accepts("gui");
     parser.accepts("port").withRequiredArg().ofType(Integer.class)
-    .defaultsTo(DEFAULT_PORT);
+        .defaultsTo(DEFAULT_PORT);
     OptionSet options = parser.parse(args);
 
     if (options.has("gui")) {
       runSparkServer((int) options.valueOf("port"));
     }
 
-    // TODO: Process commands in a REPL
+    // Processes commands in a REPL
     StarsUniverse universe = new StarsUniverse();
     universe.run();
   }
@@ -85,7 +86,6 @@ public final class Main {
 
   /**
    * Handle requests to the front page of our Stars website.
-   *
    */
   private static class FrontHandler implements TemplateViewRoute {
     @Override
@@ -98,7 +98,6 @@ public final class Main {
 
   /**
    * Display an error page when an exception occurs in the server.
-   *
    */
   private static class ExceptionPrinter implements ExceptionHandler {
     @Override

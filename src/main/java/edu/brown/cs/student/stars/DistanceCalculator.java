@@ -1,9 +1,23 @@
 package edu.brown.cs.student.stars;
 
+/**
+ * Class for a method to find distance between two 3d coordinates.
+ */
 public class DistanceCalculator {
-    public DistanceCalculator(){}
+  /**
+   * Empty constructor.
+   */
+  public DistanceCalculator() { }
 
-    public Double getDistance(Coordinates c1, Coordinates c2) {
-        return Math.sqrt(Math.pow(c1.x - c2.x, 2)+ Math.pow(c1.y - c2.y, 2) + Math.pow(c1.z - c2.z, 2));
-    }
+  /**
+   * Finds Euclidean distance of 2 3d coordinates.
+   * @param c1 coordinate 1
+   * @param c2 coordinate 2
+   * @return distance between input coordinates
+   */
+  public Double getDistance(Coordinates c1, Coordinates c2) {
+    return Math.sqrt(
+        Math.pow(c1.getX() - c2.getX(), 2)
+            + Math.pow(c1.getY() - c2.getY(), 2) + Math.pow(c1.getZ() - c2.getZ(), 2));
+  }
 }

@@ -4,12 +4,12 @@ edu/brown/cs/student/stars/NeighborDistances.class
 edu/brown/cs/student/stars/Action.class
 edu/brown/cs/student/stars/Main.class
 edu/brown/cs/student/stars/Main$ExceptionPrinter.class
+tools/Repl.class
+tools/CSVParser.class
 edu/brown/cs/student/stars/NaiveRadiusCommand.class
 edu/brown/cs/student/stars/Main$FrontHandler.class
 edu/brown/cs/student/stars/Coordinates.class
 edu/brown/cs/student/stars/NaiveNeighborCommand.class
-edu/brown/cs/student/stars/Repl.class
 edu/brown/cs/student/stars/Star.class
-edu/brown/cs/student/stars/CSVParser.class
 edu/brown/cs/student/stars/StarsParser.class
 edu/brown/cs/student/stars/StarsCommand.class

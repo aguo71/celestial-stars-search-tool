@@ -8,13 +8,27 @@
 <div id="overview"><a href="../../../../../../apidocs/edu/brown/cs/student/stars/DistanceCalculator.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> edu.brown.cs.student.stars;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="DistanceCalculator" href="../../../../../edu/brown/cs/student/stars/DistanceCalculator.html#DistanceCalculator">DistanceCalculator</a> {
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>       <strong class="jxr_keyword">public</strong> <a name="DistanceCalculator" href="../../../../../edu/brown/cs/student/stars/DistanceCalculator.html#DistanceCalculator">DistanceCalculator</a>(){}
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>       <strong class="jxr_keyword">public</strong> Double getDistance(<a name="Coordin<a name="Coordinates" href="../../../../../edu/brown/cs/student/stars/Coordinates.html#Coordinates">Coordinates</a>"../../../../../edu/brown/cs/student/stars/Coordinates.html#Coordinates">Coordinates</a> c1, <a name="Coordinates" href="../../../../../edu/brown/cs/student/stars/Coordinates.html#Coordinates">Coordinates</a> c2) {
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>           <strong class="jxr_keyword">return</strong> Math.sqrt(Math.pow(c1.x - c2.x, 2)+ Math.pow(c1.y - c2.y, 2) + Math.pow(c1.z - c2.z, 2));
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>       }
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   }
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> * Class for a method to find distance between two 3d coordinates.</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="DistanceCalculator" href="../../../../../edu/brown/cs/student/stars/DistanceCalculator.html#DistanceCalculator">DistanceCalculator</a> {
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment">   * Empty constructor.</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>    <strong class="jxr_keyword">public</strong> <a name="DistanceCalculator" href="../../../../../edu/brown/cs/student/stars/DistanceCalculator.html#DistanceCalculator">DistanceCalculator</a>() { }
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment">   * Finds Euclidean distance of 2 3d coordinates.</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment">   * @param c1 coordinate 1</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment">   * @param c2 coordinate 2</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment">   * @return distance between input coordinates</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>    <strong class="jxr_keyword">public</strong> Double getDistance(<a name="Coordin<a name="Coordinates" href="../../../../../edu/brown/cs/student/stars/Coordinates.html#Coordinates">Coordinates</a>"../../../../../edu/brown/cs/student/stars/Coordinates.html#Coordinates">Coordinates</a> c1, <a name="Coordinates" href="../../../../../edu/brown/cs/student/stars/Coordinates.html#Coordinates">Coordinates</a> c2) {
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>      <strong class="jxr_keyword">return</strong> Math.sqrt(
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>          Math.pow(c1.getX() - c2.getX(), 2)
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>              + Math.pow(c1.getY() - c2.getY(), 2) + Math.pow(c1.getZ() - c2.getZ(), 2));
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>    }
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2021. All rights reserved.</div>

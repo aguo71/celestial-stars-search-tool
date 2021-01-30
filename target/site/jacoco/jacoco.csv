@@ -1,0 +1,15 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+stars,tools,Repl,85,0,6,0,23,0,6,0,3,0
+stars,tools,CSVParser,14,0,2,0,5,0,3,0,2,0
+stars,edu.brown.cs.student.stars,Coordinates,21,0,0,0,8,0,4,0,4,0
+stars,edu.brown.cs.student.stars,Star,21,0,0,0,8,0,4,0,4,0
+stars,edu.brown.cs.student.stars,StarsCommand,82,0,6,0,31,0,5,0,2,0
+stars,edu.brown.cs.student.stars,NaiveNeighborCommand,242,0,28,0,59,0,17,0,3,0
+stars,edu.brown.cs.student.stars,Main,104,0,2,0,29,0,6,0,5,0
+stars,edu.brown.cs.student.stars,NeighborDistances,52,0,4,0,12,0,4,0,2,0
+stars,edu.brown.cs.student.stars,Main.ExceptionPrinter,26,0,0,0,8,0,1,0,1,0
+stars,edu.brown.cs.student.stars,NaiveRadiusCommand,208,0,24,0,51,0,15,0,3,0
+stars,edu.brown.cs.student.stars,StarsParser,75,0,4,0,17,0,4,0,2,0
+stars,edu.brown.cs.student.stars,StarsUniverse,45,0,0,0,11,0,2,0,2,0
+stars,edu.brown.cs.student.stars,Main.FrontHandler,10,0,0,0,2,0,1,0,1,0
+stars,edu.brown.cs.student.stars,DistanceCalculator,29,0,0,0,4,0,2,0,2,0
