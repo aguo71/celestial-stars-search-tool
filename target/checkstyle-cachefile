@@ -1,6 +1,9 @@
-#Fri Jan 29 23:31:48 EST 2021
+#Sat Jan 30 02:24:44 EST 2021
 configuration*?=11E26AB80F23ED9FBE0FF36C1C623EFE3CF83C12
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockCommand.java=1611991467837
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/Star.java=1611980218241
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsUniverse.java=1611991467842
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockPerson.java=1611991467839
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java=1611979130293
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/Coordinates.java=1611967139772
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/Action.java=1611893024722
@@ -11,4 +14,5 @@ configuration*?=11E26AB80F23ED9FBE0FF36C1C623EFE3CF83C12
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborDistances.java=1611979784805
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusCommand.java=1611979083660
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/DistanceCalculator.java=1611979003124
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockParser.java=1611991467835
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/Main.java=1611967404508

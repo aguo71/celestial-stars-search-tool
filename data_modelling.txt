@@ -1,0 +1,40 @@
+Reflection Questions:
+
+1. The developers of Mockaroo most noticeably made an assumption
+about the language of the entries in the dataset. All of the data
+entries were in English, and had no words containing accent marks
+or consisting of Chinese or other characters. They also standardized
+the formatting of entries, starting each entry with a capital letter
+and leaving proper spaces in the address entries without regard for
+possible typos made by the user. This creates an artificially perfect dataset
+of only English participants. Thus, different cultural groups
+are left out from this dataset. Furthermore, none of the names had symbols
+or dashes in them. Also, the datetime was in the format
+MM/DD/YYYY in all the entries, which does not account for different
+ways of both representing dates and differing calendar types.
+
+2. I predicted that the future data I would encounter consists of only
+English letters which can be represented as strings. I also made the assumption
+that if someone entered more than 6 entries in a line, there was a bug
+in the CSV and I should throw an error. Lastly, I assumed that if a user
+did not enter an address, the CSV parser would find only 5 tokens rather than
+6 so I adjusted for that manually. These decisions were based on my
+observations of the current dataset, as well as my current expectations of
+what form typical data representing people come in and how people
+would generally try to abide by the format set by a data collection form.
+An edge case might be unusually formatted entries, like names consisting of commas or symbols
+or numbers, or otherwise typos in an entry which might cause the parser to find more than 6 tokens
+and thus cause the CSV parser to throw an error. Otherwise, I believe my toString and parser
+methods handle other cases because the design of my classes generally leave
+user input as is without manipulation.
+
+3. My REPL is extensible because it contains a hashmap mapping string commands to Action objects.
+This allows us to easily add/change commands that my REPL responds to with just a few lines of code
+in the main (in this case, StarsUniverse, class). My REPL is also
+extensible because it relies on the fact that every command will be implementing the
+Action interface, so it guarantees that the REPl can simply call the run() function of
+each mapped Action object without knowing what the actual specifications of
+that function should be. To reuse my REPl code, no changes need to be made.
+The only changes that would occur is in the main class/repl wrapper where I need
+to set up the REPL by instantiating a new REPL object, and registering
+the appropriate commands, and calling repl.readCommands().

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MockParser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">stars</a> &gt; <a href="index.source.html" class="el_package">mockaroo</a> &gt; <span class="el_source">MockParser.java</span></div><h1>MockParser.java</h1><pre class="source lang-java linenums">package mockaroo;
+
+import tools.CSVParser;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+/**
+ * Class to parse Mock csv files.
+ */
+public class MockParser {
+  /**
+   * Empty constructor.
+   */
+<span class="nc" id="L16">  public MockParser() { }</span>
+
+  /**
+   * Parses data using an input reader which reads from a csv file and adds mockperson objects into
+   * a list.
+   * @param reader BufferedReader reading from csv file in question
+   * @return list of mocks parsed from csv
+   * @throws IOException if parseLine fails
+   */
+  public ArrayList&lt;MockPerson&gt; parse(BufferedReader reader) throws IOException {
+<span class="nc" id="L26">    ArrayList&lt;MockPerson&gt; mocks = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L27">    CSVParser parser = new CSVParser();</span>
+    String[] tokens;
+<span class="nc" id="L29">    tokens = parser.parseLine(reader, &quot;,&quot;);</span>
+    String time;
+    String fname;
+    String lname;
+    String gender;
+    String address;
+    String email;
+    // Parses continuously until EOF
+<span class="nc bnc" id="L37" title="All 2 branches missed.">    while (tokens != null) {</span>
+      // Makes new mockperson for each line read and adds to list
+<span class="nc bnc" id="L39" title="All 2 branches missed.">      if (tokens.length == 5) {</span>
+<span class="nc" id="L40">        time = tokens[0];</span>
+<span class="nc" id="L41">        fname = tokens[1];</span>
+<span class="nc" id="L42">        lname = tokens[2];</span>
+<span class="nc" id="L43">        email = tokens[3];</span>
+<span class="nc" id="L44">        gender = tokens[4];</span>
+<span class="nc" id="L45">        address = &quot;&quot;;</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">      } else if (tokens.length &gt; 6) {</span>
+<span class="nc" id="L47">        throw new IOException();</span>
+      } else {
+<span class="nc" id="L49">        time = tokens[0];</span>
+<span class="nc" id="L50">        fname = tokens[1];</span>
+<span class="nc" id="L51">        lname = tokens[2];</span>
+<span class="nc" id="L52">        email = tokens[3];</span>
+<span class="nc" id="L53">        gender = tokens[4];</span>
+<span class="nc" id="L54">        address = tokens[5];</span>
+      }
+<span class="nc" id="L56">      MockPerson newMock = new MockPerson(time, fname, lname, email, gender, address);</span>
+<span class="nc" id="L57">      mocks.add(newMock);</span>
+<span class="nc" id="L58">      tokens = parser.parseLine(reader, &quot;,&quot;);</span>
+<span class="nc" id="L59">    }</span>
+<span class="nc" id="L60">    return mocks;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

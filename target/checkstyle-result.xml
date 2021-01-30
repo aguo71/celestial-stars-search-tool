@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.19">
 <file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsUniverse.java">
-<error line="13" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
 </file>
-<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsParser.java">
+<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockParser.java">
 </file>
-<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/CSVParser.java">
+<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockCommand.java">
 </file>
-<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/Repl.java">
+<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockPerson.java">
 </file>
 </checkstyle>

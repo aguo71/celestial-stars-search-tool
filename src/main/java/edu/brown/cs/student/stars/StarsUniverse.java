@@ -1,6 +1,7 @@
 package edu.brown.cs.student.stars;
 
 
+import mockaroo.MockCommand;
 import tools.Repl;
 import java.util.ArrayList;
 
@@ -23,9 +24,11 @@ public class StarsUniverse {
     StarsCommand starsC = new StarsCommand(stars);
     NaiveNeighborCommand neighbor = new NaiveNeighborCommand(stars);
     NaiveRadiusCommand radius = new NaiveRadiusCommand(stars);
+    MockCommand mockC = new MockCommand();
     repl.registerAction("stars", starsC);
     repl.registerAction("naive_neighbors", neighbor);
     repl.registerAction("naive_radius", radius);
+    repl.registerAction("mock", mockC);
     repl.readCommands();
   }
 
