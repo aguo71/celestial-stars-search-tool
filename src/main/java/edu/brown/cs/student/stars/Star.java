@@ -1,23 +1,26 @@
 package edu.brown.cs.student.stars;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class representing a star.
  */
-public class Star {
+public class Star implements HasCoordinates {
   private int starID;
   private String name;
-  private Coordinates position;
+  private List<Double> coordinates;
 
   /**
    *
    * @param starID ID of star
    * @param name name of star
-   * @param position position of star
+   * @param coordinates position of star
    */
-  public Star(int starID, String name, Coordinates position) {
+  public Star(int starID, String name, List<Double> coordinates) {
     this.starID = starID;
     this.name = name;
-    this.position = position;
+    this.coordinates = new ArrayList<>(coordinates);
   }
 
   /**
@@ -36,12 +39,18 @@ public class Star {
     return this.name;
   }
 
-  /**
-   *
-   * @return coordinates of star
-   */
-  public Coordinates getCoordinates() {
-    return this.position;
+  public List<Double> getCoordinates() {
+    return this.coordinates;
+  }
+
+  @Override
+  public int numDimensions() {
+    return coordinates.size();
+  }
+
+  @Override
+  public double getCoordinate(int index) {
+    return this.coordinates.get(index);
   }
 
 }

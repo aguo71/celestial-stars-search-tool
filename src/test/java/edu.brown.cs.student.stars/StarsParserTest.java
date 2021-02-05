@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -32,7 +33,7 @@ public class StarsParserTest {
         return;
       }
       StarsParser parser = new StarsParser();
-      ArrayList<Star> stars;
+      List<Star> stars;
       try {
         stars = parser.parse(reader);
       } catch (IOException | NumberFormatException e) {

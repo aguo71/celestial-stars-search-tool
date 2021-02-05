@@ -5,6 +5,7 @@ import org.junit.Test;
 import tools.Repl;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertFalse;
@@ -20,8 +21,9 @@ public class REPLTest {
   @Test
   public void testRegister() {
     Repl repl = new Repl();
-    ArrayList<Star> stars = new ArrayList<>();
-    StarsCommand starsC = new StarsCommand(stars);
+    List<Star> stars = new ArrayList<>();
+    KDTree<Star> starTree = new KDTree<>(null, null, null, 0);
+    StarsCommand starsC = new StarsCommand(stars, starTree);
     NaiveNeighborCommand neighbor = new NaiveNeighborCommand(stars);
     NaiveRadiusCommand radius = new NaiveRadiusCommand(stars);
     MockCommand mockC = new MockCommand();

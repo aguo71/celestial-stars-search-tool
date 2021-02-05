@@ -4,12 +4,14 @@ package edu.brown.cs.student.stars;
 import mockaroo.MockCommand;
 import tools.Repl;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class to set up a REPL specifically for stars and registers the appropriate repl commands.
  */
 public class StarsUniverse {
-  private ArrayList<Star> stars = new ArrayList<>();
+  private List<Star> stars = new ArrayList<>();
+  private KDTree<Star> starTree = new KDTree<>(null, null, null, 0);
 
   /**
    * Empty constructor.
@@ -21,7 +23,7 @@ public class StarsUniverse {
    */
   public void run() {
     Repl repl = new Repl();
-    StarsCommand starsC = new StarsCommand(stars);
+    StarsCommand starsC = new StarsCommand(stars, starTree);
     NaiveNeighborCommand neighbor = new NaiveNeighborCommand(stars);
     NaiveRadiusCommand radius = new NaiveRadiusCommand(stars);
     MockCommand mockC = new MockCommand();

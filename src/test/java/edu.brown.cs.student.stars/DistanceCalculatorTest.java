@@ -2,6 +2,9 @@ package edu.brown.cs.student.stars;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public class DistanceCalculatorTest {
@@ -11,11 +14,26 @@ public class DistanceCalculatorTest {
    */
   @Test
   public void testGetDistance() {
-    Coordinates c1 = new Coordinates(7, 4, 3);
-    Coordinates c2 = new Coordinates(17, 6, 3);
-    Coordinates c3 = new Coordinates(0,0,0);
-    Coordinates c4 = new Coordinates(-4, 4, -2);
-    Coordinates c5 = new Coordinates(-3.2, .2, 0);
+    List<Double> c1 = new ArrayList<>();
+    c1.add(7.0);
+    c1.add(4.0);
+    c1.add(3.0);
+    List<Double> c2 = new ArrayList<>();
+    c2.add(17.0);
+    c2.add(6.0);
+    c2.add(3.0);
+    List<Double> c3 = new ArrayList<>();
+    c3.add(0.0);
+    c3.add(0.0);
+    c3.add(0.0);
+    List<Double> c4 = new ArrayList<>();
+    c4.add(-4.0);
+    c4.add(4.0);
+    c4.add(-2.0);
+    List<Double> c5 = new ArrayList<>();
+    c5.add(-3.2);
+    c5.add(0.2);
+    c5.add(0.0);
 
     DistanceCalculator tester = new DistanceCalculator();
 

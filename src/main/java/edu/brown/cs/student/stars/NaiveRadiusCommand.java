@@ -2,21 +2,22 @@ package edu.brown.cs.student.stars;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
 
 /**
  * Class representing naive_radius command and behavior.
  */
 public class NaiveRadiusCommand implements Action {
-  private ArrayList<Star> stars;
+  private List<Star> stars;
   // HashMap mapping distance to each star from dataset stars based on the input star/coordinate
-  private HashMap<Double, ArrayList<Star>> neighbors;
+  private Map<Double, List<Star>> neighbors;
 
   /**
    *
    * @param stars dataset of stars to perform naive_radius command on
    */
-  public NaiveRadiusCommand(ArrayList<Star> stars) {
+  public NaiveRadiusCommand(List<Star> stars) {
     this.stars = stars;
   }
 
@@ -25,13 +26,13 @@ public class NaiveRadiusCommand implements Action {
    * @param radius maximum distance of stars we want to find
    * @return list of stars within radius distance using hashmap neighbors
    */
-  private ArrayList<Star> getNeighborsInRadius(Double radius) {
-    ArrayList<Star> inRange = new ArrayList<>();
+  private List<Star> getNeighborsInRadius(Double radius) {
+    List<Star> inRange = new ArrayList<>();
     // Sorts all existing stars by increasing distance using hashmap neighbors, and adds each star
     // within radius distance to a list
-    ArrayList<Double> distances = new ArrayList<>(neighbors.keySet());
+    List<Double> distances = new ArrayList<>(neighbors.keySet());
     Collections.sort(distances);
-    ArrayList<Star> nearbyStars;
+    List<Star> nearbyStars;
     for (Double distance : distances) {
       if (distance > radius) {
         break;
@@ -64,10 +65,13 @@ public class NaiveRadiusCommand implements Action {
     NeighborDistances calculator = new NeighborDistances(stars);
     if (args.length == 5) {
       // Case when coordinate was specified in input
-      neighbors = calculator.findDistances(new Coordinates(Double.parseDouble(args[2]),
-          Double.parseDouble(args[3]), Double.parseDouble(args[4])));
+      List<Double> coords = new ArrayList<>();
+      coords.add(Double.parseDouble(args[2]));
+      coords.add(Double.parseDouble(args[3]));
+      coords.add(Double.parseDouble(args[4]));
+      neighbors = calculator.findDistances(coords);
       // Finds and prints all stars within input radius
-      ArrayList<Star> closest = getNeighborsInRadius(Double.parseDouble(args[1]));
+      List<Star> closest = getNeighborsInRadius(Double.parseDouble(args[1]));
       for (Star star : closest) {
         System.out.println(star.getID());
       }
@@ -78,25 +82,25 @@ public class NaiveRadiusCommand implements Action {
         System.out.println("ERROR: Star name cannot be empty string");
         return;
       }
-      Coordinates coord = null;
       Star toRemove = null;
+      List<Double> coords = new ArrayList<>();
       // Keeps track of input star so we can remove it from final printed list
       for (Star star : stars) {
         if (star.getName().equals(toFind)) {
-          coord = star.getCoordinates();
           toRemove = star;
+          coords = star.getCoordinates();
           break;
         }
       }
 
-      if (coord == null) {
+      if (toRemove == null) {
         System.out.println("ERROR: Star not found");
         return;
       }
-      neighbors = calculator.findDistances(coord);
+      neighbors = calculator.findDistances(coords);
       // Finds and prints all stars within input radius except star initially mentioned in repl
       // command
-      ArrayList<Star> closest = getNeighborsInRadius(Double.parseDouble(args[1]));
+      List<Star> closest = getNeighborsInRadius(Double.parseDouble(args[1]));
       closest.remove(toRemove);
       for (Star star : closest) {
         System.out.println(star.getID());

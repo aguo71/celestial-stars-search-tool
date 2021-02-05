@@ -2,21 +2,22 @@ package edu.brown.cs.student.stars;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
 
 /**
  * Class to represent naive_neighbor repl command and behavior.
  */
 public class NaiveNeighborCommand implements Action {
-  private ArrayList<Star> stars;
+  private List<Star> stars;
   // HashMap mapping distance to each star from dataset stars based on the input star/coordinate
-  private HashMap<Double, ArrayList<Star>> neighbors;
+  private Map<Double, List<Star>> neighbors;
 
   /**
    *
    * @param stars dataset of stars to perform naive_neighbor command on
    */
-  public NaiveNeighborCommand(ArrayList<Star> stars) {
+  public NaiveNeighborCommand(List<Star> stars) {
     this.stars = stars;
   }
 
@@ -25,13 +26,13 @@ public class NaiveNeighborCommand implements Action {
    * @param n number of neighbors to find and return
    * @return list of n closest stars
    */
-  private ArrayList<Star> getNNeighbors(Integer n) {
-    ArrayList<Star> closest = new ArrayList<>();
+  private List<Star> getNNeighbors(Integer n) {
+    List<Star> closest = new ArrayList<>();
     // Sorts all existing stars by increasing distance using hashmap neighbors,
     // and adds the first n stars to a list
-    ArrayList<Double> distances = new ArrayList<>(neighbors.keySet());
+    List<Double> distances = new ArrayList<>(neighbors.keySet());
     Collections.sort(distances);
-    ArrayList<Star> nearbyStars;
+    List<Star> nearbyStars;
     int counter = 0;
     for (Double distance : distances) {
       if (counter == n) {
@@ -82,11 +83,14 @@ public class NaiveNeighborCommand implements Action {
     // Calculates distance of each star in dataset stars from input coordinate or star name
     NeighborDistances calculator = new NeighborDistances(stars);
     if (args.length == 5) {
-      // Case when command input was coordinate
-      neighbors = calculator.findDistances(new Coordinates(Double.parseDouble(args[2]),
-          Double.parseDouble(args[3]), Double.parseDouble(args[4])));
+      // Case when coordinate was specified in input
+      List<Double> coords = new ArrayList<>();
+      coords.add(Double.parseDouble(args[2]));
+      coords.add(Double.parseDouble(args[3]));
+      coords.add(Double.parseDouble(args[4]));
+      neighbors = calculator.findDistances(coords);
       // Finds and prints the appropriate number of neighboring stars
-      ArrayList<Star> closest = getNNeighbors(Integer.parseInt(args[1]));
+      List<Star> closest = getNNeighbors(Integer.parseInt(args[1]));
       for (Star star : closest) {
         System.out.println(star.getID());
       }
@@ -97,26 +101,26 @@ public class NaiveNeighborCommand implements Action {
         System.out.println("ERROR: Star name cannot be empty string");
         return;
       }
-      Coordinates coord = null;
+      List<Double> coords = new ArrayList<>();
       Star toRemove = null;
       // Keeps track of input star so we can remove it from final printed list
       for (Star star : stars) {
         if (star.getName().equals(toFind)) {
-          coord = star.getCoordinates();
+          coords = star.getCoordinates();
           toRemove = star;
           break;
         }
       }
 
-      if (coord == null) {
+      if (toRemove == null) {
         System.out.println("ERROR: Star not found");
         return;
       }
 
-      neighbors = calculator.findDistances(coord);
+      neighbors = calculator.findDistances(coords);
       // Finds and prints the appropriate number of neighboring stars except star initially
       // mentioned in repl command
-      ArrayList<Star> closest = getNNeighbors(Integer.parseInt(args[1]) + 1);
+      List<Star> closest = getNNeighbors(Integer.parseInt(args[1]) + 1);
       closest.remove(toRemove);
       for (Star star : closest) {
         System.out.println(star.getID());

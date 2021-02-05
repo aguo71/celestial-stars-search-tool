@@ -2,9 +2,12 @@
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsUniverse.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockPerson.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockCommand.java
-/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/Coordinates.java
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/KDTreeConstructor.java
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/KDTree.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/HasCoordinates.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/Action.java
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/CoordinateComparator.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsCommand.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/CSVParser.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/Repl.java

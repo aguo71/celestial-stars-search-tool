@@ -5,6 +5,7 @@ import tools.CSVParser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class to parse stars csv data.
@@ -23,8 +24,8 @@ public class StarsParser {
    * @throws IOException if parseLine fails
    * @throws NumberFormatException if parsed input cannot be converted to double
    */
-  public ArrayList<Star> parse(BufferedReader reader) throws IOException, NumberFormatException {
-    ArrayList<Star> stars = new ArrayList<>();
+  public List<Star> parse(BufferedReader reader) throws IOException, NumberFormatException {
+    List<Star> stars = new ArrayList<>();
     CSVParser parser = new CSVParser();
     String[] tokens;
     tokens = parser.parseLine(reader, ",");
@@ -44,7 +45,11 @@ public class StarsParser {
       x = Double.parseDouble(tokens[2]);
       y = Double.parseDouble(tokens[3]);
       z = Double.parseDouble(tokens[4]);
-      Star newStar = new Star(id, name, new Coordinates(x, y, z));
+      List<Double> coords = new ArrayList<>();
+      coords.add(x);
+      coords.add(y);
+      coords.add(z);
+      Star newStar = new Star(id, name, coords);
       stars.add(newStar);
       tokens = parser.parseLine(reader, ",");
     }

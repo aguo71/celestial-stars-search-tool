@@ -1,7 +1,9 @@
 package edu.brown.cs.student.stars;
 
+import java.util.List;
+
 /**
- * Class for a method to find distance between two 3d coordinates.
+ * Class for a method to find distance between two sets of coordinates.
  */
 public class DistanceCalculator {
   /**
@@ -10,14 +12,20 @@ public class DistanceCalculator {
   public DistanceCalculator() { }
 
   /**
-   * Finds Euclidean distance of 2 3d coordinates.
+   * Finds Euclidean distance of 2 sets of coordinates.
    * @param c1 coordinate 1
    * @param c2 coordinate 2
    * @return distance between input coordinates
    */
-  public Double getDistance(Coordinates c1, Coordinates c2) {
-    return Math.sqrt(
-        Math.pow(c1.getX() - c2.getX(), 2)
-            + Math.pow(c1.getY() - c2.getY(), 2) + Math.pow(c1.getZ() - c2.getZ(), 2));
+  public double getDistance(List<Double> c1, List<Double> c2) {
+    if(c1.size() != c2.size()) {
+      throw new RuntimeException("ERROR: Can't calculate distance");
+    }
+
+    double dist = 0;
+    for(int x = 0; x < c1.size(); x ++) {
+      dist += Math.pow(c1.get(x) - c2.get(x), 2);
+    }
+    return Math.sqrt(dist);
   }
 }
