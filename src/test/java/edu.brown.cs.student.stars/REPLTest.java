@@ -2,6 +2,8 @@ package edu.brown.cs.student.stars;
 
 import mockaroo.MockCommand;
 import org.junit.Test;
+import tools.Action;
+import tools.KDTree;
 import tools.Repl;
 
 import java.util.ArrayList;

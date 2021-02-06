@@ -1,5 +1,7 @@
 package edu.brown.cs.student.stars;
 
+import tools.Action;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
@@ -79,6 +81,7 @@ public class NaiveNeighborCommand implements Action {
       System.out.println("ERROR: Neighbor count must be non-negative");
       return;
     }
+
 
     // Calculates distance of each star in dataset stars from input coordinate or star name
     NeighborDistances calculator = new NeighborDistances(stars);

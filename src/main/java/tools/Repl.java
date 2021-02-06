@@ -1,7 +1,5 @@
 package tools;
 
-import edu.brown.cs.student.stars.Action;
-
 
 import java.io.BufferedReader;
 import java.io.IOException;

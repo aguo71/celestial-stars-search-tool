@@ -1,5 +1,9 @@
 package edu.brown.cs.student.stars;
 
+import tools.Action;
+import tools.KDTree;
+import tools.KDTreeConstructor;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -62,7 +66,11 @@ public class StarsCommand implements Action {
       return;
     }
     KDTree<Star> newTree = new KDTreeConstructor<Star>().buildTree(stars, 0);
-    starTree.copy(newTree);
+    if(newTree == null) {
+      starTree.copy(new KDTree<Star>(null, null, null, 0));
+    } else {
+      starTree.copy(newTree);
+    }
     System.out.println("Read " + stars.size() + " stars from " + filename);
   }
 }

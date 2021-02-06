@@ -1,4 +1,4 @@
-package edu.brown.cs.student.stars;
+package tools;
 
 public class KDTree<T extends HasCoordinates> {
 

@@ -1,6 +1,7 @@
 package edu.brown.cs.student.stars;
 
 import org.junit.Test;
+import tools.DistanceCalculator;
 
 import java.util.ArrayList;
 import java.util.List;

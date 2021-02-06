@@ -1,4 +1,6 @@
-package edu.brown.cs.student.stars;
+package tools;
+
+import java.util.List;
 
 public interface HasCoordinates {
   /**
@@ -11,4 +13,6 @@ public interface HasCoordinates {
    * @return index-coordinate of star
    */
   double getCoordinate(int index);
+
+  List<Double> getCoordinates();
 }

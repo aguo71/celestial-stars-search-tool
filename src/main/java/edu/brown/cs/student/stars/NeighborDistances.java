@@ -1,5 +1,7 @@
 package edu.brown.cs.student.stars;
 
+import tools.DistanceCalculator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

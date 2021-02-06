@@ -2,6 +2,7 @@ package edu.brown.cs.student.stars;
 
 
 import mockaroo.MockCommand;
+import tools.KDTree;
 import tools.Repl;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public class StarsUniverse {
   private List<Star> stars = new ArrayList<>();
-  private KDTree<Star> starTree = new KDTree<>(null, null, null, 0);
+  private KDTree<Star> starTree = new KDTree<>(null, null, null, -1);
 
   /**
    * Empty constructor.
@@ -27,10 +28,14 @@ public class StarsUniverse {
     NaiveNeighborCommand neighbor = new NaiveNeighborCommand(stars);
     NaiveRadiusCommand radius = new NaiveRadiusCommand(stars);
     MockCommand mockC = new MockCommand();
+    NeighborCommand neighborR = new NeighborCommand(starTree, stars);
+    RadiusCommand radiusR = new RadiusCommand(starTree, stars);
     repl.registerAction("stars", starsC);
     repl.registerAction("naive_neighbors", neighbor);
     repl.registerAction("naive_radius", radius);
     repl.registerAction("mock", mockC);
+    repl.registerAction("neighbors", neighborR);
+    repl.registerAction("radius", radiusR);
     repl.readCommands();
   }
 

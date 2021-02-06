@@ -1,6 +1,6 @@
 package mockaroo;
 
-import edu.brown.cs.student.stars.Action;
+import tools.Action;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

@@ -1,5 +1,7 @@
 package edu.brown.cs.student.stars;
 
+import tools.HasCoordinates;
+
 import java.util.ArrayList;
 import java.util.List;
 

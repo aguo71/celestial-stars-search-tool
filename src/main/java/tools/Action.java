@@ -1,4 +1,4 @@
-package edu.brown.cs.student.stars;
+package tools;
 
 /**
  * Interface for classes which perform some behavior upon repl command.
