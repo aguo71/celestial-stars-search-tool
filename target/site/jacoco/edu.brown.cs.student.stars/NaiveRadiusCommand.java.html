@@ -14,7 +14,7 @@ public class NaiveRadiusCommand implements Action {
   private List&lt;Star&gt; stars;
   // HashMap mapping distance to each star from dataset stars based on the input star/coordinate
   private Map&lt;Double, List&lt;Star&gt;&gt; neighbors;
-<span class="fc" id="L17">  List&lt;Star&gt; closest = new ArrayList&lt;Star&gt;();</span>
+<span class="fc" id="L17">  private List&lt;Star&gt; closest = new ArrayList&lt;Star&gt;();</span>
   /**
    *
    * @param stars dataset of stars to perform naive_radius command on
@@ -110,7 +110,7 @@ public class NaiveRadiusCommand implements Action {
       // command
 <span class="nc" id="L111">      getNeighborsInRadius(Double.parseDouble(args[1]));</span>
 <span class="nc bnc" id="L112" title="All 2 branches missed.">      for (Star star : closest) {</span>
-<span class="nc bnc" id="L113" title="All 2 branches missed.">        if(!star.getName().equals(toRemove.getName())) {</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        if (!star.getName().equals(toRemove.getName())) {</span>
 <span class="nc" id="L114">          System.out.println(star.getID());</span>
         }
 <span class="nc" id="L116">      }</span>
@@ -118,7 +118,7 @@ public class NaiveRadiusCommand implements Action {
 <span class="fc" id="L118">  }</span>
 
   /**
-   * getters for MBT testing
+   * Getter for MBT testing.
    * @return list of nearest neighbors
    */
   public List&lt;Star&gt; getResults() {

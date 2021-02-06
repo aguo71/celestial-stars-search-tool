@@ -32,7 +32,7 @@
       }]]></codefragment>
    </duplication>
    <duplication lines="23" tokens="109">
-      <file line="103"
+      <file line="107"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java"/>
       <file line="93"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java"/>
@@ -86,7 +86,7 @@
         for (Star star : neighbors.get(distance)) {]]></codefragment>
    </duplication>
    <duplication lines="18" tokens="101">
-      <file line="81"
+      <file line="85"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java"/>
       <file line="63"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusCommand.java"/>

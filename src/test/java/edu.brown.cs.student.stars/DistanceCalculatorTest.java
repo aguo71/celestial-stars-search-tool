@@ -8,6 +8,9 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Class to test distance calculator.
+ */
 public class DistanceCalculatorTest {
 
   /**

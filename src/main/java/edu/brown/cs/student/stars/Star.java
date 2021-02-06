@@ -53,7 +53,7 @@ public class Star implements HasCoordinates {
 
   @Override
   public double getCoordinate(int index) {
-    return this.coordinates.get(index);
+    return this.coordinates.get(index % coordinates.size());
   }
 
 }

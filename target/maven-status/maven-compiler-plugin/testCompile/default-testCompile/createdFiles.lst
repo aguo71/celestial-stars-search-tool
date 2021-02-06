@@ -1,1 +1,6 @@
 edu/brown/cs/student/stars/ModelBasedTest.class
+edu/brown/cs/student/stars/StarTest.class
+edu/brown/cs/student/stars/KDTreeConstructorTest.class
+edu/brown/cs/student/stars/NeighborsInRadiusTest.class
+edu/brown/cs/student/stars/CoordinateComparatorTest.class
+edu/brown/cs/student/stars/KDTreeTest.class

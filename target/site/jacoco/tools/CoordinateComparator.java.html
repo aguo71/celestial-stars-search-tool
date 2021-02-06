@@ -21,8 +21,8 @@ public class CoordinateComparator&lt;T extends HasCoordinates&gt; implements Com
   public int compare(T o1, T o2) {
 <span class="fc bfc" id="L22" title="All 2 branches covered.">    if (o1.getCoordinate(plane) &lt; o2.getCoordinate(plane)) {</span>
 <span class="fc" id="L23">      return -1;</span>
-<span class="pc bpc" id="L24" title="1 of 2 branches missed.">    } else if (o1.getCoordinate(plane) == o2.getCoordinate(plane)) {</span>
-<span class="nc" id="L25">      return 0;</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">    } else if (o1.getCoordinate(plane) == o2.getCoordinate(plane)) {</span>
+<span class="fc" id="L25">      return 0;</span>
     } else {
 <span class="fc" id="L27">      return 1;</span>
     }

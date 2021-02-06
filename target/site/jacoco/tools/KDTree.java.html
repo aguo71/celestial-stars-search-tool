@@ -62,21 +62,21 @@ public class KDTree&lt;T extends HasCoordinates&gt; {
    * @param tree KDtree to copy
    */
   public void copy(KDTree&lt;T&gt; tree) {
-<span class="nc" id="L65">    this.val = tree.getVal();</span>
-<span class="nc" id="L66">    this.depth = tree.getDepth();</span>
-<span class="nc bnc" id="L67" title="All 2 branches missed.">    if (tree.getLeft() != null) {</span>
-<span class="nc" id="L68">      this.left = new KDTree&lt;T&gt;(null, null, null, 0);</span>
-<span class="nc" id="L69">      this.left.copy(tree.getLeft());</span>
+<span class="fc" id="L65">    this.val = tree.getVal();</span>
+<span class="fc" id="L66">    this.depth = tree.getDepth();</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">    if (tree.getLeft() != null) {</span>
+<span class="fc" id="L68">      this.left = new KDTree&lt;T&gt;(null, null, null, 0);</span>
+<span class="fc" id="L69">      this.left.copy(tree.getLeft());</span>
     } else {
-<span class="nc" id="L71">      this.left = null;</span>
+<span class="fc" id="L71">      this.left = null;</span>
     }
-<span class="nc bnc" id="L73" title="All 2 branches missed.">    if (tree.getRight() != null) {</span>
-<span class="nc" id="L74">      this.right = new KDTree&lt;T&gt;(null, null, null, 0);</span>
-<span class="nc" id="L75">      this.right.copy(tree.getRight());</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">    if (tree.getRight() != null) {</span>
+<span class="fc" id="L74">      this.right = new KDTree&lt;T&gt;(null, null, null, 0);</span>
+<span class="fc" id="L75">      this.right.copy(tree.getRight());</span>
     } else {
-<span class="nc" id="L77">      this.right = null;</span>
+<span class="fc" id="L77">      this.right = null;</span>
     }
-<span class="nc" id="L79">  }</span>
+<span class="fc" id="L79">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -22,7 +22,7 @@ public class NeighborDistances {
   }
 
   /**
-   * Calculaes distances between stars in the dataset stars and an input coordinate.
+   * Calculates distances between stars in the dataset stars and an input coordinate.
    * @param coords coordinate to calculate distance from
    * @return HashMap mapping distance from input coordinate to list of stars at that distance
    */
