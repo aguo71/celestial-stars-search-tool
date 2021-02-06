@@ -9,11 +9,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
+/**
+ * KDTree non-naive implementation of stars neighbor repl command.
+ */
 public class NeighborCommand implements Action {
   private KDTree<Star> starTree;
   private TreeMap<Double, List<Star>> neighbors = new TreeMap<>();
   private List<Star> stars;
 
+  /**
+   *
+   * @param starTree KDTree of stars
+   * @param stars List of stars
+   */
   public NeighborCommand(KDTree<Star> starTree, List<Star> stars) {
     this.starTree = starTree;
     this.stars = stars;
@@ -47,9 +55,14 @@ public class NeighborCommand implements Action {
     if (args.length == 5) {
       // Case when coordinate was specified in input
       List<Double> coords = new ArrayList<>();
-      coords.add(Double.parseDouble(args[2]));
-      coords.add(Double.parseDouble(args[3]));
-      coords.add(Double.parseDouble(args[4]));
+      try {
+        coords.add(Double.parseDouble(args[2]));
+        coords.add(Double.parseDouble(args[3]));
+        coords.add(Double.parseDouble(args[4]));
+      } catch (NumberFormatException e) {
+        System.out.println("ERROR: Input coordinates not numbers");
+        return;
+      }
       // Finds and prints the appropriate number of neighboring stars
       GetKNeighbors<Star> algorithm = new GetKNeighbors<>(neighbors, coords, k);
       int totalStars = algorithm.run(starTree);

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetKNeighbors.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">stars</a> &gt; <a href="index.source.html" class="el_package">tools</a> &gt; <span class="el_source">GetKNeighbors.java</span></div><h1>GetKNeighbors.java</h1><pre class="source lang-java linenums">package tools;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
+
+/**
+ * Class holding function to find K-nearest neighbors.
+ * @param &lt;T&gt;
+ */
+public class GetKNeighbors&lt;T extends HasCoordinates&gt; {
+  private List&lt;Double&gt; target;
+  // stores distance from target coordinate -&gt; list of T objects (stars) at that distance away
+  private TreeMap&lt;Double, List&lt;T&gt;&gt; neighbors;
+  private int k;
+<span class="nc" id="L16">  private DistanceCalculator calc = new DistanceCalculator();</span>
+
+  /**
+   * Constructor.
+   * @param neighbors Empty treemap to fill with nearest neighbors
+   * @param target target coordinate
+   * @param k number of neighbors sought after
+   */
+<span class="nc" id="L24">  public GetKNeighbors(TreeMap&lt;Double, List&lt;T&gt;&gt; neighbors, List&lt;Double&gt; target, int k) {</span>
+<span class="nc" id="L25">    this.neighbors = neighbors;</span>
+<span class="nc" id="L26">    this.target = target;</span>
+<span class="nc" id="L27">    this.k = k;</span>
+<span class="nc" id="L28">  }</span>
+
+  /**
+   * Finds nearest neighbors using input.
+   * @param kdtree kdtree of T objects to search with
+   * @return number of net neighbors added to treemap
+   */
+  public int run(KDTree&lt;T&gt; kdtree) {
+<span class="nc bnc" id="L36" title="All 2 branches missed.">    if (kdtree == null) {</span>
+<span class="nc" id="L37">      return 0;</span>
+    }
+<span class="nc" id="L39">    int counter = 0;</span>
+<span class="nc" id="L40">    double dist = calc.getDistance(kdtree.getVal().getCoordinates(), target);</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">    if (neighbors.isEmpty()) {</span>
+<span class="nc" id="L42">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L43">      lst.add(kdtree.getVal());</span>
+<span class="nc" id="L44">      neighbors.put(dist, lst);</span>
+<span class="nc" id="L45">      counter += 1;</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">    } else if (neighbors.containsKey(dist)) {</span>
+<span class="nc" id="L47">      List&lt;T&gt; lst = neighbors.get(dist);</span>
+<span class="nc" id="L48">      lst.add(kdtree.getVal());</span>
+<span class="nc" id="L49">      counter += 1;</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">    } else if (neighbors.size() &lt; k) {</span>
+<span class="nc" id="L51">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L52">      lst.add(kdtree.getVal());</span>
+<span class="nc" id="L53">      neighbors.put(dist, lst);</span>
+<span class="nc" id="L54">      counter += 1;</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">    } else if (dist &lt; neighbors.lastKey()) {</span>
+<span class="nc" id="L56">      counter -= neighbors.remove(neighbors.lastKey()).size();</span>
+<span class="nc" id="L57">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L58">      lst.add(kdtree.getVal());</span>
+<span class="nc" id="L59">      neighbors.put(dist, lst);</span>
+<span class="nc" id="L60">      counter += 1;</span>
+    }
+
+<span class="nc" id="L63">    int axis = kdtree.getDepth() % kdtree.getVal().numDimensions();</span>
+<span class="nc" id="L64">    double axisDist = Math.abs(kdtree.getVal().getCoordinate(axis) - target.get(axis));</span>
+<span class="nc" id="L65">    double furthestD = neighbors.lastKey();</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">    if (axisDist &lt; furthestD) {</span>
+<span class="nc" id="L67">      return counter + run(kdtree.getLeft()) + run(kdtree.getRight());</span>
+    } else {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">      if (kdtree.getVal().getCoordinate(axis) &lt; target.get(axis)) {</span>
+<span class="nc" id="L70">        return counter + run(kdtree.getRight());</span>
+      } else {
+<span class="nc" id="L72">        return counter + run(kdtree.getLeft());</span>
+      }
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

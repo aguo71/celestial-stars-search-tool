@@ -4,7 +4,6 @@ mockaroo/MockPerson.class
 tools/GetKNeighbors.class
 tools/CoordinateComparator.class
 edu/brown/cs/student/stars/Main$ExceptionPrinter.class
-edu/brown/cs/student/stars/NeighborsInRadius.class
 tools/Repl.class
 tools/CSVParser.class
 tools/Action.class
@@ -12,6 +11,7 @@ edu/brown/cs/student/stars/NaiveRadiusCommand.class
 edu/brown/cs/student/stars/Main$FrontHandler.class
 tools/DistanceCalculator.class
 mockaroo/MockCommand.class
+tools/NeighborsInRadius.class
 edu/brown/cs/student/stars/StarsParser.class
 edu/brown/cs/student/stars/NeighborCommand.class
 edu/brown/cs/student/stars/Main.class

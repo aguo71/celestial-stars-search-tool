@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DistanceCalculator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">stars</a> &gt; <a href="index.source.html" class="el_package">tools</a> &gt; <span class="el_source">DistanceCalculator.java</span></div><h1>DistanceCalculator.java</h1><pre class="source lang-java linenums">package tools;
+
+import java.util.List;
+
+/**
+ * Class for a method to find distance between two sets of coordinates.
+ */
+public class DistanceCalculator {
+  /**
+   * Empty constructor.
+   */
+<span class="fc" id="L12">  public DistanceCalculator() { }</span>
+
+  /**
+   * Finds Euclidean distance of 2 sets of coordinates.
+   * @param c1 coordinate 1
+   * @param c2 coordinate 2
+   * @return distance between input coordinates
+   */
+  public double getDistance(List&lt;Double&gt; c1, List&lt;Double&gt; c2) {
+<span class="pc bpc" id="L21" title="1 of 2 branches missed.">    if (c1.size() != c2.size()) {</span>
+<span class="nc" id="L22">      throw new RuntimeException(&quot;ERROR: Can't calculate distance&quot;);</span>
+    }
+
+<span class="fc" id="L25">    double dist = 0;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">    for (int x = 0; x &lt; c1.size(); x++) {</span>
+<span class="fc" id="L27">      dist += Math.pow(c1.get(x) - c2.get(x), 2);</span>
+    }
+<span class="fc" id="L29">    return Math.sqrt(dist);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

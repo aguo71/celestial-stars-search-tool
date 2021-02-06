@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NeighborsInRadius.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">stars</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.stars</a> &gt; <span class="el_source">NeighborsInRadius.java</span></div><h1>NeighborsInRadius.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.stars;
+
+import tools.DistanceCalculator;
+import tools.HasCoordinates;
+import tools.KDTree;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
+
+public class NeighborsInRadius&lt;T extends HasCoordinates&gt; {
+
+  private List&lt;Double&gt; target;
+  // stores distance from target coordinate -&gt; list of stars at that distance away
+  private TreeMap&lt;Double, List&lt;T&gt;&gt; neighbors;
+  private double radius;
+<span class="nc" id="L17">  DistanceCalculator calc = new DistanceCalculator();</span>
+
+<span class="nc" id="L19">  public NeighborsInRadius (TreeMap&lt;Double, List&lt;T&gt;&gt; neighbors, List&lt;Double&gt; target, double radius){</span>
+<span class="nc" id="L20">    this.neighbors = neighbors;</span>
+<span class="nc" id="L21">    this.target = target;</span>
+<span class="nc" id="L22">    this.radius = radius;</span>
+<span class="nc" id="L23">  }</span>
+
+  public void run(KDTree&lt;T&gt; kdtree) {
+<span class="nc bnc" id="L26" title="All 2 branches missed.">    if (kdtree == null) {</span>
+<span class="nc" id="L27">      return;</span>
+    }
+
+<span class="nc" id="L30">    double dist = calc.getDistance(kdtree.getVal().getCoordinates(), target);</span>
+<span class="nc bnc" id="L31" title="All 4 branches missed.">    if(neighbors.isEmpty() &amp;&amp; dist &lt;= radius) {</span>
+<span class="nc" id="L32">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L33">      lst.add(kdtree.getVal());</span>
+<span class="nc" id="L34">      neighbors.put(dist, lst);</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">    } else if (neighbors.containsKey(dist)) {</span>
+<span class="nc" id="L36">      List&lt;T&gt; lst = neighbors.get(dist);</span>
+<span class="nc" id="L37">      lst.add(kdtree.getVal());</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">    } else if (dist &lt;= radius) {</span>
+<span class="nc" id="L39">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L40">      lst.add(kdtree.getVal());</span>
+<span class="nc" id="L41">      neighbors.put(dist, lst);</span>
+    }
+
+<span class="nc" id="L44">    int axis = kdtree.getDepth() % kdtree.getVal().numDimensions();</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">    if(dist &lt;= radius) {</span>
+<span class="nc" id="L46">      run(kdtree.getLeft());</span>
+<span class="nc" id="L47">      run(kdtree.getRight());</span>
+    } else {
+<span class="nc bnc" id="L49" title="All 2 branches missed.">      if(kdtree.getVal().getCoordinate(axis) &lt; target.get(axis)) {</span>
+<span class="nc" id="L50">        run(kdtree.getRight());</span>
+      } else {
+<span class="nc" id="L52">        run(kdtree.getLeft());</span>
+      }
+    }
+
+
+
+
+
+
+<span class="nc" id="L61">  }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

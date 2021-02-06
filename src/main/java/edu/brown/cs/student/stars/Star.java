@@ -26,7 +26,7 @@ public class Star implements HasCoordinates {
   }
 
   /**
-   *
+   * Getter for id.
    * @return star ID
    */
   public int getID() {
@@ -34,13 +34,14 @@ public class Star implements HasCoordinates {
   }
 
   /**
-   *
+   * Getter for name.
    * @return name of star
    */
   public String getName() {
     return this.name;
   }
 
+  @Override
   public List<Double> getCoordinates() {
     return this.coordinates;
   }

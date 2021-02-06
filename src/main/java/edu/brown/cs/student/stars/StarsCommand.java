@@ -66,7 +66,7 @@ public class StarsCommand implements Action {
       return;
     }
     KDTree<Star> newTree = new KDTreeConstructor<Star>().buildTree(stars, 0);
-    if(newTree == null) {
+    if (newTree == null) {
       starTree.copy(new KDTree<Star>(null, null, null, 0));
     } else {
       starTree.copy(newTree);

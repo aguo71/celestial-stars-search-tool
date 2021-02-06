@@ -88,9 +88,14 @@ public class NaiveNeighborCommand implements Action {
     if (args.length == 5) {
       // Case when coordinate was specified in input
       List<Double> coords = new ArrayList<>();
-      coords.add(Double.parseDouble(args[2]));
-      coords.add(Double.parseDouble(args[3]));
-      coords.add(Double.parseDouble(args[4]));
+      try {
+        coords.add(Double.parseDouble(args[2]));
+        coords.add(Double.parseDouble(args[3]));
+        coords.add(Double.parseDouble(args[4]));
+      } catch (NumberFormatException e) {
+        System.out.println("ERROR: Input coordinates not numbers");
+        return;
+      }
       neighbors = calculator.findDistances(coords);
       // Finds and prints the appropriate number of neighboring stars
       List<Star> closest = getNNeighbors(Integer.parseInt(args[1]));
