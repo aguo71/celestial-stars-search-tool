@@ -66,11 +66,15 @@ public class KDTree<T extends HasCoordinates> {
     this.depth = tree.getDepth();
     if (tree.getLeft() != null) {
       this.left = new KDTree<T>(null, null, null, 0);
-      left.copy(tree.getLeft());
+      this.left.copy(tree.getLeft());
+    } else {
+      this.left = null;
     }
     if (tree.getRight() != null) {
       this.right = new KDTree<T>(null, null, null, 0);
-      right.copy(tree.getRight());
+      this.right.copy(tree.getRight());
+    } else {
+      this.right = null;
     }
   }
 

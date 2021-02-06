@@ -36,6 +36,7 @@ public class GetKNeighbors<T extends HasCoordinates> {
     if (kdtree == null) {
       return 0;
     }
+
     int counter = 0;
     double dist = calc.getDistance(kdtree.getVal().getCoordinates(), target);
     if (neighbors.isEmpty()) {
@@ -63,7 +64,7 @@ public class GetKNeighbors<T extends HasCoordinates> {
     int axis = kdtree.getDepth() % kdtree.getVal().numDimensions();
     double axisDist = Math.abs(kdtree.getVal().getCoordinate(axis) - target.get(axis));
     double furthestD = neighbors.lastKey();
-    if (axisDist < furthestD) {
+    if (axisDist <= furthestD) {
       return counter + run(kdtree.getLeft()) + run(kdtree.getRight());
     } else {
       if (kdtree.getVal().getCoordinate(axis) < target.get(axis)) {

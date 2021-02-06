@@ -23,6 +23,8 @@ public class StarsUniverse {
    * Sets up a REPL for the stars assignment and registers repl commands to handle.
    */
   public void run() {
+    Star temp = new Star(-1, null, new ArrayList<Double>());
+    stars.add(temp);
     Repl repl = new Repl();
     StarsCommand starsC = new StarsCommand(stars, starTree);
     NaiveNeighborCommand neighbor = new NaiveNeighborCommand(stars);

@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2021</copyright>
     <item>
-      <title>File: 3,
-             Errors: 0,
+      <title>File: 5,
+             Errors: 9,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#tools.KDTreeConstructor.java">tools/KDTreeConstructor.java</a>
+                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.NaiveRadiusCommand.java">edu/brown/cs/student/stars/NaiveRadiusCommand.java</a>
                 </td>
                 <td>
                   0
@@ -55,12 +55,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  3
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#tools.CoordinateComparator.java">tools/CoordinateComparator.java</a>
+                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.StarsCommand.java">edu/brown/cs/student/stars/StarsCommand.java</a>
                 </td>
                 <td>
                   0
@@ -69,12 +69,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#tools.KDTree.java">tools/KDTree.java</a>
+                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.NeighborCommand.java">edu/brown/cs/student/stars/NeighborCommand.java</a>
                 </td>
                 <td>
                   0
@@ -83,7 +83,35 @@ under the License.
                   0
                 </td>
                 <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.RadiusCommand.java">edu/brown/cs/student/stars/RadiusCommand.java</a>
+                </td>
+                <td>
                   0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#edu.brown.cs.student.stars.NaiveNeighborCommand.java">edu/brown/cs/student/stars/NaiveNeighborCommand.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
                 </td>
               </tr>
                       </tbody>

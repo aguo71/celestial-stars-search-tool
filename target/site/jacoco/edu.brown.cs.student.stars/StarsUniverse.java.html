@@ -23,21 +23,23 @@ public class StarsUniverse {
    * Sets up a REPL for the stars assignment and registers repl commands to handle.
    */
   public void run() {
-<span class="nc" id="L26">    Repl repl = new Repl();</span>
-<span class="nc" id="L27">    StarsCommand starsC = new StarsCommand(stars, starTree);</span>
-<span class="nc" id="L28">    NaiveNeighborCommand neighbor = new NaiveNeighborCommand(stars);</span>
-<span class="nc" id="L29">    NaiveRadiusCommand radius = new NaiveRadiusCommand(stars);</span>
-<span class="nc" id="L30">    MockCommand mockC = new MockCommand();</span>
-<span class="nc" id="L31">    NeighborCommand neighborR = new NeighborCommand(starTree, stars);</span>
-<span class="nc" id="L32">    RadiusCommand radiusR = new RadiusCommand(starTree, stars);</span>
-<span class="nc" id="L33">    repl.registerAction(&quot;stars&quot;, starsC);</span>
-<span class="nc" id="L34">    repl.registerAction(&quot;naive_neighbors&quot;, neighbor);</span>
-<span class="nc" id="L35">    repl.registerAction(&quot;naive_radius&quot;, radius);</span>
-<span class="nc" id="L36">    repl.registerAction(&quot;mock&quot;, mockC);</span>
-<span class="nc" id="L37">    repl.registerAction(&quot;neighbors&quot;, neighborR);</span>
-<span class="nc" id="L38">    repl.registerAction(&quot;radius&quot;, radiusR);</span>
-<span class="nc" id="L39">    repl.readCommands();</span>
-<span class="nc" id="L40">  }</span>
+<span class="nc" id="L26">    Star temp = new Star(-1, null, new ArrayList&lt;Double&gt;());</span>
+<span class="nc" id="L27">    stars.add(temp);</span>
+<span class="nc" id="L28">    Repl repl = new Repl();</span>
+<span class="nc" id="L29">    StarsCommand starsC = new StarsCommand(stars, starTree);</span>
+<span class="nc" id="L30">    NaiveNeighborCommand neighbor = new NaiveNeighborCommand(stars);</span>
+<span class="nc" id="L31">    NaiveRadiusCommand radius = new NaiveRadiusCommand(stars);</span>
+<span class="nc" id="L32">    MockCommand mockC = new MockCommand();</span>
+<span class="nc" id="L33">    NeighborCommand neighborR = new NeighborCommand(starTree, stars);</span>
+<span class="nc" id="L34">    RadiusCommand radiusR = new RadiusCommand(starTree, stars);</span>
+<span class="nc" id="L35">    repl.registerAction(&quot;stars&quot;, starsC);</span>
+<span class="nc" id="L36">    repl.registerAction(&quot;naive_neighbors&quot;, neighbor);</span>
+<span class="nc" id="L37">    repl.registerAction(&quot;naive_radius&quot;, radius);</span>
+<span class="nc" id="L38">    repl.registerAction(&quot;mock&quot;, mockC);</span>
+<span class="nc" id="L39">    repl.registerAction(&quot;neighbors&quot;, neighborR);</span>
+<span class="nc" id="L40">    repl.registerAction(&quot;radius&quot;, radiusR);</span>
+<span class="nc" id="L41">    repl.readCommands();</span>
+<span class="nc" id="L42">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

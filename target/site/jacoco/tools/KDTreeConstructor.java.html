@@ -12,7 +12,7 @@ public class KDTreeConstructor&lt;T extends HasCoordinates&gt; {
   /**
    * Empty constructor.
    */
-<span class="nc" id="L15">  public KDTreeConstructor() { }</span>
+<span class="fc" id="L15">  public KDTreeConstructor() { }</span>
 
   /**
    * Builds a KDtree using input list and depth counter.
@@ -21,19 +21,19 @@ public class KDTreeConstructor&lt;T extends HasCoordinates&gt; {
    * @return new KDTree
    */
   public KDTree&lt;T&gt; buildTree(List&lt;T&gt; subset, int depth) {
-<span class="nc bnc" id="L24" title="All 2 branches missed.">    if (subset.isEmpty()) {</span>
-<span class="nc" id="L25">      return null;</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">    if (subset.isEmpty()) {</span>
+<span class="fc" id="L25">      return null;</span>
     }
 
-<span class="nc" id="L28">    int plane = depth % subset.get(0).numDimensions();</span>
+<span class="fc" id="L28">    int plane = depth % subset.get(0).numDimensions();</span>
 
-<span class="nc" id="L30">    List&lt;T&gt; subsetCopy = new ArrayList&lt;&gt;(subset);</span>
-<span class="nc" id="L31">    Collections.sort(subsetCopy, new CoordinateComparator&lt;T&gt;(plane));</span>
-<span class="nc" id="L32">    int middle = subsetCopy.size() / 2;</span>
+<span class="fc" id="L30">    List&lt;T&gt; subsetCopy = new ArrayList&lt;&gt;(subset);</span>
+<span class="fc" id="L31">    Collections.sort(subsetCopy, new CoordinateComparator&lt;T&gt;(plane));</span>
+<span class="fc" id="L32">    int middle = subsetCopy.size() / 2;</span>
 
-<span class="nc" id="L34">    return new KDTree&lt;T&gt;(</span>
-<span class="nc" id="L35">        subsetCopy.get(middle), buildTree(subsetCopy.subList(0, middle), depth + 1),</span>
-<span class="nc" id="L36">        buildTree(subsetCopy.subList(middle + 1, subset.size()), depth + 1), depth);</span>
+<span class="fc" id="L34">    return new KDTree&lt;T&gt;(</span>
+<span class="fc" id="L35">        subsetCopy.get(middle), buildTree(subsetCopy.subList(0, middle), depth + 1),</span>
+<span class="fc" id="L36">        buildTree(subsetCopy.subList(middle + 1, subset.size()), depth + 1), depth);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,5 @@
+INPUT
+stars data/stars/StarPositionNotDouble.csv
+OUTPUT
+ERROR:
+END

@@ -30,7 +30,7 @@ public class KDTree&lt;T extends HasCoordinates&gt; {
    * @return val
    */
   public T getVal() {
-<span class="nc" id="L33">    return this.val;</span>
+<span class="fc" id="L33">    return this.val;</span>
   }
 
   /**
@@ -38,7 +38,7 @@ public class KDTree&lt;T extends HasCoordinates&gt; {
    * @return left subtree
    */
   public KDTree&lt;T&gt; getLeft() {
-<span class="nc" id="L41">    return left;</span>
+<span class="fc" id="L41">    return left;</span>
   }
 
   /**
@@ -46,7 +46,7 @@ public class KDTree&lt;T extends HasCoordinates&gt; {
    * @return right subtree
    */
   public KDTree&lt;T&gt; getRight() {
-<span class="nc" id="L49">    return right;</span>
+<span class="fc" id="L49">    return right;</span>
   }
 
   /**
@@ -54,7 +54,7 @@ public class KDTree&lt;T extends HasCoordinates&gt; {
    * @return depth of node
    */
   public int getDepth() {
-<span class="nc" id="L57">    return depth;</span>
+<span class="fc" id="L57">    return depth;</span>
   }
 
   /**
@@ -66,13 +66,17 @@ public class KDTree&lt;T extends HasCoordinates&gt; {
 <span class="nc" id="L66">    this.depth = tree.getDepth();</span>
 <span class="nc bnc" id="L67" title="All 2 branches missed.">    if (tree.getLeft() != null) {</span>
 <span class="nc" id="L68">      this.left = new KDTree&lt;T&gt;(null, null, null, 0);</span>
-<span class="nc" id="L69">      left.copy(tree.getLeft());</span>
+<span class="nc" id="L69">      this.left.copy(tree.getLeft());</span>
+    } else {
+<span class="nc" id="L71">      this.left = null;</span>
     }
-<span class="nc bnc" id="L71" title="All 2 branches missed.">    if (tree.getRight() != null) {</span>
-<span class="nc" id="L72">      this.right = new KDTree&lt;T&gt;(null, null, null, 0);</span>
-<span class="nc" id="L73">      right.copy(tree.getRight());</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">    if (tree.getRight() != null) {</span>
+<span class="nc" id="L74">      this.right = new KDTree&lt;T&gt;(null, null, null, 0);</span>
+<span class="nc" id="L75">      this.right.copy(tree.getRight());</span>
+    } else {
+<span class="nc" id="L77">      this.right = null;</span>
     }
-<span class="nc" id="L75">  }</span>
+<span class="nc" id="L79">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

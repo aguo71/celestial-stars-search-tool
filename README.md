@@ -35,7 +35,13 @@ Then start typing REPL commands to be executed.
 
 For JUnit tests, type: mvn tests
 
-For system tests, type: ./cs32-test tests/src/stars/stars1/*.test
+For system tests, type: 
+
+./cs32-test tests/src/stars/stars1/*.test 
+
+or 
+
+./cs32-test tests/src/stars/stars2/*.test
 
 
 **Design Questions**
@@ -50,6 +56,4 @@ to be the behavior generating method for each repl command.
 
 **Checkstyle errors**
 
-None
-
-
+None.

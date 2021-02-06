@@ -60,7 +60,9 @@ public class StarsCommand implements Action {
       if (stars != null) {
         stars.clear();
       }
-      stars.addAll(tempStars);
+      if (!tempStars.isEmpty()) {
+        stars.addAll(tempStars);
+      }
     } catch (IOException | NumberFormatException e) {
       System.out.println("ERROR: CSV file format incorrect");
       return;

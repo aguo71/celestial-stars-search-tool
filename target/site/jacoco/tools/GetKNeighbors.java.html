@@ -13,7 +13,7 @@ public class GetKNeighbors&lt;T extends HasCoordinates&gt; {
   // stores distance from target coordinate -&gt; list of T objects (stars) at that distance away
   private TreeMap&lt;Double, List&lt;T&gt;&gt; neighbors;
   private int k;
-<span class="nc" id="L16">  private DistanceCalculator calc = new DistanceCalculator();</span>
+<span class="fc" id="L16">  private DistanceCalculator calc = new DistanceCalculator();</span>
 
   /**
    * Constructor.
@@ -21,11 +21,11 @@ public class GetKNeighbors&lt;T extends HasCoordinates&gt; {
    * @param target target coordinate
    * @param k number of neighbors sought after
    */
-<span class="nc" id="L24">  public GetKNeighbors(TreeMap&lt;Double, List&lt;T&gt;&gt; neighbors, List&lt;Double&gt; target, int k) {</span>
-<span class="nc" id="L25">    this.neighbors = neighbors;</span>
-<span class="nc" id="L26">    this.target = target;</span>
-<span class="nc" id="L27">    this.k = k;</span>
-<span class="nc" id="L28">  }</span>
+<span class="fc" id="L24">  public GetKNeighbors(TreeMap&lt;Double, List&lt;T&gt;&gt; neighbors, List&lt;Double&gt; target, int k) {</span>
+<span class="fc" id="L25">    this.neighbors = neighbors;</span>
+<span class="fc" id="L26">    this.target = target;</span>
+<span class="fc" id="L27">    this.k = k;</span>
+<span class="fc" id="L28">  }</span>
 
   /**
    * Finds nearest neighbors using input.
@@ -33,43 +33,44 @@ public class GetKNeighbors&lt;T extends HasCoordinates&gt; {
    * @return number of net neighbors added to treemap
    */
   public int run(KDTree&lt;T&gt; kdtree) {
-<span class="nc bnc" id="L36" title="All 2 branches missed.">    if (kdtree == null) {</span>
-<span class="nc" id="L37">      return 0;</span>
-    }
-<span class="nc" id="L39">    int counter = 0;</span>
-<span class="nc" id="L40">    double dist = calc.getDistance(kdtree.getVal().getCoordinates(), target);</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">    if (neighbors.isEmpty()) {</span>
-<span class="nc" id="L42">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L43">      lst.add(kdtree.getVal());</span>
-<span class="nc" id="L44">      neighbors.put(dist, lst);</span>
-<span class="nc" id="L45">      counter += 1;</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">    } else if (neighbors.containsKey(dist)) {</span>
-<span class="nc" id="L47">      List&lt;T&gt; lst = neighbors.get(dist);</span>
-<span class="nc" id="L48">      lst.add(kdtree.getVal());</span>
-<span class="nc" id="L49">      counter += 1;</span>
-<span class="nc bnc" id="L50" title="All 2 branches missed.">    } else if (neighbors.size() &lt; k) {</span>
-<span class="nc" id="L51">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L52">      lst.add(kdtree.getVal());</span>
-<span class="nc" id="L53">      neighbors.put(dist, lst);</span>
-<span class="nc" id="L54">      counter += 1;</span>
-<span class="nc bnc" id="L55" title="All 2 branches missed.">    } else if (dist &lt; neighbors.lastKey()) {</span>
-<span class="nc" id="L56">      counter -= neighbors.remove(neighbors.lastKey()).size();</span>
-<span class="nc" id="L57">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L58">      lst.add(kdtree.getVal());</span>
-<span class="nc" id="L59">      neighbors.put(dist, lst);</span>
-<span class="nc" id="L60">      counter += 1;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">    if (kdtree == null) {</span>
+<span class="fc" id="L37">      return 0;</span>
     }
 
-<span class="nc" id="L63">    int axis = kdtree.getDepth() % kdtree.getVal().numDimensions();</span>
-<span class="nc" id="L64">    double axisDist = Math.abs(kdtree.getVal().getCoordinate(axis) - target.get(axis));</span>
-<span class="nc" id="L65">    double furthestD = neighbors.lastKey();</span>
-<span class="nc bnc" id="L66" title="All 2 branches missed.">    if (axisDist &lt; furthestD) {</span>
-<span class="nc" id="L67">      return counter + run(kdtree.getLeft()) + run(kdtree.getRight());</span>
+<span class="fc" id="L40">    int counter = 0;</span>
+<span class="fc" id="L41">    double dist = calc.getDistance(kdtree.getVal().getCoordinates(), target);</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">    if (neighbors.isEmpty()) {</span>
+<span class="fc" id="L43">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L44">      lst.add(kdtree.getVal());</span>
+<span class="fc" id="L45">      neighbors.put(dist, lst);</span>
+<span class="fc" id="L46">      counter += 1;</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">    } else if (neighbors.containsKey(dist)) {</span>
+<span class="nc" id="L48">      List&lt;T&gt; lst = neighbors.get(dist);</span>
+<span class="nc" id="L49">      lst.add(kdtree.getVal());</span>
+<span class="nc" id="L50">      counter += 1;</span>
+<span class="pc bfc" id="L51" title="All 2 branches covered.">    } else if (neighbors.size() &lt; k) {</span>
+<span class="fc" id="L52">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L53">      lst.add(kdtree.getVal());</span>
+<span class="fc" id="L54">      neighbors.put(dist, lst);</span>
+<span class="fc" id="L55">      counter += 1;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">    } else if (dist &lt; neighbors.lastKey()) {</span>
+<span class="fc" id="L57">      counter -= neighbors.remove(neighbors.lastKey()).size();</span>
+<span class="fc" id="L58">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L59">      lst.add(kdtree.getVal());</span>
+<span class="fc" id="L60">      neighbors.put(dist, lst);</span>
+<span class="fc" id="L61">      counter += 1;</span>
+    }
+
+<span class="fc" id="L64">    int axis = kdtree.getDepth() % kdtree.getVal().numDimensions();</span>
+<span class="fc" id="L65">    double axisDist = Math.abs(kdtree.getVal().getCoordinate(axis) - target.get(axis));</span>
+<span class="fc" id="L66">    double furthestD = neighbors.lastKey();</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">    if (axisDist &lt;= furthestD) {</span>
+<span class="fc" id="L68">      return counter + run(kdtree.getLeft()) + run(kdtree.getRight());</span>
     } else {
-<span class="nc bnc" id="L69" title="All 2 branches missed.">      if (kdtree.getVal().getCoordinate(axis) &lt; target.get(axis)) {</span>
-<span class="nc" id="L70">        return counter + run(kdtree.getRight());</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">      if (kdtree.getVal().getCoordinate(axis) &lt; target.get(axis)) {</span>
+<span class="fc" id="L71">        return counter + run(kdtree.getRight());</span>
       } else {
-<span class="nc" id="L72">        return counter + run(kdtree.getLeft());</span>
+<span class="fc" id="L73">        return counter + run(kdtree.getLeft());</span>
       }
     }
   }

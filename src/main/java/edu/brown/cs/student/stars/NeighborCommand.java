@@ -29,13 +29,17 @@ public class NeighborCommand implements Action {
 
   @Override
   public void run(String[] args) {
+    neighbors = new TreeMap<>();
     if (args.length != 5 && args.length != 3) {
       System.out.println("ERROR: incorrect number of arguments for neighbors command");
       return;
     }
 
     if (starTree.getDepth() == -1) {
-      System.out.println("ERROR: No star data exists");
+      System.out.println("ERROR: No prior call of stars");
+      return;
+    }
+    if (starTree.getVal() == null) {
       return;
     }
 
@@ -127,7 +131,7 @@ public class NeighborCommand implements Action {
           totalStars -= diff;
         }
       }
-      // Prints ID of each star in neighbors
+      // Prints ID of each star in neighbors except input star
       for (Double distance : neighbors.keySet()) {
         for (Star star : neighbors.get(distance)) {
           if (!star.getName().equals(toRemove.getName())) {
@@ -136,5 +140,13 @@ public class NeighborCommand implements Action {
         }
       }
     }
+  }
+
+  /**
+   * Getter for MBT testing.
+   * @return TreeMap of nearest neighbors
+   */
+  public TreeMap<Double, List<Star>> getResults() {
+    return this.neighbors;
   }
 }

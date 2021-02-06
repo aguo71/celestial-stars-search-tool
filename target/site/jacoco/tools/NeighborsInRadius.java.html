@@ -14,7 +14,7 @@ public class NeighborsInRadius&lt;T extends HasCoordinates&gt; {
   // stores distance from target coordinate -&gt; list of stars at that distance away
   private TreeMap&lt;Double, List&lt;T&gt;&gt; neighbors;
   private double radius;
-<span class="nc" id="L17">  private DistanceCalculator calc = new DistanceCalculator();</span>
+<span class="fc" id="L17">  private DistanceCalculator calc = new DistanceCalculator();</span>
 
   /**
    * Constructor.
@@ -22,45 +22,45 @@ public class NeighborsInRadius&lt;T extends HasCoordinates&gt; {
    * @param target target coordinate
    * @param radius radius around target to find T objects within
    */
-<span class="nc" id="L25">  public NeighborsInRadius(TreeMap&lt;Double, List&lt;T&gt;&gt; neighbors, List&lt;Double&gt; target, double radius) {</span>
-<span class="nc" id="L26">    this.neighbors = neighbors;</span>
-<span class="nc" id="L27">    this.target = target;</span>
-<span class="nc" id="L28">    this.radius = radius;</span>
-<span class="nc" id="L29">  }</span>
+<span class="fc" id="L25">  public NeighborsInRadius(TreeMap&lt;Double, List&lt;T&gt;&gt; neighbors, List&lt;Double&gt; target, double radius) {</span>
+<span class="fc" id="L26">    this.neighbors = neighbors;</span>
+<span class="fc" id="L27">    this.target = target;</span>
+<span class="fc" id="L28">    this.radius = radius;</span>
+<span class="fc" id="L29">  }</span>
 
   /**
    * Populates treemap recursively by traversing input KDtree.
    * @param kdtree KDTree of objects to search along
    */
   public void run(KDTree&lt;T&gt; kdtree) {
-<span class="nc bnc" id="L36" title="All 2 branches missed.">    if (kdtree == null) {</span>
-<span class="nc" id="L37">      return;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">    if (kdtree == null) {</span>
+<span class="fc" id="L37">      return;</span>
     }
 
-<span class="nc" id="L40">    double dist = calc.getDistance(kdtree.getVal().getCoordinates(), target);</span>
-<span class="nc bnc" id="L41" title="All 4 branches missed.">    if (neighbors.isEmpty() &amp;&amp; dist &lt;= radius) {</span>
-<span class="nc" id="L42">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L43">      lst.add(kdtree.getVal());</span>
-<span class="nc" id="L44">      neighbors.put(dist, lst);</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">    } else if (neighbors.containsKey(dist)) {</span>
+<span class="fc" id="L40">    double dist = calc.getDistance(kdtree.getVal().getCoordinates(), target);</span>
+<span class="fc bfc" id="L41" title="All 4 branches covered.">    if (neighbors.isEmpty() &amp;&amp; dist &lt;= radius) {</span>
+<span class="fc" id="L42">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L43">      lst.add(kdtree.getVal());</span>
+<span class="fc" id="L44">      neighbors.put(dist, lst);</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">    } else if (neighbors.containsKey(dist)) {</span>
 <span class="nc" id="L46">      List&lt;T&gt; lst = neighbors.get(dist);</span>
 <span class="nc" id="L47">      lst.add(kdtree.getVal());</span>
-<span class="nc bnc" id="L48" title="All 2 branches missed.">    } else if (dist &lt;= radius) {</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">    } else if (dist &lt;= radius) {</span>
 <span class="nc" id="L49">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
 <span class="nc" id="L50">      lst.add(kdtree.getVal());</span>
 <span class="nc" id="L51">      neighbors.put(dist, lst);</span>
     }
 
-<span class="nc" id="L54">    int axis = kdtree.getDepth() % kdtree.getVal().numDimensions();</span>
-<span class="nc" id="L55">    double axisDist = Math.abs(kdtree.getVal().getCoordinate(axis) - target.get(axis));</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">    if (axisDist &lt;= radius) {</span>
-<span class="nc" id="L57">      run(kdtree.getLeft());</span>
-<span class="nc" id="L58">      run(kdtree.getRight());</span>
+<span class="fc" id="L54">    int axis = kdtree.getDepth() % kdtree.getVal().numDimensions();</span>
+<span class="fc" id="L55">    double axisDist = Math.abs(kdtree.getVal().getCoordinate(axis) - target.get(axis));</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">    if (axisDist &lt;= radius) {</span>
+<span class="fc" id="L57">      run(kdtree.getLeft());</span>
+<span class="fc" id="L58">      run(kdtree.getRight());</span>
     } else {
-<span class="nc bnc" id="L60" title="All 2 branches missed.">      if (kdtree.getVal().getCoordinate(axis) &lt; target.get(axis)) {</span>
-<span class="nc" id="L61">        run(kdtree.getRight());</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">      if (kdtree.getVal().getCoordinate(axis) &lt; target.get(axis)) {</span>
+<span class="fc" id="L61">        run(kdtree.getRight());</span>
       } else {
-<span class="nc" id="L63">        run(kdtree.getLeft());</span>
+<span class="fc" id="L63">        run(kdtree.getLeft());</span>
       }
     }
 
@@ -69,7 +69,7 @@ public class NeighborsInRadius&lt;T extends HasCoordinates&gt; {
 
 
 
-<span class="nc" id="L72">  }</span>
+<span class="fc" id="L72">  }</span>
 
 
 }

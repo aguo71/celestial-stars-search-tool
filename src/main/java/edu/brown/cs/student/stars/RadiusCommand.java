@@ -29,16 +29,18 @@ public class RadiusCommand implements Action {
 
   @Override
   public void run(String[] args) {
+    neighbors = new TreeMap<>();
     if (args.length != 5 && args.length != 3) {
       System.out.println("ERROR: incorrect number of arguments for radius method");
       return;
     }
-
-    if (stars.size() == 0) {
-      System.out.println("ERROR: No star data exists");
+    if (starTree.getDepth() == -1) {
+      System.out.println("ERROR: No prior call of stars");
       return;
     }
-
+    if (starTree.getVal() == null) {
+      return;
+    }
     if (Double.parseDouble(args[1]) < 0) {
       System.out.println("ERROR: Radius must be non-negative");
       return;
@@ -103,5 +105,13 @@ public class RadiusCommand implements Action {
       }
     }
 
+  }
+
+  /**
+   * Getter for MBT testing.
+   * @return TreeMap of nearest neighbors
+   */
+  public TreeMap<Double, List<Star>> getResults() {
+    return this.neighbors;
   }
 }

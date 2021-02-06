@@ -1,0 +1,5 @@
+INPUT
+stars data/stars/SameCoordStars.csv
+OUTPUT
+Read 2 stars from data/stars/SameCoordStars.csv
+END

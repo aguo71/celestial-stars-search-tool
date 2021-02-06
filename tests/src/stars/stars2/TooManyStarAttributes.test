@@ -1,0 +1,5 @@
+INPUT
+stars data/stars/TooManyStarAttributes.csv
+OUTPUT
+ERROR:
+END

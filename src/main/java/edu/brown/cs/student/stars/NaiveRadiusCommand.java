@@ -14,7 +14,7 @@ public class NaiveRadiusCommand implements Action {
   private List<Star> stars;
   // HashMap mapping distance to each star from dataset stars based on the input star/coordinate
   private Map<Double, List<Star>> neighbors;
-
+  private List<Star> closest = new ArrayList<Star>();
   /**
    *
    * @param stars dataset of stars to perform naive_radius command on
@@ -28,8 +28,8 @@ public class NaiveRadiusCommand implements Action {
    * @param radius maximum distance of stars we want to find
    * @return list of stars within radius distance using hashmap neighbors
    */
-  private List<Star> getNeighborsInRadius(Double radius) {
-    List<Star> inRange = new ArrayList<>();
+  private void getNeighborsInRadius(Double radius) {
+    closest.clear();
     // Sorts all existing stars by increasing distance using hashmap neighbors, and adds each star
     // within radius distance to a list
     List<Double> distances = new ArrayList<>(neighbors.keySet());
@@ -41,9 +41,8 @@ public class NaiveRadiusCommand implements Action {
       }
       nearbyStars = neighbors.get(distance);
       Collections.shuffle(nearbyStars);
-      inRange.addAll(nearbyStars);
+      closest.addAll(nearbyStars);
     }
-    return inRange;
   }
 
   @Override
@@ -52,9 +51,11 @@ public class NaiveRadiusCommand implements Action {
       System.out.println("ERROR: incorrect number of arguments for naive_radius method");
       return;
     }
-
-    if (stars.size() == 0) {
-      System.out.println("ERROR: No star data exists");
+    if (stars.isEmpty()) {
+      return;
+    }
+    if (stars.get(0).getName() == null) {
+      System.out.println("ERROR: No prior call of stars");
       return;
     }
 
@@ -78,7 +79,7 @@ public class NaiveRadiusCommand implements Action {
       }
       neighbors = calculator.findDistances(coords);
       // Finds and prints all stars within input radius
-      List<Star> closest = getNeighborsInRadius(Double.parseDouble(args[1]));
+      getNeighborsInRadius(Double.parseDouble(args[1]));
       for (Star star : closest) {
         System.out.println(star.getID());
       }
@@ -107,11 +108,21 @@ public class NaiveRadiusCommand implements Action {
       neighbors = calculator.findDistances(coords);
       // Finds and prints all stars within input radius except star initially mentioned in repl
       // command
-      List<Star> closest = getNeighborsInRadius(Double.parseDouble(args[1]));
-      closest.remove(toRemove);
+      getNeighborsInRadius(Double.parseDouble(args[1]));
       for (Star star : closest) {
-        System.out.println(star.getID());
+        if (!star.getName().equals(toRemove.getName())) {
+          System.out.println(star.getID());
+        }
       }
     }
   }
+
+  /**
+   * Getter for MBT testing.
+   * @return list of nearest neighbors
+   */
+  public List<Star> getResults() {
+    return this.closest;
+  }
+
 }

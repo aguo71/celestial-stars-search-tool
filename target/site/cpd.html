@@ -97,10 +97,10 @@
 <th>Line</th></tr>
 <tr class="b">
 <td>edu/brown/cs/student/stars/NeighborCommand.java</td>
-<td><a href="./xref/edu/brown/cs/student/stars/NeighborCommand.html#L86">86</a></td></tr>
+<td><a href="./xref/edu/brown/cs/student/stars/NeighborCommand.html#L90">90</a></td></tr>
 <tr class="a">
 <td>edu/brown/cs/student/stars/RadiusCommand.java</td>
-<td><a href="./xref/edu/brown/cs/student/stars/RadiusCommand.html#L66">66</a></td></tr>
+<td><a href="./xref/edu/brown/cs/student/stars/RadiusCommand.html#L68">68</a></td></tr>
 <tr class="b"><td colspan='2'>
 <div>
 <pre>        for (Star star : neighbors.get(distance)) {
@@ -134,13 +134,13 @@
 <th>Line</th></tr>
 <tr class="b">
 <td>edu/brown/cs/student/stars/NaiveNeighborCommand.java</td>
-<td><a href="./xref/edu/brown/cs/student/stars/NaiveNeighborCommand.html#L104">104</a></td></tr>
+<td><a href="./xref/edu/brown/cs/student/stars/NaiveNeighborCommand.html#L103">103</a></td></tr>
 <tr class="a">
 <td>edu/brown/cs/student/stars/NeighborCommand.java</td>
-<td><a href="./xref/edu/brown/cs/student/stars/NeighborCommand.html#L89">89</a></td></tr>
+<td><a href="./xref/edu/brown/cs/student/stars/NeighborCommand.html#L93">93</a></td></tr>
 <tr class="b">
 <td>edu/brown/cs/student/stars/RadiusCommand.java</td>
-<td><a href="./xref/edu/brown/cs/student/stars/RadiusCommand.html#L69">69</a></td></tr>
+<td><a href="./xref/edu/brown/cs/student/stars/RadiusCommand.html#L71">71</a></td></tr>
 <tr class="a"><td colspan='2'>
 <div>
 <pre>      }
@@ -171,44 +171,11 @@
 <th>File</th>
 <th>Line</th></tr>
 <tr class="a">
-<td>edu/brown/cs/student/stars/NaiveNeighborCommand.java</td>
-<td><a href="./xref/edu/brown/cs/student/stars/NaiveNeighborCommand.html#L81">81</a></td></tr>
-<tr class="b">
-<td>edu/brown/cs/student/stars/NaiveRadiusCommand.java</td>
-<td><a href="./xref/edu/brown/cs/student/stars/NaiveRadiusCommand.html#L62">62</a></td></tr>
-<tr class="a"><td colspan='2'>
-<div>
-<pre>      System.out.println(&quot;ERROR: Neighbor count must be non-negative&quot;);
-      return;
-    }
-
-
-    // Calculates distance of each star in dataset stars from input coordinate or star name
-    NeighborDistances calculator = new NeighborDistances(stars);
-    if (args.length == 5) {
-      // Case when coordinate was specified in input
-      List&lt;Double&gt; coords = new ArrayList&lt;&gt;();
-      try {
-        coords.add(Double.parseDouble(args[2]));
-        coords.add(Double.parseDouble(args[3]));
-        coords.add(Double.parseDouble(args[4]));
-      } catch (NumberFormatException e) {
-        System.out.println(&quot;ERROR: Input coordinates not numbers&quot;);
-        return;
-      }
-      neighbors = calculator.findDistances(coords);
-      // Finds and prints the appropriate number of neighboring stars
-      List&lt;Star&gt; closest = getNNeighbors(Integer.parseInt(args[1]));</pre></div></td></tr></table>
-<table border="0" class="bodyTable">
-<tr class="b">
-<th>File</th>
-<th>Line</th></tr>
-<tr class="a">
 <td>edu/brown/cs/student/stars/NeighborCommand.java</td>
-<td><a href="./xref/edu/brown/cs/student/stars/NeighborCommand.html#L70">70</a></td></tr>
+<td><a href="./xref/edu/brown/cs/student/stars/NeighborCommand.html#L74">74</a></td></tr>
 <tr class="b">
 <td>edu/brown/cs/student/stars/NeighborCommand.java</td>
-<td><a href="./xref/edu/brown/cs/student/stars/NeighborCommand.html#L116">116</a></td></tr>
+<td><a href="./xref/edu/brown/cs/student/stars/NeighborCommand.html#L120">120</a></td></tr>
 <tr class="a"><td colspan='2'>
 <div>
 <pre>      while (totalStars &gt; k) {
@@ -227,7 +194,37 @@
       }
       // Prints ID of each star in neighbors
       for (Double distance : neighbors.keySet()) {
-        for (Star star : neighbors.get(distance)) {</pre></div></td></tr></table></div>
+        for (Star star : neighbors.get(distance)) {</pre></div></td></tr></table>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>File</th>
+<th>Line</th></tr>
+<tr class="a">
+<td>edu/brown/cs/student/stars/NaiveNeighborCommand.java</td>
+<td><a href="./xref/edu/brown/cs/student/stars/NaiveNeighborCommand.html#L81">81</a></td></tr>
+<tr class="b">
+<td>edu/brown/cs/student/stars/NaiveRadiusCommand.java</td>
+<td><a href="./xref/edu/brown/cs/student/stars/NaiveRadiusCommand.html#L63">63</a></td></tr>
+<tr class="a"><td colspan='2'>
+<div>
+<pre>      System.out.println(&quot;ERROR: Neighbor count must be non-negative&quot;);
+      return;
+    }
+
+    // Calculates distance of each star in dataset stars from input coordinate or star name
+    NeighborDistances calculator = new NeighborDistances(stars);
+    if (args.length == 5) {
+      // Case when coordinate was specified in input
+      List&lt;Double&gt; coords = new ArrayList&lt;&gt;();
+      try {
+        coords.add(Double.parseDouble(args[2]));
+        coords.add(Double.parseDouble(args[3]));
+        coords.add(Double.parseDouble(args[4]));
+      } catch (NumberFormatException e) {
+        System.out.println(&quot;ERROR: Input coordinates not numbers&quot;);
+        return;
+      }
+      neighbors = calculator.findDistances(coords);</pre></div></td></tr></table></div>
       </div>
     </div>
     <div class="clear">
