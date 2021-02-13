@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -71,6 +69,6 @@ public class NeighborsInRadiusTest {
     assertTrue(neighbors.containsKey(0.0));
     neighbors = new TreeMap<>();
 
-    
+
   }
 }

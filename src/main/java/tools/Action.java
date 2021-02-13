@@ -8,7 +8,8 @@ public interface Action {
    * Behavior/method to run.
    *
    * @param args arguments to method passed from repl command-line
+   * @return string error message
    */
-  void run(String[] args);
+  String run(String[] args);
 
 }

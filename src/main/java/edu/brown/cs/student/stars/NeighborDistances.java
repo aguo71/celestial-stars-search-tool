@@ -14,7 +14,7 @@ public class NeighborDistances {
   private List<Star> stars;
 
   /**
-   *
+   * Constructor of NeighborDistances.
    * @param stars dataset of stars
    */
   public NeighborDistances(List<Star> stars) {

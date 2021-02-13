@@ -27,10 +27,10 @@ public class StarsCommand implements Action {
   }
 
   @Override
-  public void run(String[] args) {
+  public String run(String[] args) {
     if (args.length != 2) {
       System.out.println("ERROR: incorrect number of arguments for stars method");
-      return;
+      return "ERROR: incorrect number of arguments for stars method";
     }
 
     String filename = args[1];
@@ -39,7 +39,7 @@ public class StarsCommand implements Action {
       reader = new BufferedReader(new FileReader(filename));
     } catch (FileNotFoundException e) {
       System.out.println("ERROR: File does not exist");
-      return;
+      return "ERROR: File does not exist";
     }
 
     String firstLine;
@@ -47,11 +47,11 @@ public class StarsCommand implements Action {
       firstLine = reader.readLine();
     } catch (IOException e) {
       System.out.println("ERROR: IOException occurred during CSV reading");
-      return;
+      return "ERROR: IOException occurred during CSV reading";
     }
     if (!firstLine.equals("StarID,ProperName,X,Y,Z")) {
       System.out.println("ERROR: CSV file format incorrect");
-      return;
+      return "ERROR: CSV file format incorrect";
     }
     // Parses csv data into an arraylist of stars
     StarsParser parser = new StarsParser();
@@ -65,7 +65,7 @@ public class StarsCommand implements Action {
       }
     } catch (IOException | NumberFormatException e) {
       System.out.println("ERROR: CSV file format incorrect");
-      return;
+      return "ERROR: CSV file format incorrect";
     }
     KDTree<Star> newTree = new KDTreeConstructor<Star>().buildTree(stars, 0);
     if (newTree == null) {
@@ -74,5 +74,6 @@ public class StarsCommand implements Action {
       starTree.copy(newTree);
     }
     System.out.println("Read " + stars.size() + " stars from " + filename);
+    return "";
   }
 }

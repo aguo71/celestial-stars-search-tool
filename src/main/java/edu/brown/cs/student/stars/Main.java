@@ -5,16 +5,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Map;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
-import spark.ExceptionHandler;
-import spark.ModelAndView;
-import spark.Request;
-import spark.Response;
-import spark.Spark;
-import spark.TemplateViewRoute;
+import spark.*;
 import spark.template.freemarker.FreeMarkerEngine;
 
 import com.google.common.collect.ImmutableMap;
@@ -27,7 +23,7 @@ import freemarker.template.Configuration;
 public final class Main {
 
   private static final int DEFAULT_PORT = 4567;
-
+  private StarsUniverse universe = new StarsUniverse();
   /**
    * The initial method called when execution begins.
    *
@@ -56,7 +52,6 @@ public final class Main {
     }
 
     // Processes commands in a REPL
-    StarsUniverse universe = new StarsUniverse();
     universe.run();
   }
 
@@ -82,6 +77,10 @@ public final class Main {
 
     // Setup Spark Routes
     Spark.get("/stars", new FrontHandler(), freeMarker);
+    Spark.post("/naive_neighbors", new NaiveNeighborsHandler(universe), freeMarker);
+    Spark.post("/naive_radius", new NaiveRadiusHandler(universe), freeMarker);
+    Spark.post("/radius", new RadiusHandler(universe), freeMarker);
+    Spark.post("/neighbors", new NeighborsHandler(universe), freeMarker);
   }
 
   /**
@@ -91,7 +90,7 @@ public final class Main {
     @Override
     public ModelAndView handle(Request req, Response res) {
       Map<String, Object> variables = ImmutableMap.of("title",
-          "Stars: Query the database");
+          "Stars: Universe", "results", new ArrayList<>());
       return new ModelAndView(variables, "query.ftl");
     }
   }

@@ -28,32 +28,32 @@ public class NeighborCommand implements Action {
   }
 
   @Override
-  public void run(String[] args) {
+  public String run(String[] args) {
     neighbors = new TreeMap<>();
     if (args.length != 5 && args.length != 3) {
       System.out.println("ERROR: incorrect number of arguments for neighbors command");
-      return;
+      return "ERROR: incorrect number of arguments for neighbors command";
     }
 
     if (starTree.getDepth() == -1) {
       System.out.println("ERROR: No prior call of stars");
-      return;
+      return "ERROR: No prior call of stars";
     }
     if (starTree.getVal() == null) {
-      return;
+      return "";
     }
 
-    int k;
+    int neighborCount;
     try {
-      k = Integer.parseInt(args[1]);
+      neighborCount = Integer.parseInt(args[1]);
     } catch (NumberFormatException e) {
       System.out.println("ERROR: Neighbor count must be an integer");
-      return;
+      return "ERROR: Neighbor count must be an integer";
     }
 
-    if (k < 0) {
+    if (neighborCount < 0) {
       System.out.println("ERROR: Neighbor count must be non-negative");
-      return;
+      return "ERROR: Neighbor count must be non-negative";
     }
 
     if (args.length == 5) {
@@ -65,14 +65,14 @@ public class NeighborCommand implements Action {
         coords.add(Double.parseDouble(args[4]));
       } catch (NumberFormatException e) {
         System.out.println("ERROR: Input coordinates not numbers");
-        return;
+        return "ERROR: Input coordinates not numbers";
       }
       // Finds and prints the appropriate number of neighboring stars
-      GetKNeighbors<Star> algorithm = new GetKNeighbors<>(neighbors, coords, k);
+      GetKNeighbors<Star> algorithm = new GetKNeighbors<>(neighbors, coords, neighborCount);
       int totalStars = algorithm.run(starTree);
       // Culls appropriate number of stars from neighbors in the case of ties
-      while (totalStars > k) {
-        int diff = totalStars - k;
+      while (totalStars > neighborCount) {
+        int diff = totalStars - neighborCount;
         List<Star> furthest = neighbors.get(neighbors.lastKey());
         if (furthest.size() <= diff) {
           totalStars -= furthest.size();
@@ -87,6 +87,7 @@ public class NeighborCommand implements Action {
       }
       // Prints ID of each star in neighbors
       for (Double distance : neighbors.keySet()) {
+        Collections.shuffle(neighbors.get(distance));
         for (Star star : neighbors.get(distance)) {
           System.out.println(star.getID());
         }
@@ -96,7 +97,7 @@ public class NeighborCommand implements Action {
       String toFind = args[2].replaceAll("\"", "");
       if (args[2].equals("\"\"")) {
         System.out.println("ERROR: Star name cannot be empty string");
-        return;
+        return "ERROR: Star name cannot be empty string";
       }
       List<Double> coords = new ArrayList<>();
       Star toRemove = null;
@@ -110,15 +111,15 @@ public class NeighborCommand implements Action {
       }
       if (toRemove == null) {
         System.out.println("ERROR: Star not found");
-        return;
+        return "ERROR: Star not found";
       }
 
       // Finds and prints the appropriate number of neighboring stars
-      GetKNeighbors<Star> algorithm = new GetKNeighbors<>(neighbors, coords, k + 1);
+      GetKNeighbors<Star> algorithm = new GetKNeighbors<>(neighbors, coords, neighborCount + 1);
       int totalStars = algorithm.run(starTree);
       // Culls appropriate number of stars from neighbors in the case of ties
-      while (totalStars > k + 1) {
-        int diff = totalStars - k;
+      while (totalStars > neighborCount + 1) {
+        int diff = totalStars - neighborCount;
         List<Star> furthest = neighbors.get(neighbors.lastKey());
         if (furthest.size() <= diff) {
           totalStars -= furthest.size();
@@ -133,6 +134,7 @@ public class NeighborCommand implements Action {
       }
       // Prints ID of each star in neighbors except input star
       for (Double distance : neighbors.keySet()) {
+        Collections.shuffle(neighbors.get(distance));
         for (Star star : neighbors.get(distance)) {
           if (!star.getName().equals(toRemove.getName())) {
             System.out.println(star.getID());
@@ -140,6 +142,7 @@ public class NeighborCommand implements Action {
         }
       }
     }
+    return "";
   }
 
   /**

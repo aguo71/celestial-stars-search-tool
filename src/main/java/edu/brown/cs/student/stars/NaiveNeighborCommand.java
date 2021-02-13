@@ -60,30 +60,30 @@ public class NaiveNeighborCommand implements Action {
   }
 
   @Override
-  public void run(String[] args) {
+  public String run(String[] args) {
     if (args.length != 5 && args.length != 3) {
       System.out.println("ERROR: incorrect number of arguments for naive_neighbors method");
-      return;
+      return "ERROR: incorrect number of arguments for naive_neighbors method";
     }
     if (stars.isEmpty()) {
-      return;
+      return "";
     }
     if (stars.get(0).getName() == null) {
       System.out.println("ERROR: No prior call of stars");
-      return;
+      return "ERROR: No prior call of stars";
     }
 
-    int x;
+    int neighborCount;
     try {
-      x = Integer.parseInt(args[1]);
+      neighborCount = Integer.parseInt(args[1]);
     } catch (NumberFormatException e) {
       System.out.println("ERROR: Neighbor count must be an integer");
-      return;
+      return "ERROR: Neighbor count must be an integer";
     }
 
-    if (x < 0) {
+    if (neighborCount < 0) {
       System.out.println("ERROR: Neighbor count must be non-negative");
-      return;
+      return "ERROR: Neighbor count must be non-negative";
     }
 
     // Calculates distance of each star in dataset stars from input coordinate or star name
@@ -97,11 +97,11 @@ public class NaiveNeighborCommand implements Action {
         coords.add(Double.parseDouble(args[4]));
       } catch (NumberFormatException e) {
         System.out.println("ERROR: Input coordinates not numbers");
-        return;
+        return "ERROR: Input coordinates not numbers";
       }
       neighbors = calculator.findDistances(coords);
       // Finds and prints the appropriate number of neighboring stars
-      getNNeighbors(Integer.parseInt(args[1]));
+      getNNeighbors(neighborCount);
       for (Star star : closest) {
         System.out.println(star.getID());
       }
@@ -110,7 +110,7 @@ public class NaiveNeighborCommand implements Action {
       String toFind = args[2].replaceAll("\"", "");
       if (args[2].equals("\"\"")) {
         System.out.println("ERROR: Star name cannot be empty string");
-        return;
+        return "ERROR: Star name cannot be empty string";
       }
       List<Double> coords = new ArrayList<>();
       Star toRemove = null;
@@ -125,19 +125,20 @@ public class NaiveNeighborCommand implements Action {
 
       if (toRemove == null) {
         System.out.println("ERROR: Star not found");
-        return;
+        return "ERROR: Star not found";
       }
 
       neighbors = calculator.findDistances(coords);
       // Finds and prints the appropriate number of neighboring stars except star initially
       // mentioned in repl command
-      getNNeighbors(Integer.parseInt(args[1]) + 1);
+      getNNeighbors(neighborCount + 1);
       for (Star star : closest) {
         if (!star.getName().equals(toRemove.getName())) {
           System.out.println(star.getID());
         }
       }
     }
+    return "";
   }
 
   /**

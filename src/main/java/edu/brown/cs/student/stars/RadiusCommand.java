@@ -28,39 +28,45 @@ public class RadiusCommand implements Action {
   }
 
   @Override
-  public void run(String[] args) {
+  public String run(String[] args) {
     neighbors = new TreeMap<>();
     if (args.length != 5 && args.length != 3) {
       System.out.println("ERROR: incorrect number of arguments for radius method");
-      return;
+      return "ERROR: incorrect number of arguments for radius method";
     }
     if (starTree.getDepth() == -1) {
       System.out.println("ERROR: No prior call of stars");
-      return;
+      return "ERROR: No prior call of stars";
     }
     if (starTree.getVal() == null) {
-      return;
+      return "";
     }
-    if (Double.parseDouble(args[1]) < 0) {
+    double radius;
+    try {
+      radius = Double.parseDouble(args[1]);
+    } catch (NumberFormatException e) {
+      System.out.println("ERROR: Radius must be a double");
+      return "ERROR: Radius must be a double";
+    }
+
+    if (radius < 0) {
       System.out.println("ERROR: Radius must be non-negative");
-      return;
+      return "ERROR: Radius must be non-negative";
     }
 
     if (args.length == 5) {
       // Case when coordinate was specified in input
       List<Double> coords = new ArrayList<>();
-      double r;
       try {
         coords.add(Double.parseDouble(args[2]));
         coords.add(Double.parseDouble(args[3]));
         coords.add(Double.parseDouble(args[4]));
-        r = Double.parseDouble(args[1]);
       } catch (NumberFormatException e) {
         System.out.println("ERROR: Input coordinates not numbers");
-        return;
+        return "ERROR: Input coordinates not numbers";
       }
       // Finds and prints the appropriate number of neighboring stars
-      NeighborsInRadius<Star> algorithm = new NeighborsInRadius<>(neighbors, coords, r);
+      NeighborsInRadius<Star> algorithm = new NeighborsInRadius<>(neighbors, coords, radius);
       algorithm.run(starTree);
       // Prints ID of each star in neighbors
       for (Double distance : neighbors.keySet()) {
@@ -74,7 +80,7 @@ public class RadiusCommand implements Action {
       String toFind = args[2].replaceAll("\"", "");
       if (args[2].equals("\"\"")) {
         System.out.println("ERROR: Star name cannot be empty string");
-        return;
+        return "ERROR: Star name cannot be empty string";
       }
       List<Double> coords = new ArrayList<>();
       Star toRemove = null;
@@ -88,11 +94,10 @@ public class RadiusCommand implements Action {
       }
       if (toRemove == null) {
         System.out.println("ERROR: Star not found");
-        return;
+        return "ERROR: Star not found";
       }
-      double r = Double.parseDouble(args[1]);
       // Finds and prints the appropriate number of neighboring stars
-      NeighborsInRadius<Star> algorithm = new NeighborsInRadius<>(neighbors, coords, r);
+      NeighborsInRadius<Star> algorithm = new NeighborsInRadius<>(neighbors, coords, radius);
       algorithm.run(starTree);
       // Prints ID of each star in neighbors
       for (Double distance : neighbors.keySet()) {
@@ -104,7 +109,7 @@ public class RadiusCommand implements Action {
         }
       }
     }
-
+    return "";
   }
 
   /**

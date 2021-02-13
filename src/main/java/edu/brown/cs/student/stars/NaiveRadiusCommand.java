@@ -46,22 +46,30 @@ public class NaiveRadiusCommand implements Action {
   }
 
   @Override
-  public void run(String[] args) {
+  public String run(String[] args) {
     if (args.length != 5 && args.length != 3) {
       System.out.println("ERROR: incorrect number of arguments for naive_radius method");
-      return;
+      return "ERROR: incorrect number of arguments for naive_radius method";
     }
     if (stars.isEmpty()) {
-      return;
+      return "";
     }
     if (stars.get(0).getName() == null) {
       System.out.println("ERROR: No prior call of stars");
-      return;
+      return "ERROR: No prior call of stars";
     }
 
-    if (Double.parseDouble(args[1]) < 0) {
+    double radius;
+    try {
+      radius = Double.parseDouble(args[1]);
+    } catch (NumberFormatException e) {
+      System.out.println("ERROR: Radius must be a double");
+      return "ERROR: Radius must be a double";
+    }
+
+    if (radius < 0) {
       System.out.println("ERROR: Radius must be non-negative");
-      return;
+      return "ERROR: Radius must be non-negative";
     }
 
     // Calculates distance of each star in dataset stars from input coordinate or star name
@@ -75,11 +83,11 @@ public class NaiveRadiusCommand implements Action {
         coords.add(Double.parseDouble(args[4]));
       } catch (NumberFormatException e) {
         System.out.println("ERROR: Input coordinates not numbers");
-        return;
+        return "ERROR: Input coordinates not numbers";
       }
       neighbors = calculator.findDistances(coords);
       // Finds and prints all stars within input radius
-      getNeighborsInRadius(Double.parseDouble(args[1]));
+      getNeighborsInRadius(radius);
       for (Star star : closest) {
         System.out.println(star.getID());
       }
@@ -88,7 +96,7 @@ public class NaiveRadiusCommand implements Action {
       String toFind = args[2].replaceAll("\"", "");
       if (args[2].equals("\"\"")) {
         System.out.println("ERROR: Star name cannot be empty string");
-        return;
+        return "ERROR: Star name cannot be empty string";
       }
       Star toRemove = null;
       List<Double> coords = new ArrayList<>();
@@ -103,18 +111,19 @@ public class NaiveRadiusCommand implements Action {
 
       if (toRemove == null) {
         System.out.println("ERROR: Star not found");
-        return;
+        return "ERROR: Star not found";
       }
       neighbors = calculator.findDistances(coords);
       // Finds and prints all stars within input radius except star initially mentioned in repl
       // command
-      getNeighborsInRadius(Double.parseDouble(args[1]));
+      getNeighborsInRadius(radius);
       for (Star star : closest) {
         if (!star.getName().equals(toRemove.getName())) {
           System.out.println(star.getID());
         }
       }
     }
+    return "";
   }
 
   /**

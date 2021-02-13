@@ -4,7 +4,10 @@ package edu.brown.cs.student.stars;
 import org.junit.Test;
 import tools.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.TreeMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.Assert.assertEquals;
@@ -118,7 +121,7 @@ public class ModelBasedTest {
       args[1] = Integer.toString(ThreadLocalRandom.current().nextInt(0, 30));
       List<Double> target = new ArrayList<>();
       for(int z = 0; z < 3; z ++) {
-        Double temp = (ThreadLocalRandom.current().nextDouble(-1000, 1000));
+        double temp = (ThreadLocalRandom.current().nextDouble(-1000, 1000));
         args[z+2] = Double.toString(temp);
         target.add(temp);
       }
@@ -190,7 +193,7 @@ public class ModelBasedTest {
       args[1] = Double.toString(ThreadLocalRandom.current().nextDouble(-100, 100));
       List<Double> target = new ArrayList<>();
       for(int z = 0; z < 3; z ++) {
-        Double temp = (ThreadLocalRandom.current().nextDouble(-1000, 1000));
+        double temp = (ThreadLocalRandom.current().nextDouble(-1000, 1000));
         args[z+2] = Double.toString(temp);
         target.add(temp);
       }
@@ -267,13 +270,7 @@ public class ModelBasedTest {
       args[2] = "\"" + stars.get(targ).getName() + "\"";
       target = stars.get(targ).getCoordinates();
 
-      KDTree<Star> tree;
-      if(length == 0) {
-        tree = new KDTree<Star>(null, null, null, -1);
-        stars.add(new Star(-1, null, new ArrayList<Double>()));
-      } else {
-        tree = new KDTreeConstructor<Star>().buildTree(stars, 0);
-      }
+      KDTree<Star> tree = new KDTreeConstructor<Star>().buildTree(stars, 0);
       RadiusCommand nonnaive = new RadiusCommand(tree, stars);
       NaiveRadiusCommand naive = new NaiveRadiusCommand(stars);
 

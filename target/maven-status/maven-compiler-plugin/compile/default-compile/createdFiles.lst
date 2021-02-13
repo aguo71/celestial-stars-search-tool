@@ -13,13 +13,17 @@ tools/DistanceCalculator.class
 mockaroo/MockCommand.class
 tools/NeighborsInRadius.class
 edu/brown/cs/student/stars/StarsParser.class
+edu/brown/cs/student/stars/NaiveNeighborsHandler.class
+edu/brown/cs/student/stars/NeighborsHandler.class
 edu/brown/cs/student/stars/NeighborCommand.class
 edu/brown/cs/student/stars/Main.class
 tools/KDTreeConstructor.class
+edu/brown/cs/student/stars/NaiveRadiusHandler.class
 tools/HasCoordinates.class
 mockaroo/MockParser.class
 edu/brown/cs/student/stars/NaiveNeighborCommand.class
 edu/brown/cs/student/stars/Star.class
 tools/KDTree.class
 edu/brown/cs/student/stars/RadiusCommand.class
+edu/brown/cs/student/stars/RadiusHandler.class
 edu/brown/cs/student/stars/StarsCommand.class
