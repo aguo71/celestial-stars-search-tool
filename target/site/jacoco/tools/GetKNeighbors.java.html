@@ -28,12 +28,12 @@ public class GetKNeighbors&lt;T extends HasCoordinates&gt; {
 <span class="fc" id="L28">  }</span>
 
   /**
-   * Finds nearest neighbors using input.
+   * Finds nearest neighbors using input without dealing with ties (adds all tied stars).
    * @param kdtree kdtree of T objects to search with
    * @return number of net neighbors added to treemap
    */
   public int run(KDTree&lt;T&gt; kdtree) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">    if (kdtree == null) {</span>
+<span class="fc bfc" id="L36" title="All 4 branches covered.">    if (kdtree == null || k == 0) {</span>
 <span class="fc" id="L37">      return 0;</span>
     }
 
@@ -44,11 +44,11 @@ public class GetKNeighbors&lt;T extends HasCoordinates&gt; {
 <span class="fc" id="L44">      lst.add(kdtree.getVal());</span>
 <span class="fc" id="L45">      neighbors.put(dist, lst);</span>
 <span class="fc" id="L46">      counter += 1;</span>
-<span class="pc bpc" id="L47" title="1 of 2 branches missed.">    } else if (neighbors.containsKey(dist)) {</span>
-<span class="nc" id="L48">      List&lt;T&gt; lst = neighbors.get(dist);</span>
-<span class="nc" id="L49">      lst.add(kdtree.getVal());</span>
-<span class="nc" id="L50">      counter += 1;</span>
-<span class="pc bfc" id="L51" title="All 2 branches covered.">    } else if (neighbors.size() &lt; k) {</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">    } else if (neighbors.containsKey(dist)) {</span>
+<span class="fc" id="L48">      List&lt;T&gt; lst = neighbors.get(dist);</span>
+<span class="fc" id="L49">      lst.add(kdtree.getVal());</span>
+<span class="fc" id="L50">      counter += 1;</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">    } else if (neighbors.size() &lt; k) {</span>
 <span class="fc" id="L52">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
 <span class="fc" id="L53">      lst.add(kdtree.getVal());</span>
 <span class="fc" id="L54">      neighbors.put(dist, lst);</span>

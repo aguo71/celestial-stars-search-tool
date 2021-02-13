@@ -1,4 +1,4 @@
-#Sat Feb 13 11:41:25 EST 2021
+#Sat Feb 13 16:55:58 EST 2021
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborsHandler.java=1613202954217
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/Star.java=1612644715680
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockPerson.java=1612042347799
@@ -7,18 +7,20 @@
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/Action.java=1611893024722
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/KDTree.java=1612601133359
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusHandler.java=1613206184733
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborsCommand.java=1613247536529
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/Repl.java=1612586896051
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsCommand.java=1613190508301
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborsCommand.java=1613247536539
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborDistances.java=1613104101187
-/Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/GetKNeighbors.java=1612642635308
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/GetKNeighbors.java=1613240099267
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/DistanceCalculator.java=1611979003124
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/HasCoordinates.java=1612600033580
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java=1613191131384
 configuration*?=11E26AB80F23ED9FBE0FF36C1C623EFE3CF83C12
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockCommand.java=1613190508304
-/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsUniverse.java=1613202981138
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsUniverse.java=1613247536531
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java=1613191131379
-/Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/NeighborsInRadius.java=1612600159174
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/NeighborsInRadius.java=1613239052096
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/KDTreeConstructor.java=1612600218111
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/RadiusCommand.java=1613191131382
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/CSVParser.java=1612042347800

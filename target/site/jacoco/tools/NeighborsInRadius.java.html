@@ -42,13 +42,13 @@ public class NeighborsInRadius&lt;T extends HasCoordinates&gt; {
 <span class="fc" id="L42">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
 <span class="fc" id="L43">      lst.add(kdtree.getVal());</span>
 <span class="fc" id="L44">      neighbors.put(dist, lst);</span>
-<span class="pc bpc" id="L45" title="1 of 2 branches missed.">    } else if (neighbors.containsKey(dist)) {</span>
-<span class="nc" id="L46">      List&lt;T&gt; lst = neighbors.get(dist);</span>
-<span class="nc" id="L47">      lst.add(kdtree.getVal());</span>
-<span class="pc bpc" id="L48" title="1 of 2 branches missed.">    } else if (dist &lt;= radius) {</span>
-<span class="nc" id="L49">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L50">      lst.add(kdtree.getVal());</span>
-<span class="nc" id="L51">      neighbors.put(dist, lst);</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">    } else if (neighbors.containsKey(dist)) {</span>
+<span class="fc" id="L46">      List&lt;T&gt; lst = neighbors.get(dist);</span>
+<span class="fc" id="L47">      lst.add(kdtree.getVal());</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">    } else if (dist &lt;= radius) {</span>
+<span class="fc" id="L49">      List&lt;T&gt; lst = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L50">      lst.add(kdtree.getVal());</span>
+<span class="fc" id="L51">      neighbors.put(dist, lst);</span>
     }
 
 <span class="fc" id="L54">    int axis = kdtree.getDepth() % kdtree.getVal().numDimensions();</span>
@@ -63,14 +63,6 @@ public class NeighborsInRadius&lt;T extends HasCoordinates&gt; {
 <span class="fc" id="L63">        run(kdtree.getLeft());</span>
       }
     }
-
-
-
-
-
-
-<span class="fc" id="L72">  }</span>
-
-
+<span class="fc" id="L66">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

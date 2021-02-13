@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: edu.brown.cs.student.stars.NaiveNeighborCommandTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.023 s <<< FAILURE! - in edu.brown.cs.student.stars.NaiveNeighborCommandTest
+edu.brown.cs.student.stars.NaiveNeighborCommandTest.testRun  Time elapsed: 0.002 s  <<< FAILURE!
+java.lang.AssertionError: expected:<4> but was:<3>
+	at edu.brown.cs.student.stars.NaiveNeighborCommandTest.testRun(NaiveNeighborCommandTest.java:78)
+

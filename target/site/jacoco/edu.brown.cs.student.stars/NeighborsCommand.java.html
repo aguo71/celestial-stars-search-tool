@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NeighborsCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">stars</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.stars</a> &gt; <span class="el_source">NeighborsCommand.java</span></div><h1>NeighborsCommand.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.stars;
+
+import tools.Action;
+import tools.GetKNeighbors;
+import tools.KDTree;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.TreeMap;
+
+/**
+ * KDTree non-naive implementation of stars neighbor repl command.
+ */
+public class NeighborsCommand implements Action {
+  private KDTree&lt;Star&gt; starTree;
+<span class="fc" id="L17">  private TreeMap&lt;Double, List&lt;Star&gt;&gt; neighbors = new TreeMap&lt;&gt;();</span>
+  private List&lt;Star&gt; stars;
+
+  /**
+   *
+   * @param starTree KDTree of stars
+   * @param stars List of stars
+   */
+<span class="fc" id="L25">  public NeighborsCommand(KDTree&lt;Star&gt; starTree, List&lt;Star&gt; stars) {</span>
+<span class="fc" id="L26">    this.starTree = starTree;</span>
+<span class="fc" id="L27">    this.stars = stars;</span>
+<span class="fc" id="L28">  }</span>
+
+  @Override
+  public String run(String[] args) {
+<span class="fc" id="L32">    neighbors = new TreeMap&lt;&gt;();</span>
+<span class="fc bfc" id="L33" title="All 4 branches covered.">    if (args.length != 5 &amp;&amp; args.length != 3) {</span>
+<span class="fc" id="L34">      System.out.println(&quot;ERROR: incorrect number of arguments for neighbors command&quot;);</span>
+<span class="fc" id="L35">      return &quot;ERROR: incorrect number of arguments for neighbors command&quot;;</span>
+    }
+
+<span class="fc bfc" id="L38" title="All 2 branches covered.">    if (starTree.getDepth() == -1) {</span>
+<span class="fc" id="L39">      System.out.println(&quot;ERROR: No prior call of stars&quot;);</span>
+<span class="fc" id="L40">      return &quot;ERROR: No prior call of stars&quot;;</span>
+    }
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">    if (starTree.getVal() == null) {</span>
+<span class="nc" id="L43">      return &quot;&quot;;</span>
+    }
+
+    int neighborCount;
+    try {
+<span class="fc" id="L48">      neighborCount = Integer.parseInt(args[1]);</span>
+<span class="fc" id="L49">    } catch (NumberFormatException e) {</span>
+<span class="fc" id="L50">      System.out.println(&quot;ERROR: Neighbor count must be an integer&quot;);</span>
+<span class="fc" id="L51">      return &quot;ERROR: Neighbor count must be an integer&quot;;</span>
+<span class="fc" id="L52">    }</span>
+
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">    if (neighborCount &lt; 0) {</span>
+<span class="nc" id="L55">      System.out.println(&quot;ERROR: Neighbor count must be non-negative&quot;);</span>
+<span class="nc" id="L56">      return &quot;ERROR: Neighbor count must be non-negative&quot;;</span>
+    }
+
+<span class="fc bfc" id="L59" title="All 2 branches covered.">    if (args.length == 5) {</span>
+      // Case when coordinate was specified in input
+<span class="fc" id="L61">      List&lt;Double&gt; coords = new ArrayList&lt;&gt;();</span>
+      try {
+<span class="fc" id="L63">        coords.add(Double.parseDouble(args[2]));</span>
+<span class="fc" id="L64">        coords.add(Double.parseDouble(args[3]));</span>
+<span class="fc" id="L65">        coords.add(Double.parseDouble(args[4]));</span>
+<span class="fc" id="L66">      } catch (NumberFormatException e) {</span>
+<span class="fc" id="L67">        System.out.println(&quot;ERROR: Input coordinates not numbers&quot;);</span>
+<span class="fc" id="L68">        return &quot;ERROR: Input coordinates not numbers&quot;;</span>
+<span class="fc" id="L69">      }</span>
+      // Finds and prints the appropriate number of neighboring stars
+<span class="fc" id="L71">      GetKNeighbors&lt;Star&gt; algorithm = new GetKNeighbors&lt;&gt;(neighbors, coords, neighborCount);</span>
+<span class="fc" id="L72">      int totalStars = algorithm.run(starTree);</span>
+      // Culls appropriate number of stars from neighbors in the case of ties
+<span class="fc bfc" id="L74" title="All 2 branches covered.">      while (totalStars &gt; neighborCount) {</span>
+<span class="fc" id="L75">        int diff = totalStars - neighborCount;</span>
+<span class="fc" id="L76">        List&lt;Star&gt; furthest = neighbors.get(neighbors.lastKey());</span>
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">        if (furthest.size() &lt;= diff) {</span>
+<span class="nc" id="L78">          totalStars -= furthest.size();</span>
+<span class="nc" id="L79">          neighbors.pollLastEntry();</span>
+        } else {
+<span class="fc" id="L81">          Collections.shuffle(furthest);</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">          for (int i = 0; i &lt; diff; i++) {</span>
+<span class="fc" id="L83">            furthest.remove(0);</span>
+          }
+<span class="fc" id="L85">          totalStars -= diff;</span>
+        }
+<span class="fc" id="L87">      }</span>
+      // Prints ID of each star in neighbors
+<span class="fc bfc" id="L89" title="All 2 branches covered.">      for (Double distance : neighbors.keySet()) {</span>
+<span class="fc" id="L90">        Collections.shuffle(neighbors.get(distance));</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        for (Star star : neighbors.get(distance)) {</span>
+<span class="fc" id="L92">          System.out.println(star.getID());</span>
+<span class="fc" id="L93">        }</span>
+<span class="fc" id="L94">      }</span>
+<span class="fc" id="L95">    } else {</span>
+      // Case when command input was star name
+<span class="fc" id="L97">      String toFind = args[2].replaceAll(&quot;\&quot;&quot;, &quot;&quot;);</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">      if (args[2].equals(&quot;\&quot;\&quot;&quot;)) {</span>
+<span class="fc" id="L99">        System.out.println(&quot;ERROR: Star name cannot be empty string&quot;);</span>
+<span class="fc" id="L100">        return &quot;ERROR: Star name cannot be empty string&quot;;</span>
+      }
+<span class="fc" id="L102">      List&lt;Double&gt; coords = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L103">      Star toRemove = null;</span>
+      // Keeps track of input star so we can remove it from final printed list
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">      for (Star star : stars) {</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (star.getName().equals(toFind)) {</span>
+<span class="fc" id="L107">          coords = star.getCoordinates();</span>
+<span class="fc" id="L108">          toRemove = star;</span>
+<span class="fc" id="L109">          break;</span>
+        }
+<span class="fc" id="L111">      }</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">      if (toRemove == null) {</span>
+<span class="nc" id="L113">        System.out.println(&quot;ERROR: Star not found&quot;);</span>
+<span class="nc" id="L114">        return &quot;ERROR: Star not found&quot;;</span>
+      }
+
+      // Finds and prints the appropriate number of neighboring stars
+<span class="fc" id="L118">      GetKNeighbors&lt;Star&gt; algorithm = new GetKNeighbors&lt;&gt;(neighbors, coords, neighborCount + 1);</span>
+<span class="fc" id="L119">      int totalStars = algorithm.run(starTree);</span>
+      // Culls appropriate number of stars from neighbors in the case of ties
+<span class="fc bfc" id="L121" title="All 2 branches covered.">      while (totalStars &gt; neighborCount + 1) {</span>
+<span class="fc" id="L122">        int diff = totalStars - neighborCount;</span>
+<span class="fc" id="L123">        List&lt;Star&gt; furthest = neighbors.get(neighbors.lastKey());</span>
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">        if (furthest.size() &lt;= diff) {</span>
+<span class="fc" id="L125">          totalStars -= furthest.size();</span>
+<span class="fc" id="L126">          neighbors.pollLastEntry();</span>
+        } else {
+<span class="nc" id="L128">          Collections.shuffle(furthest);</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">          for (int i = 0; i &lt; diff; i++) {</span>
+<span class="nc" id="L130">            furthest.remove(0);</span>
+          }
+<span class="nc" id="L132">          totalStars -= diff;</span>
+        }
+<span class="fc" id="L134">      }</span>
+      // Prints ID of each star in neighbors except input star
+<span class="fc bfc" id="L136" title="All 2 branches covered.">      for (Double distance : neighbors.keySet()) {</span>
+<span class="fc" id="L137">        Collections.shuffle(neighbors.get(distance));</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">        for (Star star : neighbors.get(distance)) {</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">          if (!star.getName().equals(toRemove.getName())) {</span>
+<span class="fc" id="L140">            System.out.println(star.getID());</span>
+          }
+<span class="fc" id="L142">        }</span>
+<span class="fc" id="L143">      }</span>
+    }
+<span class="fc" id="L145">    return &quot;&quot;;</span>
+  }
+
+  /**
+   * Getter for MBT testing.
+   * @return TreeMap of nearest neighbors
+   */
+  public TreeMap&lt;Double, List&lt;Star&gt;&gt; getResults() {
+<span class="fc" id="L153">    return this.neighbors;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

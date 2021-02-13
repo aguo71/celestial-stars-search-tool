@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NaiveNeighborsCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">stars</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.stars</a> &gt; <span class="el_source">NaiveNeighborsCommand.java</span></div><h1>NaiveNeighborsCommand.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.stars;
+
+import tools.Action;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * Class to represent naive_neighbor repl command and behavior.
+ */
+public class NaiveNeighborsCommand implements Action {
+  private List&lt;Star&gt; stars;
+  // HashMap mapping distance to each star from dataset stars based on the input star/coordinate
+  private Map&lt;Double, List&lt;Star&gt;&gt; neighbors;
+<span class="fc" id="L18">  private List&lt;Star&gt; closest = new ArrayList&lt;&gt;();</span>
+
+  /**
+   *
+   * @param stars dataset of stars to perform naive_neighbor command on
+   */
+<span class="fc" id="L24">  public NaiveNeighborsCommand(List&lt;Star&gt; stars) {</span>
+<span class="fc" id="L25">    this.stars = stars;</span>
+<span class="fc" id="L26">  }</span>
+
+  /**
+   * Finds the closest n neighbors using global neighbors Hashmap.
+   * @param n number of neighbors to find and return
+   * @return list of n closest stars
+   */
+  private void getNNeighbors(Integer n) {
+<span class="fc" id="L34">    closest.clear();</span>
+    // Sorts all existing stars by increasing distance using hashmap neighbors,
+    // and adds the first n stars to a list
+<span class="fc" id="L37">    List&lt;Double&gt; distances = new ArrayList&lt;&gt;(neighbors.keySet());</span>
+<span class="fc" id="L38">    Collections.sort(distances);</span>
+    List&lt;Star&gt; nearbyStars;
+<span class="fc" id="L40">    int counter = 0;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">    for (Double distance : distances) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">      if (counter == n) {</span>
+<span class="fc" id="L43">        break;</span>
+      }
+<span class="fc" id="L45">      nearbyStars = neighbors.get(distance);</span>
+<span class="fc" id="L46">      counter += nearbyStars.size();</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">      if (counter &gt; n) {</span>
+        // Randomly shuffles tied stars in the case of a tie that puts the total star count above n
+<span class="fc" id="L49">        Collections.shuffle(nearbyStars);</span>
+<span class="fc" id="L50">        int needed = n - (counter - nearbyStars.size());</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        for (int i = 0; i &lt; needed; i++) {</span>
+<span class="fc" id="L52">          closest.add(nearbyStars.get(i));</span>
+        }
+<span class="fc" id="L54">      } else {</span>
+        // Adds star to eventually returned list
+<span class="fc" id="L56">        Collections.shuffle(nearbyStars);</span>
+<span class="fc" id="L57">        closest.addAll(nearbyStars);</span>
+      }
+<span class="fc" id="L59">    }</span>
+<span class="fc" id="L60">  }</span>
+
+  @Override
+  public String run(String[] args) {
+<span class="fc bfc" id="L64" title="All 4 branches covered.">    if (args.length != 5 &amp;&amp; args.length != 3) {</span>
+<span class="fc" id="L65">      System.out.println(&quot;ERROR: incorrect number of arguments for naive_neighbors method&quot;);</span>
+<span class="fc" id="L66">      return &quot;ERROR: incorrect number of arguments for naive_neighbors method&quot;;</span>
+    }
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">    if (stars.isEmpty()) {</span>
+<span class="nc" id="L69">      return &quot;&quot;;</span>
+    }
+<span class="fc bfc" id="L71" title="All 2 branches covered.">    if (stars.get(0).getName() == null) {</span>
+<span class="fc" id="L72">      System.out.println(&quot;ERROR: No prior call of stars&quot;);</span>
+<span class="fc" id="L73">      return &quot;ERROR: No prior call of stars&quot;;</span>
+    }
+
+    int neighborCount;
+    try {
+<span class="fc" id="L78">      neighborCount = Integer.parseInt(args[1]);</span>
+<span class="fc" id="L79">    } catch (NumberFormatException e) {</span>
+<span class="fc" id="L80">      System.out.println(&quot;ERROR: Neighbor count must be an integer&quot;);</span>
+<span class="fc" id="L81">      return &quot;ERROR: Neighbor count must be an integer&quot;;</span>
+<span class="fc" id="L82">    }</span>
+
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">    if (neighborCount &lt; 0) {</span>
+<span class="nc" id="L85">      System.out.println(&quot;ERROR: Neighbor count must be non-negative&quot;);</span>
+<span class="nc" id="L86">      return &quot;ERROR: Neighbor count must be non-negative&quot;;</span>
+    }
+
+    // Calculates distance of each star in dataset stars from input coordinate or star name
+<span class="fc" id="L90">    NeighborDistances calculator = new NeighborDistances(stars);</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">    if (args.length == 5) {</span>
+      // Case when coordinate was specified in input
+<span class="fc" id="L93">      List&lt;Double&gt; coords = new ArrayList&lt;&gt;();</span>
+      try {
+<span class="fc" id="L95">        coords.add(Double.parseDouble(args[2]));</span>
+<span class="fc" id="L96">        coords.add(Double.parseDouble(args[3]));</span>
+<span class="fc" id="L97">        coords.add(Double.parseDouble(args[4]));</span>
+<span class="fc" id="L98">      } catch (NumberFormatException e) {</span>
+<span class="fc" id="L99">        System.out.println(&quot;ERROR: Input coordinates not numbers&quot;);</span>
+<span class="fc" id="L100">        return &quot;ERROR: Input coordinates not numbers&quot;;</span>
+<span class="fc" id="L101">      }</span>
+<span class="fc" id="L102">      neighbors = calculator.findDistances(coords);</span>
+      // Finds and prints the appropriate number of neighboring stars
+<span class="fc" id="L104">      getNNeighbors(neighborCount);</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">      for (Star star : closest) {</span>
+<span class="fc" id="L106">        System.out.println(star.getID());</span>
+<span class="fc" id="L107">      }</span>
+<span class="fc" id="L108">    } else {</span>
+      // Case when command input was star name
+<span class="fc" id="L110">      String toFind = args[2].replaceAll(&quot;\&quot;&quot;, &quot;&quot;);</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">      if (args[2].equals(&quot;\&quot;\&quot;&quot;)) {</span>
+<span class="fc" id="L112">        System.out.println(&quot;ERROR: Star name cannot be empty string&quot;);</span>
+<span class="fc" id="L113">        return &quot;ERROR: Star name cannot be empty string&quot;;</span>
+      }
+<span class="fc" id="L115">      List&lt;Double&gt; coords = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L116">      Star toRemove = null;</span>
+      // Keeps track of input star so we can remove it from final printed list
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">      for (Star star : stars) {</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        if (star.getName().equals(toFind)) {</span>
+<span class="fc" id="L120">          coords = star.getCoordinates();</span>
+<span class="fc" id="L121">          toRemove = star;</span>
+<span class="fc" id="L122">          break;</span>
+        }
+<span class="fc" id="L124">      }</span>
+
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">      if (toRemove == null) {</span>
+<span class="nc" id="L127">        System.out.println(&quot;ERROR: Star not found&quot;);</span>
+<span class="nc" id="L128">        return &quot;ERROR: Star not found&quot;;</span>
+      }
+
+<span class="fc" id="L131">      neighbors = calculator.findDistances(coords);</span>
+      // Finds and prints the appropriate number of neighboring stars except star initially
+      // mentioned in repl command
+<span class="fc" id="L134">      getNNeighbors(neighborCount + 1);</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">      for (Star star : closest) {</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">        if (!star.getName().equals(toRemove.getName())) {</span>
+<span class="fc" id="L137">          System.out.println(star.getID());</span>
+        }
+<span class="fc" id="L139">      }</span>
+    }
+<span class="fc" id="L141">    return &quot;&quot;;</span>
+  }
+
+  /**
+   * Getter for MBT testing.
+   * @return list of nearest neighbors
+   */
+  public List&lt;Star&gt; getResults() {
+<span class="fc" id="L149">    return this.closest;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

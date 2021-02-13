@@ -28,53 +28,53 @@ public class StarsCommand implements Action {
 
   @Override
   public String run(String[] args) {
-<span class="nc bnc" id="L31" title="All 2 branches missed.">    if (args.length != 2) {</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">    if (args.length != 2) {</span>
 <span class="nc" id="L32">      System.out.println(&quot;ERROR: incorrect number of arguments for stars method&quot;);</span>
 <span class="nc" id="L33">      return &quot;ERROR: incorrect number of arguments for stars method&quot;;</span>
     }
 
-<span class="nc" id="L36">    String filename = args[1];</span>
+<span class="fc" id="L36">    String filename = args[1];</span>
     BufferedReader reader;
     try {
-<span class="nc" id="L39">      reader = new BufferedReader(new FileReader(filename));</span>
+<span class="fc" id="L39">      reader = new BufferedReader(new FileReader(filename));</span>
 <span class="nc" id="L40">    } catch (FileNotFoundException e) {</span>
 <span class="nc" id="L41">      System.out.println(&quot;ERROR: File does not exist&quot;);</span>
 <span class="nc" id="L42">      return &quot;ERROR: File does not exist&quot;;</span>
-<span class="nc" id="L43">    }</span>
+<span class="fc" id="L43">    }</span>
 
     String firstLine;
     try {
-<span class="nc" id="L47">      firstLine = reader.readLine();</span>
+<span class="fc" id="L47">      firstLine = reader.readLine();</span>
 <span class="nc" id="L48">    } catch (IOException e) {</span>
 <span class="nc" id="L49">      System.out.println(&quot;ERROR: IOException occurred during CSV reading&quot;);</span>
 <span class="nc" id="L50">      return &quot;ERROR: IOException occurred during CSV reading&quot;;</span>
-<span class="nc" id="L51">    }</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">    if (!firstLine.equals(&quot;StarID,ProperName,X,Y,Z&quot;)) {</span>
+<span class="fc" id="L51">    }</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">    if (!firstLine.equals(&quot;StarID,ProperName,X,Y,Z&quot;)) {</span>
 <span class="nc" id="L53">      System.out.println(&quot;ERROR: CSV file format incorrect&quot;);</span>
 <span class="nc" id="L54">      return &quot;ERROR: CSV file format incorrect&quot;;</span>
     }
     // Parses csv data into an arraylist of stars
-<span class="nc" id="L57">    StarsParser parser = new StarsParser();</span>
+<span class="fc" id="L57">    StarsParser parser = new StarsParser();</span>
     try {
-<span class="nc" id="L59">      List&lt;Star&gt; tempStars = parser.parse(reader);</span>
-<span class="nc bnc" id="L60" title="All 2 branches missed.">      if (stars != null) {</span>
-<span class="nc" id="L61">        stars.clear();</span>
+<span class="fc" id="L59">      List&lt;Star&gt; tempStars = parser.parse(reader);</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">      if (stars != null) {</span>
+<span class="fc" id="L61">        stars.clear();</span>
       }
-<span class="nc bnc" id="L63" title="All 2 branches missed.">      if (!tempStars.isEmpty()) {</span>
-<span class="nc" id="L64">        stars.addAll(tempStars);</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">      if (!tempStars.isEmpty()) {</span>
+<span class="fc" id="L64">        stars.addAll(tempStars);</span>
       }
 <span class="nc" id="L66">    } catch (IOException | NumberFormatException e) {</span>
 <span class="nc" id="L67">      System.out.println(&quot;ERROR: CSV file format incorrect&quot;);</span>
 <span class="nc" id="L68">      return &quot;ERROR: CSV file format incorrect&quot;;</span>
-<span class="nc" id="L69">    }</span>
-<span class="nc" id="L70">    KDTree&lt;Star&gt; newTree = new KDTreeConstructor&lt;Star&gt;().buildTree(stars, 0);</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">    if (newTree == null) {</span>
+<span class="fc" id="L69">    }</span>
+<span class="fc" id="L70">    KDTree&lt;Star&gt; newTree = new KDTreeConstructor&lt;Star&gt;().buildTree(stars, 0);</span>
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">    if (newTree == null) {</span>
 <span class="nc" id="L72">      starTree.copy(new KDTree&lt;Star&gt;(null, null, null, 0));</span>
     } else {
-<span class="nc" id="L74">      starTree.copy(newTree);</span>
+<span class="fc" id="L74">      starTree.copy(newTree);</span>
     }
-<span class="nc" id="L76">    System.out.println(&quot;Read &quot; + stars.size() + &quot; stars from &quot; + filename);</span>
-<span class="nc" id="L77">    return &quot;&quot;;</span>
+<span class="fc" id="L76">    System.out.println(&quot;Read &quot; + stars.size() + &quot; stars from &quot; + filename);</span>
+<span class="fc" id="L77">    return &quot;&quot;;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

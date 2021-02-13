@@ -60,8 +60,8 @@ public class ModelBasedTest {
 
 
       KDTree<Star> tree = new KDTreeConstructor<Star>().buildTree(stars, 0);
-      NeighborCommand nonnaive = new NeighborCommand(tree, stars);
-      NaiveNeighborCommand naive = new NaiveNeighborCommand(stars);
+      NeighborsCommand nonnaive = new NeighborsCommand(tree, stars);
+      NaiveNeighborsCommand naive = new NaiveNeighborsCommand(stars);
 
       nonnaive.run(args);
       naive.run(args);
@@ -132,8 +132,8 @@ public class ModelBasedTest {
       } else {
         tree = new KDTreeConstructor<Star>().buildTree(stars, 0);
       }
-      NeighborCommand nonnaive = new NeighborCommand(tree, stars);
-      NaiveNeighborCommand naive = new NaiveNeighborCommand(stars);
+      NeighborsCommand nonnaive = new NeighborsCommand(tree, stars);
+      NaiveNeighborsCommand naive = new NaiveNeighborsCommand(stars);
 
       nonnaive.run(args);
       naive.run(args);

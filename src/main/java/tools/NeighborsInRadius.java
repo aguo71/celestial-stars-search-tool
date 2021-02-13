@@ -63,13 +63,5 @@ public class NeighborsInRadius<T extends HasCoordinates> {
         run(kdtree.getLeft());
       }
     }
-
-
-
-
-
-
   }
-
-
 }

@@ -15,9 +15,9 @@ import java.util.TreeMap;
 public class StarsUniverse {
   private List<Star> stars = new ArrayList<>();
   private KDTree<Star> starTree = new KDTree<>(null, null, null, -1);
-  private NaiveNeighborCommand neighbor;
+  private NaiveNeighborsCommand neighbor;
   private NaiveRadiusCommand radius;
-  private NeighborCommand neighborR;
+  private NeighborsCommand neighborR;
   private RadiusCommand radiusR;
   private List<Star> guiOutput = new ArrayList<>();
   /**
@@ -29,14 +29,16 @@ public class StarsUniverse {
    * Sets up a REPL for the stars assignment and registers repl commands to handle.
    */
   public void run() {
+    // placeholder to represent that stars command hasn't been called yet
     Star temp = new Star(-1, null, new ArrayList<>());
     stars.add(temp);
+
     Repl repl = new Repl();
     StarsCommand starsC = new StarsCommand(stars, starTree);
-    neighbor = new NaiveNeighborCommand(stars);
+    neighbor = new NaiveNeighborsCommand(stars);
     radius = new NaiveRadiusCommand(stars);
     MockCommand mockC = new MockCommand();
-    neighborR = new NeighborCommand(starTree, stars);
+    neighborR = new NeighborsCommand(starTree, stars);
     radiusR = new RadiusCommand(starTree, stars);
     repl.registerAction("stars", starsC);
     repl.registerAction("naive_neighbors", neighbor);

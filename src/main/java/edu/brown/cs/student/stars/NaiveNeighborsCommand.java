@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Class to represent naive_neighbor repl command and behavior.
  */
-public class NaiveNeighborCommand implements Action {
+public class NaiveNeighborsCommand implements Action {
   private List<Star> stars;
   // HashMap mapping distance to each star from dataset stars based on the input star/coordinate
   private Map<Double, List<Star>> neighbors;
@@ -21,7 +21,7 @@ public class NaiveNeighborCommand implements Action {
    *
    * @param stars dataset of stars to perform naive_neighbor command on
    */
-  public NaiveNeighborCommand(List<Star> stars) {
+  public NaiveNeighborsCommand(List<Star> stars) {
     this.stars = stars;
   }
 

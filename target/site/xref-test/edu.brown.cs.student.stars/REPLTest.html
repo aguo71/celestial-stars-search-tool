@@ -34,7 +34,7 @@
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>      List&lt;Star&gt; stars = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>      KDTree&lt;Star&gt; starTree = <strong class="jxr_keyword">new</strong> KDTree&lt;&gt;(<strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>, 0);
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>      StarsCommand starsC = <strong class="jxr_keyword">new</strong> StarsCommand(stars, starTree);
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>      NaiveNeighborCommand neighbor = <strong class="jxr_keyword">new</strong> NaiveNeighborCommand(stars);
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      NaiveNeighborsCommand neighbor = <strong class="jxr_keyword">new</strong> NaiveNeighborsCommand(stars);
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>      NaiveRadiusCommand radius = <strong class="jxr_keyword">new</strong> NaiveRadiusCommand(stars);
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>      MockCommand mockC = <strong class="jxr_keyword">new</strong> MockCommand();
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>      repl.registerAction(<span class="jxr_string">"stars"</span>, starsC);

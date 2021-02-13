@@ -2,7 +2,7 @@
 <pmd-cpd>
    <duplication lines="27" tokens="160">
       <file line="89"
-            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java"/>
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborsCommand.java"/>
       <file line="72"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/RadiusCommand.java"/>
       <codefragment><![CDATA[      for (Double distance : neighbors.keySet()) {
@@ -115,9 +115,9 @@
    </duplication>
    <duplication lines="18" tokens="117">
       <file line="74"
-            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java"/>
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborsCommand.java"/>
       <file line="121"
-            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java"/>
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborsCommand.java"/>
       <codefragment><![CDATA[      while (totalStars > neighborCount) {
         int diff = totalStars - neighborCount;
         List<Star> furthest = neighbors.get(neighbors.lastKey());
@@ -139,9 +139,9 @@
    </duplication>
    <duplication lines="23" tokens="111">
       <file line="107"
-            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java"/>
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborsCommand.java"/>
       <file line="94"
-            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java"/>
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborsCommand.java"/>
       <file line="77"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/RadiusCommand.java"/>
       <codefragment><![CDATA[      }
@@ -170,7 +170,7 @@
    </duplication>
    <duplication lines="16" tokens="100">
       <file line="87"
-            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java"/>
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborsCommand.java"/>
       <file line="73"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusCommand.java"/>
       <codefragment><![CDATA[    }

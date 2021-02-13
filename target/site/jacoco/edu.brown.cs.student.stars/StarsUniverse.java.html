@@ -15,9 +15,9 @@ import java.util.TreeMap;
 public class StarsUniverse {
 <span class="nc" id="L16">  private List&lt;Star&gt; stars = new ArrayList&lt;&gt;();</span>
 <span class="nc" id="L17">  private KDTree&lt;Star&gt; starTree = new KDTree&lt;&gt;(null, null, null, -1);</span>
-  private NaiveNeighborCommand neighbor;
+  private NaiveNeighborsCommand neighbor;
   private NaiveRadiusCommand radius;
-  private NeighborCommand neighborR;
+  private NeighborsCommand neighborR;
   private RadiusCommand radiusR;
 <span class="nc" id="L22">  private List&lt;Star&gt; guiOutput = new ArrayList&lt;&gt;();</span>
   /**
@@ -29,23 +29,25 @@ public class StarsUniverse {
    * Sets up a REPL for the stars assignment and registers repl commands to handle.
    */
   public void run() {
-<span class="nc" id="L32">    Star temp = new Star(-1, null, new ArrayList&lt;&gt;());</span>
-<span class="nc" id="L33">    stars.add(temp);</span>
-<span class="nc" id="L34">    Repl repl = new Repl();</span>
-<span class="nc" id="L35">    StarsCommand starsC = new StarsCommand(stars, starTree);</span>
-<span class="nc" id="L36">    neighbor = new NaiveNeighborCommand(stars);</span>
-<span class="nc" id="L37">    radius = new NaiveRadiusCommand(stars);</span>
-<span class="nc" id="L38">    MockCommand mockC = new MockCommand();</span>
-<span class="nc" id="L39">    neighborR = new NeighborCommand(starTree, stars);</span>
-<span class="nc" id="L40">    radiusR = new RadiusCommand(starTree, stars);</span>
-<span class="nc" id="L41">    repl.registerAction(&quot;stars&quot;, starsC);</span>
-<span class="nc" id="L42">    repl.registerAction(&quot;naive_neighbors&quot;, neighbor);</span>
-<span class="nc" id="L43">    repl.registerAction(&quot;naive_radius&quot;, radius);</span>
-<span class="nc" id="L44">    repl.registerAction(&quot;mock&quot;, mockC);</span>
-<span class="nc" id="L45">    repl.registerAction(&quot;neighbors&quot;, neighborR);</span>
-<span class="nc" id="L46">    repl.registerAction(&quot;radius&quot;, radiusR);</span>
-<span class="nc" id="L47">    repl.readCommands();</span>
-<span class="nc" id="L48">  }</span>
+    // placeholder to represent that stars command hasn't been called yet
+<span class="nc" id="L33">    Star temp = new Star(-1, null, new ArrayList&lt;&gt;());</span>
+<span class="nc" id="L34">    stars.add(temp);</span>
+
+<span class="nc" id="L36">    Repl repl = new Repl();</span>
+<span class="nc" id="L37">    StarsCommand starsC = new StarsCommand(stars, starTree);</span>
+<span class="nc" id="L38">    neighbor = new NaiveNeighborsCommand(stars);</span>
+<span class="nc" id="L39">    radius = new NaiveRadiusCommand(stars);</span>
+<span class="nc" id="L40">    MockCommand mockC = new MockCommand();</span>
+<span class="nc" id="L41">    neighborR = new NeighborsCommand(starTree, stars);</span>
+<span class="nc" id="L42">    radiusR = new RadiusCommand(starTree, stars);</span>
+<span class="nc" id="L43">    repl.registerAction(&quot;stars&quot;, starsC);</span>
+<span class="nc" id="L44">    repl.registerAction(&quot;naive_neighbors&quot;, neighbor);</span>
+<span class="nc" id="L45">    repl.registerAction(&quot;naive_radius&quot;, radius);</span>
+<span class="nc" id="L46">    repl.registerAction(&quot;mock&quot;, mockC);</span>
+<span class="nc" id="L47">    repl.registerAction(&quot;neighbors&quot;, neighborR);</span>
+<span class="nc" id="L48">    repl.registerAction(&quot;radius&quot;, radiusR);</span>
+<span class="nc" id="L49">    repl.readCommands();</span>
+<span class="nc" id="L50">  }</span>
 
   /**
    * Method for calling naive_neighbors through GUI input.
@@ -53,9 +55,9 @@ public class StarsUniverse {
    * @return string displaying error message
    */
   public String guiQNaiveNeighbors(String[] args) {
-<span class="nc" id="L56">    String err = neighbor.run(args);</span>
-<span class="nc" id="L57">    this.guiOutput = neighbor.getResults();</span>
-<span class="nc" id="L58">    return err;</span>
+<span class="nc" id="L58">    String err = neighbor.run(args);</span>
+<span class="nc" id="L59">    this.guiOutput = neighbor.getResults();</span>
+<span class="nc" id="L60">    return err;</span>
   }
 
   /**
@@ -64,9 +66,9 @@ public class StarsUniverse {
    * @return string displaying error message
    */
   public String guiQNaiveRadius(String[] args) {
-<span class="nc" id="L67">    String err = radius.run(args);</span>
-<span class="nc" id="L68">    this.guiOutput = radius.getResults();</span>
-<span class="nc" id="L69">    return err;</span>
+<span class="nc" id="L69">    String err = radius.run(args);</span>
+<span class="nc" id="L70">    this.guiOutput = radius.getResults();</span>
+<span class="nc" id="L71">    return err;</span>
   }
 
   /**
@@ -75,18 +77,18 @@ public class StarsUniverse {
    * @return string displaying error message
    */
   public String guiQNeighbors(String[] args) {
-<span class="nc" id="L78">    String err = neighborR.run(args);</span>
-<span class="nc" id="L79">    TreeMap&lt;Double, List&lt;Star&gt;&gt; neighbors = neighborR.getResults();</span>
-<span class="nc" id="L80">    List&lt;Star&gt; toRet = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L80">    String err = neighborR.run(args);</span>
+<span class="nc" id="L81">    TreeMap&lt;Double, List&lt;Star&gt;&gt; neighbors = neighborR.getResults();</span>
+<span class="nc" id="L82">    List&lt;Star&gt; toRet = new ArrayList&lt;&gt;();</span>
     // Prints ID of each star in neighbors except input star
-<span class="nc bnc" id="L82" title="All 2 branches missed.">    for (Double distance : neighbors.keySet()) {</span>
-<span class="nc" id="L83">      Collections.shuffle(neighbors.get(distance));</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">      for (Star star : neighbors.get(distance)) {</span>
-<span class="nc" id="L85">        toRet.add(star);</span>
-<span class="nc" id="L86">      }</span>
-<span class="nc" id="L87">    }</span>
-<span class="nc" id="L88">    this.guiOutput = toRet;</span>
-<span class="nc" id="L89">    return err;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">    for (Double distance : neighbors.keySet()) {</span>
+<span class="nc" id="L85">      Collections.shuffle(neighbors.get(distance));</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">      for (Star star : neighbors.get(distance)) {</span>
+<span class="nc" id="L87">        toRet.add(star);</span>
+<span class="nc" id="L88">      }</span>
+<span class="nc" id="L89">    }</span>
+<span class="nc" id="L90">    this.guiOutput = toRet;</span>
+<span class="nc" id="L91">    return err;</span>
   }
 
   /**
@@ -95,18 +97,18 @@ public class StarsUniverse {
    * @return string displaying error message
    */
   public String guiQRadius(String[] args) {
-<span class="nc" id="L98">    String err = radiusR.run(args);</span>
-<span class="nc" id="L99">    TreeMap&lt;Double, List&lt;Star&gt;&gt; neighbors = radiusR.getResults();</span>
-<span class="nc" id="L100">    List&lt;Star&gt; toRet = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L100">    String err = radiusR.run(args);</span>
+<span class="nc" id="L101">    TreeMap&lt;Double, List&lt;Star&gt;&gt; neighbors = radiusR.getResults();</span>
+<span class="nc" id="L102">    List&lt;Star&gt; toRet = new ArrayList&lt;&gt;();</span>
     // Prints ID of each star in neighbors except input star
-<span class="nc bnc" id="L102" title="All 2 branches missed.">    for (Double distance : neighbors.keySet()) {</span>
-<span class="nc" id="L103">      Collections.shuffle(neighbors.get(distance));</span>
-<span class="nc bnc" id="L104" title="All 2 branches missed.">      for (Star star : neighbors.get(distance)) {</span>
-<span class="nc" id="L105">        toRet.add(star);</span>
-<span class="nc" id="L106">      }</span>
-<span class="nc" id="L107">    }</span>
-<span class="nc" id="L108">    this.guiOutput = toRet;</span>
-<span class="nc" id="L109">    return err;</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">    for (Double distance : neighbors.keySet()) {</span>
+<span class="nc" id="L105">      Collections.shuffle(neighbors.get(distance));</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">      for (Star star : neighbors.get(distance)) {</span>
+<span class="nc" id="L107">        toRet.add(star);</span>
+<span class="nc" id="L108">      }</span>
+<span class="nc" id="L109">    }</span>
+<span class="nc" id="L110">    this.guiOutput = toRet;</span>
+<span class="nc" id="L111">    return err;</span>
   }
 
   /**
@@ -114,7 +116,7 @@ public class StarsUniverse {
    * @return list of stars returned through gui command
    */
   public List&lt;Star&gt; getGuiOutput() {
-<span class="nc" id="L117">    return this.guiOutput;</span>
+<span class="nc" id="L119">    return this.guiOutput;</span>
   }
 
 }

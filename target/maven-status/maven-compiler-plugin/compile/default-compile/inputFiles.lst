@@ -2,8 +2,10 @@
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockPerson.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborsHandler.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/CoordinateComparator.java
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborsCommand.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusHandler.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/KDTree.java
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborsCommand.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsCommand.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/Repl.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/GetKNeighbors.java
@@ -11,9 +13,7 @@
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/HasCoordinates.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsUniverse.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockCommand.java
-/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/NeighborsInRadius.java
-/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/RadiusCommand.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/KDTreeConstructor.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/CSVParser.java

@@ -3,7 +3,7 @@ Reflection Questions:
 1. The developers of Mockaroo most noticeably made an assumption
 about the language of the entries in the dataset. All of the data
 entries were in English, and had no words containing accent marks
-or consisting of Chinese or other characters. They also standardized
+or consisting of Chinese or other foreign characters. They also standardized
 the formatting of entries, starting each entry with a capital letter
 and leaving proper spaces in the address entries without regard for
 possible typos made by the user. This creates an artificially perfect dataset
@@ -32,7 +32,7 @@ methods handle other cases because the design of my classes generally leave
 user input as is without manipulation.
 
 3. My REPL is extensible because it contains a hashmap mapping string commands to Action objects.
-This allows us to easily add/change commands that my REPL responds to with just a few lines of code
+This allows me to easily add/change commands that my REPL responds to with just a few lines of code
 in the main (in this case, StarsUniverse, class). My REPL is also
 extensible because it relies on the fact that every command will be implementing the
 Action interface, so it guarantees that the REPl can simply call the run() function of

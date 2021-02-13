@@ -41,27 +41,5 @@ public class StarsParserTest {
       }
       assertEquals(stars.size(), 3);
     }
-//
-//  /**
-//   ** Tests whether parse throws proper exception.
-//   */
-//  @Test
-//  public void testParseException() throws IOException {
-//    BufferedReader reader;
-//    try {
-//      reader = new BufferedReader(new FileReader("data/stars/TooManyStarAttributes.csv"));
-//    } catch (FileNotFoundException e) {
-//      return;
-//    }
-//
-//    try {
-//      reader.readLine();
-//    } catch (IOException e) {
-//      return;
-//    }
-//
-//    StarsParser parser = new StarsParser();
-//    ArrayList<Star> stars;
-//    stars = parser.parse(reader);
-//  }
+
 }

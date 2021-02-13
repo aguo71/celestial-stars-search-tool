@@ -12,7 +12,7 @@ import java.util.TreeMap;
 /**
  * KDTree non-naive implementation of stars neighbor repl command.
  */
-public class NeighborCommand implements Action {
+public class NeighborsCommand implements Action {
   private KDTree<Star> starTree;
   private TreeMap<Double, List<Star>> neighbors = new TreeMap<>();
   private List<Star> stars;
@@ -22,7 +22,7 @@ public class NeighborCommand implements Action {
    * @param starTree KDTree of stars
    * @param stars List of stars
    */
-  public NeighborCommand(KDTree<Star> starTree, List<Star> stars) {
+  public NeighborsCommand(KDTree<Star> starTree, List<Star> stars) {
     this.starTree = starTree;
     this.stars = stars;
   }

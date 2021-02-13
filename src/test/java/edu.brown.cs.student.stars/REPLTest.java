@@ -26,7 +26,7 @@ public class REPLTest {
     List<Star> stars = new ArrayList<>();
     KDTree<Star> starTree = new KDTree<>(null, null, null, 0);
     StarsCommand starsC = new StarsCommand(stars, starTree);
-    NaiveNeighborCommand neighbor = new NaiveNeighborCommand(stars);
+    NaiveNeighborsCommand neighbor = new NaiveNeighborsCommand(stars);
     NaiveRadiusCommand radius = new NaiveRadiusCommand(stars);
     MockCommand mockC = new MockCommand();
     repl.registerAction("stars", starsC);

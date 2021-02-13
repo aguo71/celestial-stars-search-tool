@@ -68,8 +68,8 @@
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>        KDTree&lt;Star&gt; tree = <strong class="jxr_keyword">new</strong> KDTreeConstructor&lt;Star&gt;().buildTree(stars, 0);
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>        NeighborCommand nonnaive = <strong class="jxr_keyword">new</strong> NeighborCommand(tree, stars);
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>        NaiveNeighborCommand naive = <strong class="jxr_keyword">new</strong> NaiveNeighborCommand(stars);
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>        NeighborsCommand nonnaive = <strong class="jxr_keyword">new</strong> NeighborsCommand(tree, stars);
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>        NaiveNeighborsCommand naive = <strong class="jxr_keyword">new</strong> NaiveNeighborsCommand(stars);
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>        nonnaive.run(args);
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>        naive.run(args);
@@ -140,8 +140,8 @@
 <a class="jxr_linenumber" name="L132" href="#L132">132</a>       } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>         tree = <strong class="jxr_keyword">new</strong> KDTreeConstructor&lt;Star&gt;().buildTree(stars, 0);
 <a class="jxr_linenumber" name="L134" href="#L134">134</a>       }
-<a class="jxr_linenumber" name="L135" href="#L135">135</a>       NeighborCommand nonnaive = <strong class="jxr_keyword">new</strong> NeighborCommand(tree, stars);
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>       NaiveNeighborCommand naive = <strong class="jxr_keyword">new</strong> NaiveNeighborCommand(stars);
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>       NeighborsCommand nonnaive = <strong class="jxr_keyword">new</strong> NeighborsCommand(tree, stars);
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>       NaiveNeighborsCommand naive = <strong class="jxr_keyword">new</strong> NaiveNeighborsCommand(stars);
 <a class="jxr_linenumber" name="L137" href="#L137">137</a> 
 <a class="jxr_linenumber" name="L138" href="#L138">138</a>       nonnaive.run(args);
 <a class="jxr_linenumber" name="L139" href="#L139">139</a>       naive.run(args);

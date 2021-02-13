@@ -28,12 +28,12 @@ public class GetKNeighbors<T extends HasCoordinates> {
   }
 
   /**
-   * Finds nearest neighbors using input.
+   * Finds nearest neighbors using input without dealing with ties (adds all tied stars).
    * @param kdtree kdtree of T objects to search with
    * @return number of net neighbors added to treemap
    */
   public int run(KDTree<T> kdtree) {
-    if (kdtree == null) {
+    if (kdtree == null || k == 0) {
       return 0;
     }
 

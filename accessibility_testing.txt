@@ -1,20 +1,13 @@
-1. How might a non-impaired user might benefit from increased web accessibility
-(that isn’t already discussed above)?
-
-They will have access to a more diverse array of opinions around them because even people who are
-impaired in some way will have access to and be able to contribute to content on that page if it is
+1. Non-impaired users will benefit by having access to a more diverse array of opinions around them,
+because people who are impaired might offer different perspectives to the content on that page if it is
 an interactive medium like a forum. This brings new and potentially differently framed opinions
 to a discussion, or simply brings a different lens of critical analysis to content consumption.
 This leads to a generally more educated and aware community
-which further enriches the educational and social value of the site content and the audience's
+which further enriches the educational and social value of the site content and the site audience's
 general attitudes and beliefs.
 
 
-
-2. What are three design choices that User Inyerface made that harmed your user experience?
-Explain how you would alter each design choice to improve accessibility and usability.
-
-One major design choice User Inyerface made was labeling prominent buttons with phrases that took
+2. One major design choice User Inyerface made was labeling prominent buttons with unintuitive phrases that took
 a lot of cognitive effort to process, such as buttons with negative statements on them like a
 checkbox next to "I do not agree to these terms", or a big green button labeled NO. I would change
 this simply by replacing the labels of the buttons with something more traditionally expected
@@ -32,24 +25,20 @@ in a very prominent position in a high-contrast color to the background so peopl
 can notice it quickly.
 
 
-
-3. What are three changes you made to your site to increase your Lighthouse (or other) audit score?
-Explain how each change increases your site’s performance or accessibility.
-
-A change I made was to add associated labels to all of my form elements. This helps users who
+3. A change I made was to add associated labels to all of my form elements. This helps users who
 rely assistive technologies to fill out forms by announcing what each form field is for. This
 allows these users more easily fill out forms accurately and understands what the screen reader sees.
 
 Another change I made was to make all my ARIA IDs unique. This allows assistive technologies
 to read all the instances of elements on my webpage, rather than just the first instance
-of multiple similarly ID'ed elements. This generally improves accessibility to the site
+of multiple similarly ID'ed elements. This also improves general accessibility to the site
 for people who rely on assistive technologies.
 
 Another change I made was to add a [lang] attribute to my HTML attribute. This increased
 accessibility because it explicitly declares the language of my website, so screen readers
 will not accidentally assume a different language because I did not explicit state the language.
 
-Another change I made was to add a meta description to my HTML document. This increased accesibility
+Lastly, a change I made was to add a meta description to my HTML document. This increased accesibility
 because it helps people see a quick summary of the site without having to click into and explore
 the site itself. This also helps draw in interested users who otherwise might have skipped over.
 
