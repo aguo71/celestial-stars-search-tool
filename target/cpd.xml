@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pmd-cpd>
-   <duplication lines="25" tokens="135">
-      <file line="90"
+   <duplication lines="27" tokens="160">
+      <file line="89"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java"/>
-      <file line="68"
+      <file line="72"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/RadiusCommand.java"/>
-      <codefragment><![CDATA[        for (Star star : neighbors.get(distance)) {
+      <codefragment><![CDATA[      for (Double distance : neighbors.keySet()) {
+        Collections.shuffle(neighbors.get(distance));
+        for (Star star : neighbors.get(distance)) {
           System.out.println(star.getID());
         }
       }
@@ -14,7 +16,7 @@
       String toFind = args[2].replaceAll("\"", "");
       if (args[2].equals("\"\"")) {
         System.out.println("ERROR: Star name cannot be empty string");
-        return;
+        return "ERROR: Star name cannot be empty string";
       }
       List<Double> coords = new ArrayList<>();
       Star toRemove = null;
@@ -28,47 +30,96 @@
       }
       if (toRemove == null) {
         System.out.println("ERROR: Star not found");
-        return;
+        return "ERROR: Star not found";
       }]]></codefragment>
    </duplication>
-   <duplication lines="23" tokens="109">
-      <file line="107"
-            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java"/>
-      <file line="93"
-            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java"/>
-      <file line="71"
-            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/RadiusCommand.java"/>
-      <codefragment><![CDATA[      }
+   <duplication lines="20" tokens="141">
+      <file line="68"
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborsHandler.java"/>
+      <file line="68"
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusHandler.java"/>
+      <file line="68"
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborsHandler.java"/>
+      <file line="68"
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/RadiusHandler.java"/>
+      <codefragment><![CDATA[    String err = universe.guiQNaiveNeighbors(args);
+    List<String> resultNames = new ArrayList<>();
+    // returns either error message or list of stars
+    if (err.equals("")) {
+      List<Star> results = universe.getGuiOutput();
+      for (Star s: results) {
+        if (matchList.size() != 1
+            || !s.getName().equals(matchList.get(0).replaceAll("\"", ""))) {
+          resultNames.add("ID: " + s.getID() + " | Star name: " + s.getName());
+        }
+      }
     } else {
-      // Case when command input was star name
-      String toFind = args[2].replaceAll("\"", "");
-      if (args[2].equals("\"\"")) {
-        System.out.println("ERROR: Star name cannot be empty string");
-        return;
-      }
-      List<Double> coords = new ArrayList<>();
-      Star toRemove = null;
-      // Keeps track of input star so we can remove it from final printed list
-      for (Star star : stars) {
-        if (star.getName().equals(toFind)) {
-          coords = star.getCoordinates();
-          toRemove = star;
-          break;
-        }
-      }
+      resultNames.add(err);
+    }
 
-      if (toRemove == null) {
-        System.out.println("ERROR: Star not found");
-        return;
-      }]]></codefragment>
+    Map<String, Object> variables = ImmutableMap.of("title",
+        "Stars: Universe", "results", resultNames);
+    return new ModelAndView(variables, "query.ftl");
+  }
+}]]></codefragment>
    </duplication>
-   <duplication lines="17" tokens="106">
+   <duplication lines="19" tokens="136">
+      <file line="33"
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborsHandler.java"/>
+      <file line="33"
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborsHandler.java"/>
+      <codefragment><![CDATA[    String numberNeighbors = qm.value("numberNaiveNeighbors");
+    String searchCriteria = qm.value("searchCriteria");
+    // Parses coordinate/star argument to algorithm
+    List<String> matchList = new ArrayList<>();
+    Pattern regex = Pattern.compile("[^\\s\"']+|\"[^\"]*\"|'[^']*'");
+    Matcher regexMatcher = regex.matcher(searchCriteria);
+    while (regexMatcher.find()) {
+      matchList.add(regexMatcher.group());
+    }
+    List<String> numNeighbors = new ArrayList<>();
+    Matcher regexMatcher2 = regex.matcher(numberNeighbors);
+    while (regexMatcher2.find()) {
+      numNeighbors.add(regexMatcher2.group());
+    }
+    String[] args;
+    if (matchList.size() == 1 && numNeighbors.size() == 1) {
+      // case when star name was entered
+      args = new String[3];
+      args[0] = "naive_neighbors";]]></codefragment>
+   </duplication>
+   <duplication lines="19" tokens="136">
+      <file line="33"
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusHandler.java"/>
+      <file line="33"
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/RadiusHandler.java"/>
+      <codefragment><![CDATA[    String radiusDist = qm.value("radiusNaiveDist");
+    String searchCriteria = qm.value("searchCriteria");
+    // Parses coordinate/star argument to algorithm
+    List<String> matchList = new ArrayList<>();
+    Pattern regex = Pattern.compile("[^\\s\"']+|\"[^\"]*\"|'[^']*'");
+    Matcher regexMatcher = regex.matcher(searchCriteria);
+    while (regexMatcher.find()) {
+      matchList.add(regexMatcher.group());
+    }
+    List<String> radDist = new ArrayList<>();
+    Matcher regexMatcher2 = regex.matcher(radiusDist);
+    while (regexMatcher2.find()) {
+      radDist.add(regexMatcher2.group());
+    }
+    String[] args;
+    if (matchList.size() == 1 && radDist.size() == 1) {
+      // case when star name was entered
+      args = new String[3];
+      args[0] = "naive_radius";]]></codefragment>
+   </duplication>
+   <duplication lines="18" tokens="117">
       <file line="74"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java"/>
-      <file line="120"
+      <file line="121"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java"/>
-      <codefragment><![CDATA[      while (totalStars > k) {
-        int diff = totalStars - k;
+      <codefragment><![CDATA[      while (totalStars > neighborCount) {
+        int diff = totalStars - neighborCount;
         List<Star> furthest = neighbors.get(neighbors.lastKey());
         if (furthest.size() <= diff) {
           totalStars -= furthest.size();
@@ -83,16 +134,46 @@
       }
       // Prints ID of each star in neighbors
       for (Double distance : neighbors.keySet()) {
+        Collections.shuffle(neighbors.get(distance));
         for (Star star : neighbors.get(distance)) {]]></codefragment>
    </duplication>
-   <duplication lines="18" tokens="101">
-      <file line="85"
+   <duplication lines="23" tokens="111">
+      <file line="107"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java"/>
-      <file line="63"
+      <file line="94"
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java"/>
+      <file line="77"
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/RadiusCommand.java"/>
+      <codefragment><![CDATA[      }
+    } else {
+      // Case when command input was star name
+      String toFind = args[2].replaceAll("\"", "");
+      if (args[2].equals("\"\"")) {
+        System.out.println("ERROR: Star name cannot be empty string");
+        return "ERROR: Star name cannot be empty string";
+      }
+      List<Double> coords = new ArrayList<>();
+      Star toRemove = null;
+      // Keeps track of input star so we can remove it from final printed list
+      for (Star star : stars) {
+        if (star.getName().equals(toFind)) {
+          coords = star.getCoordinates();
+          toRemove = star;
+          break;
+        }
+      }
+
+      if (toRemove == null) {
+        System.out.println("ERROR: Star not found");
+        return "ERROR: Star not found";
+      }]]></codefragment>
+   </duplication>
+   <duplication lines="16" tokens="100">
+      <file line="87"
+            path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java"/>
+      <file line="73"
             path="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusCommand.java"/>
-      <codefragment><![CDATA[      System.out.println("ERROR: Neighbor count must be non-negative");
-      return;
-    }
+      <codefragment><![CDATA[    }
 
     // Calculates distance of each star in dataset stars from input coordinate or star name
     NeighborDistances calculator = new NeighborDistances(stars);
@@ -105,7 +186,7 @@
         coords.add(Double.parseDouble(args[4]));
       } catch (NumberFormatException e) {
         System.out.println("ERROR: Input coordinates not numbers");
-        return;
+        return "ERROR: Input coordinates not numbers";
       }
       neighbors = calculator.findDistances(coords);]]></codefragment>
    </duplication>

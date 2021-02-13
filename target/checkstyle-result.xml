@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.19">
-<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborCommand.java">
+<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborsHandler.java">
 </file>
-<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/Star.java">
-</file>
-<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborCommand.java">
-</file>
-<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/RadiusCommand.java">
-</file>
-<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusCommand.java">
-</file>
-<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborDistances.java">
-</file>
-<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsCommand.java">
+<file name="/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusHandler.java">
 </file>
 </checkstyle>

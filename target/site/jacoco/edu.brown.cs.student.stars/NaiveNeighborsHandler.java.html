@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NaiveNeighborsHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">stars</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.stars</a> &gt; <span class="el_source">NaiveNeighborsHandler.java</span></div><h1>NaiveNeighborsHandler.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.stars;
+
+import com.google.common.collect.ImmutableMap;
+import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
+import spark.TemplateViewRoute;
+import spark.QueryParamsMap;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Handle requests to the front page of our Stars website.
+ */
+public class NaiveNeighborsHandler implements TemplateViewRoute {
+  private StarsUniverse universe;
+
+  /**
+   * Constructor for naive_neighbors handler.
+   * @param universe universe class containing commands/stars data
+   */
+<span class="nc" id="L26">  public NaiveNeighborsHandler(StarsUniverse universe) {</span>
+<span class="nc" id="L27">    this.universe = universe;</span>
+<span class="nc" id="L28">  }</span>
+
+  @Override
+  public ModelAndView handle(Request req, Response res) {
+<span class="nc" id="L32">    QueryParamsMap qm = req.queryMap();</span>
+<span class="nc" id="L33">    String numberNeighbors = qm.value(&quot;numberNaiveNeighbors&quot;);</span>
+<span class="nc" id="L34">    String searchCriteria = qm.value(&quot;searchCriteria&quot;);</span>
+    // Parses coordinate/star argument to algorithm
+<span class="nc" id="L36">    List&lt;String&gt; matchList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L37">    Pattern regex = Pattern.compile(&quot;[^\\s\&quot;']+|\&quot;[^\&quot;]*\&quot;|'[^']*'&quot;);</span>
+<span class="nc" id="L38">    Matcher regexMatcher = regex.matcher(searchCriteria);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">    while (regexMatcher.find()) {</span>
+<span class="nc" id="L40">      matchList.add(regexMatcher.group());</span>
+    }
+<span class="nc" id="L42">    List&lt;String&gt; numNeighbors = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L43">    Matcher regexMatcher2 = regex.matcher(numberNeighbors);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">    while (regexMatcher2.find()) {</span>
+<span class="nc" id="L45">      numNeighbors.add(regexMatcher2.group());</span>
+    }
+    String[] args;
+<span class="nc bnc" id="L48" title="All 4 branches missed.">    if (matchList.size() == 1 &amp;&amp; numNeighbors.size() == 1) {</span>
+      // case when star name was entered
+<span class="nc" id="L50">      args = new String[3];</span>
+<span class="nc" id="L51">      args[0] = &quot;naive_neighbors&quot;;</span>
+<span class="nc" id="L52">      args[1] = numNeighbors.get(0);</span>
+<span class="nc" id="L53">      args[2] = matchList.get(0);</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">    } else if (matchList.size() == 3 &amp;&amp; numNeighbors.size() == 1) {</span>
+      // case when coordinates were entered
+<span class="nc" id="L56">      args = new String[5];</span>
+<span class="nc" id="L57">      args[0] = &quot;naive_neighbors&quot;;</span>
+<span class="nc" id="L58">      args[1] = numNeighbors.get(0);</span>
+<span class="nc" id="L59">      args[2] = matchList.get(0);</span>
+<span class="nc" id="L60">      args[3] = matchList.get(1);</span>
+<span class="nc" id="L61">      args[4] = matchList.get(2);</span>
+    } else {
+      // case when too many arguments are present
+<span class="nc" id="L64">      args = new String[matchList.size() + numNeighbors.size() + 1];</span>
+<span class="nc" id="L65">      args[0] = &quot;naive_neighbors&quot;;</span>
+    }
+    // computes algorithm
+<span class="nc" id="L68">    String err = universe.guiQNaiveNeighbors(args);</span>
+<span class="nc" id="L69">    List&lt;String&gt; resultNames = new ArrayList&lt;&gt;();</span>
+    // returns either error message or list of stars
+<span class="nc bnc" id="L71" title="All 2 branches missed.">    if (err.equals(&quot;&quot;)) {</span>
+<span class="nc" id="L72">      List&lt;Star&gt; results = universe.getGuiOutput();</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">      for (Star s: results) {</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        if (matchList.size() != 1</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            || !s.getName().equals(matchList.get(0).replaceAll(&quot;\&quot;&quot;, &quot;&quot;))) {</span>
+<span class="nc" id="L76">          resultNames.add(&quot;ID: &quot; + s.getID() + &quot; | Star name: &quot; + s.getName());</span>
+        }
+<span class="nc" id="L78">      }</span>
+<span class="nc" id="L79">    } else {</span>
+<span class="nc" id="L80">      resultNames.add(err);</span>
+    }
+
+<span class="nc" id="L83">    Map&lt;String, Object&gt; variables = ImmutableMap.of(&quot;title&quot;,</span>
+        &quot;Stars: Universe&quot;, &quot;results&quot;, resultNames);
+<span class="nc" id="L85">    return new ModelAndView(variables, &quot;query.ftl&quot;);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

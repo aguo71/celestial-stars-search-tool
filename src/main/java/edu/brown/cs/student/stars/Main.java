@@ -10,7 +10,15 @@ import java.util.Map;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
-import spark.*;
+
+import spark.Request;
+import spark.Response;
+import spark.Spark;
+import spark.TemplateViewRoute;
+import spark.ModelAndView;
+import spark.ExceptionHandler;
+
+
 import spark.template.freemarker.FreeMarkerEngine;
 
 import com.google.common.collect.ImmutableMap;

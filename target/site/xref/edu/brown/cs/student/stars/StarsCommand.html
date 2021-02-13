@@ -35,10 +35,10 @@
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>    }
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>    @Override
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run(String[] args) {
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>    <strong class="jxr_keyword">public</strong> String run(String[] args) {
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>      <strong class="jxr_keyword">if</strong> (args.length != 2) {
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>        System.out.println(<span class="jxr_string">"ERROR: incorrect number of arguments for stars method"</span>);
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>        <strong class="jxr_keyword">return</strong>;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>        <strong class="jxr_keyword">return</strong> <span class="jxr_string">"ERROR: incorrect number of arguments for stars method"</span>;
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>      }
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>      String filename = args[1];
@@ -47,7 +47,7 @@
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>        reader = <strong class="jxr_keyword">new</strong> BufferedReader(<strong class="jxr_keyword">new</strong> FileReader(filename));
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>      } <strong class="jxr_keyword">catch</strong> (FileNotFoundException e) {
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>        System.out.println(<span class="jxr_string">"ERROR: File does not exist"</span>);
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>        <strong class="jxr_keyword">return</strong>;
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>        <strong class="jxr_keyword">return</strong> <span class="jxr_string">"ERROR: File does not exist"</span>;
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>      }
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>      String firstLine;
@@ -55,11 +55,11 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>        firstLine = reader.readLine();
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>      } <strong class="jxr_keyword">catch</strong> (IOException e) {
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>        System.out.println(<span class="jxr_string">"ERROR: IOException occurred during CSV reading"</span>);
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>        <strong class="jxr_keyword">return</strong>;
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>        <strong class="jxr_keyword">return</strong> <span class="jxr_string">"ERROR: IOException occurred during CSV reading"</span>;
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>      }
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>      <strong class="jxr_keyword">if</strong> (!firstLine.equals(<span class="jxr_string">"StarID,ProperName,X,Y,Z"</span>)) {
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>        System.out.println(<span class="jxr_string">"ERROR: CSV file format incorrect"</span>);
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>        <strong class="jxr_keyword">return</strong>;
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>        <strong class="jxr_keyword">return</strong> <span class="jxr_string">"ERROR: CSV file format incorrect"</span>;
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>      }
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>      <em class="jxr_comment">// Parses csv data into an arraylist of stars</em>
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>      <a name="StarsParser" href="../../../../../edu/brown/cs/studen<a name="StarsParser" href="../../../../../edu/brown/cs/student/stars/StarsParser.html#StarsParser">StarsParser</a>rsParser.html#StarsParser">StarsParser</a> parser = <strong class="jxr_keyword">new</strong> <a name="StarsParser" href="../../../../../edu/brown/cs/student/stars/StarsParser.html#StarsParser">StarsParser</a>();
@@ -73,7 +73,7 @@
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>        }
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>      } <strong class="jxr_keyword">catch</strong> (IOException | NumberFormatException e) {
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>        System.out.println(<span class="jxr_string">"ERROR: CSV file format incorrect"</span>);
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>        <strong class="jxr_keyword">return</strong>;
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>        <strong class="jxr_keyword">return</strong> <span class="jxr_string">"ERROR: CSV file format incorrect"</span>;
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>      }
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>      KDTree&lt;Star&gt; newTree = <strong class="jxr_keyword">new</strong> KDTreeConstructor&lt;Star&gt;().buildTree(stars, 0);
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>      <strong class="jxr_keyword">if</strong> (newTree == <strong class="jxr_keyword">null</strong>) {
@@ -82,8 +82,9 @@
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>        starTree.copy(newTree);
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>      }
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>      System.out.println(<span class="jxr_string">"Read "</span> + stars.size() + <span class="jxr_string">" stars from "</span> + filename);
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>    }
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  }
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>      <strong class="jxr_keyword">return</strong> <span class="jxr_string">""</span>;
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>    }
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2021. All rights reserved.</div>

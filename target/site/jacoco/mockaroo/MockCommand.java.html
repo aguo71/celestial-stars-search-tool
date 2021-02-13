@@ -18,10 +18,10 @@ public class MockCommand implements Action {
 <span class="fc" id="L18">  public MockCommand() { }</span>
 
   @Override
-  public void run(String[] args) {
+  public String run(String[] args) {
 <span class="nc bnc" id="L22" title="All 2 branches missed.">    if (args.length != 2) {</span>
 <span class="nc" id="L23">      System.out.println(&quot;ERROR: incorrect number of arguments for mock method&quot;);</span>
-<span class="nc" id="L24">      return;</span>
+<span class="nc" id="L24">      return &quot;ERROR: incorrect number of arguments for mock method&quot;;</span>
     }
 
 <span class="nc" id="L27">    String filename = args[1];</span>
@@ -30,7 +30,7 @@ public class MockCommand implements Action {
 <span class="nc" id="L30">      reader = new BufferedReader(new FileReader(filename));</span>
 <span class="nc" id="L31">    } catch (FileNotFoundException e) {</span>
 <span class="nc" id="L32">      System.out.println(&quot;ERROR: File does not exist&quot;);</span>
-<span class="nc" id="L33">      return;</span>
+<span class="nc" id="L33">      return &quot;ERROR: File does not exist&quot;;</span>
 <span class="nc" id="L34">    }</span>
 
     String firstLine;
@@ -38,11 +38,11 @@ public class MockCommand implements Action {
 <span class="nc" id="L38">      firstLine = reader.readLine();</span>
 <span class="nc" id="L39">    } catch (IOException e) {</span>
 <span class="nc" id="L40">      System.out.println(&quot;ERROR: IOException occurred during CSV reading&quot;);</span>
-<span class="nc" id="L41">      return;</span>
+<span class="nc" id="L41">      return &quot;ERROR: IOException occurred during CSV reading&quot;;</span>
 <span class="nc" id="L42">    }</span>
 <span class="nc bnc" id="L43" title="All 2 branches missed.">    if (!firstLine.equals(&quot;time,first_name,last_name,email,gender,address&quot;)) {</span>
 <span class="nc" id="L44">      System.out.println(&quot;ERROR: CSV file format incorrect&quot;);</span>
-<span class="nc" id="L45">      return;</span>
+<span class="nc" id="L45">      return &quot;ERROR: CSV file format incorrect&quot;;</span>
     }
 
     // Parses csv data into an arraylist of MockPersons
@@ -52,12 +52,12 @@ public class MockCommand implements Action {
 <span class="nc" id="L52">      dataset = parser.parse(reader);</span>
 <span class="nc" id="L53">    } catch (IOException | NumberFormatException e) {</span>
 <span class="nc" id="L54">      System.out.println(&quot;ERROR: CSV file format incorrect&quot;);</span>
-<span class="nc" id="L55">      return;</span>
+<span class="nc" id="L55">      return &quot;ERROR: CSV file format incorrect&quot;;</span>
 <span class="nc" id="L56">    }</span>
 <span class="nc bnc" id="L57" title="All 2 branches missed.">    for (MockPerson p: dataset) {</span>
 <span class="nc" id="L58">      System.out.println(p.toString());</span>
 <span class="nc" id="L59">    }</span>
-
-<span class="nc" id="L61">  }</span>
+<span class="nc" id="L60">    return &quot;&quot;;</span>
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

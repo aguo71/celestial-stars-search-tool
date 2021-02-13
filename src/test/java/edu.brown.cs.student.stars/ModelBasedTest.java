@@ -24,7 +24,7 @@ public class ModelBasedTest {
   @Test
   public void testNeighbors3Args() {
     int c = 0;
-    while(c<100) {
+    while(c<500) {
       List<Star> stars = new ArrayList<>();
       // generates random stars dataset
       int length = ThreadLocalRandom.current().nextInt(1, 30);
@@ -90,7 +90,7 @@ public class ModelBasedTest {
   @Test
   public void testNeighbors5Args() {
     int c = 0;
-    while(c<100) {
+    while(c<500) {
       List<Star> stars = new ArrayList<>();
       // generates random stars dataset
       int length = ThreadLocalRandom.current().nextInt(0, 30);
@@ -162,7 +162,7 @@ public class ModelBasedTest {
   @Test
   public void testRadius5Args() {
     int c = 0;
-    while(c<100) {
+    while(c<500) {
       List<Star> stars = new ArrayList<>();
       // generates random stars dataset
       int length = ThreadLocalRandom.current().nextInt(0, 30);
@@ -236,7 +236,7 @@ public class ModelBasedTest {
   @Test
   public void testRadius3Args() {
     int c = 0;
-    while(c<100) {
+    while(c<500) {
       List<Star> stars = new ArrayList<>();
       // generates random stars dataset
       int length = ThreadLocalRandom.current().nextInt(1, 30);

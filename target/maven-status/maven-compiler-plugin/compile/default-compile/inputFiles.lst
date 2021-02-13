@@ -1,7 +1,8 @@
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/Star.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockPerson.java
-/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/naiveNeighborsHandler.java
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NeighborsHandler.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/CoordinateComparator.java
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusHandler.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/KDTree.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsCommand.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/Repl.java
@@ -16,10 +17,11 @@
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/RadiusCommand.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/KDTreeConstructor.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/CSVParser.java
-/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/naiveRadiusHandler.java
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/RadiusHandler.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/StarsParser.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveRadiusCommand.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/DistanceCalculator.java
+/Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/NaiveNeighborsHandler.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/tools/Action.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/edu/brown/cs/student/stars/Main.java
 /Users/alexguo/cs0320/stars-aguo71/src/main/java/mockaroo/MockParser.java

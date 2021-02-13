@@ -15,10 +15,10 @@ import java.util.TreeMap;
 public class StarsUniverse {
   private List<Star> stars = new ArrayList<>();
   private KDTree<Star> starTree = new KDTree<>(null, null, null, -1);
-  NaiveNeighborCommand neighbor;
-  NaiveRadiusCommand radius;
-  NeighborCommand neighborR;
-  RadiusCommand radiusR;
+  private NaiveNeighborCommand neighbor;
+  private NaiveRadiusCommand radius;
+  private NeighborCommand neighborR;
+  private RadiusCommand radiusR;
   private List<Star> guiOutput = new ArrayList<>();
   /**
    * Empty constructor.
@@ -110,7 +110,7 @@ public class StarsUniverse {
   }
 
   /**
-   * Getter for guiOutput
+   * Getter for guiOutput.
    * @return list of stars returned through gui command
    */
   public List<Star> getGuiOutput() {
